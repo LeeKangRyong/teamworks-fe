@@ -25,8 +25,8 @@
       }
     ],
     "paths": {
-      "src/*": [
-        "./src/*"
+      "#/*": [
+        "./*"
       ],
       "@/*": [
         "./src/*"
@@ -43,9 +43,9 @@
       "@/widgets/*": [
         "./src/widgets/*"
       ],
-      // "@/pages/*": [
-      //   "src/pages_re/*"
-      // ],
+      "@/pages/*": [
+        "./src/pages/*"
+      ],
       "@/app/*": [
         "./src/app/*"
       ]
