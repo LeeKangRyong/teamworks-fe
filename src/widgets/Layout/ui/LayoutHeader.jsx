@@ -1,7 +1,7 @@
 import Image from "next/image";
 import logo from "@/assets/icons/logo.png";
 
-export default function Header() {
+export function LayoutHeader() {
     return (
         <header className="absolute w-full h-16 bg-secondary-70 top-0 flex justify-between items-center px-4">
             <Image 

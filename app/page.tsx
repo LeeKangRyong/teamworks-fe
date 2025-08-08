@@ -1,7 +1,7 @@
-import { DashBoard } from "@/pages";
+import { UserDashBoard } from "@/pages/home";
 
 export default function Home() {
   return (
-    <DashBoard />
+    <UserDashBoard />
   );
 }

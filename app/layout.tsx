@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "@/app/globals.css";
 
 export const metadata: Metadata = {
-  title: "Teamworks",
+  title: "노랑통닭",
   description: "Teamworks web for 공모전",
   icons: '/logo.png',
 };
