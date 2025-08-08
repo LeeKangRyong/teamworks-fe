@@ -29,16 +29,15 @@ export const useAuth = () => {
             tokenStorage.setTokens(accessToken, refreshToken);            
             setUser(user);
             
-            // 관리자, 학생 분리하여 route
             if (user.role === 'admin') {
-                router.push('/admin/home');
+                router.push('/admin');
             } else {
-                router.push('/user/home');
+                router.push('/');
             }
             
             return data;
         } catch (e) {
-            const message = e.response?.data?.message || 'Login failed.';
+            const message = e.message || 'Login failed.';
             setError(message);
             throw e;
         } finally {
