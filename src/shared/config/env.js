@@ -1,3 +1,4 @@
+
 export const ENV = {
-    BASE_URL=process.env.BASE_URL
+    BFF_URL: process.env.NEXT_PUBLIC_BFF_URL || 'http://localhost:3003'
 }

@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { authApi } from '@/shared/api/authApi';
+import { useRouter } from 'next/navigation';
+import { authApi } from '../api/authApi';
 import { tokenStorage } from '@/shared/lib/tokenStorage';
 
 export const useAuth = () => {
@@ -11,7 +11,7 @@ export const useAuth = () => {
 
     // 새로고침 시 토큰 검증
     useEffect(() => {
-        if (tokenStorage.hasValidToken()) {
+        if (typeof window !== 'undefined' && tokenStorage.hasValidToken()) {
             setUser({ isLogin: true });
         }
     }, []);
