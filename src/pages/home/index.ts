@@ -1,2 +1,1 @@
-export { UserDashBoard } from './ui/UserDashBoard';
-export { AdminDashBoard } from './ui/AdminDashBoard';
+export { default as UserDashBoard } from './ui/UserDashBoard'
