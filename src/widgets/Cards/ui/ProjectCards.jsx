@@ -5,7 +5,7 @@ import { Add } from "@/features/projects";
 export function ProjectCards() {
     return (
         <section>
-            <section className="grid grid-cols-3 gap-x-6 gap-y-12 w-full h-full">
+            <section className="grid gap-x-6 gap-y-12 w-full h-full" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(max(280px, calc((100% - 48px) / 3)), 1fr))'}}>
                 <ProjectCard title="프랑스어기초" duration="7월 24일" members="32">
                     <More />
                 </ProjectCard>
@@ -42,6 +42,5 @@ export function ProjectCards() {
             </section>
             <Add />
         </section>
-
     );
 }
