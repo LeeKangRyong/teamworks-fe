@@ -1,2 +1,2 @@
 export { LayoutHeader } from './ui/LayoutHeader'
-export { LayoutFooter } from './ui/LayoutFooter'
+export { LayoutAside } from './ui/LayoutAside'

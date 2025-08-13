@@ -1,11 +1,11 @@
 import Image from "next/image";
-import { LayoutHeader, LayoutFooter } from "@/widgets/Layout";
+import { LayoutHeader, LayoutAside } from "@/widgets/Layout";
 
 export function UserDashBoard() {
     return (
-        <div className="bg-secondary-20 flex justify-center w-full h-screen">
+        <div className="bg-gray-0 flex justify-center w-full h-screen">
             <LayoutHeader />
-            <LayoutFooter />
+            <LayoutAside />
         </div>
     );
 };

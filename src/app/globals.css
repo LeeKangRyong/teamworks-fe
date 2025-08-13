@@ -58,6 +58,9 @@
     --support-primary: #5A7DF5;
     --support-green: #51CFBD;
     --support-blue: #44C0FF;
+
+    --background-neutral: #F0F0F0;
+    --subtle: #666666;
 }
 
 @theme {
@@ -114,6 +117,9 @@
     --color-support-primary: var(--support-primary);
     --color-support-green: var(--support-green);
     --color-support-blue: var(--support-blue);
+
+    --color-background-neutral: var(--background-neutral);
+    --color-subtle: var(--subtle);
 
     --font-sans: "Pretendard Variable", sans-serif;
     --font-mono: "Pretendard Variable", monospace;
