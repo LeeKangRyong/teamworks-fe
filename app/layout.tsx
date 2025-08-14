@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "@/app/globals.css";
 
 export const metadata: Metadata = {
-  title: "노랑통닭",
-  description: "Teamworks web for 공모전",
+  title: "TeamWorks",
+  description: "Teamworks Web Service by 노랑통닭",
   icons: '/logo.png',
 };
 

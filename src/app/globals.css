@@ -26,6 +26,7 @@
     --primary-0: #FFFFFF;
 
     --secondary-0: #ffffff;
+    --secondary-3: #F8F8FA;
     --secondary-5: #F3F4F6;
     --secondary-10: #E6E8ED;
     --secondary-20: #CED2DB;
@@ -95,6 +96,7 @@
     --color-secondary-20: var(--secondary-20);
     --color-secondary-10: var(--secondary-10);
     --color-secondary-5: var(--secondary-5);
+    --color-secondary-3: var(--secondary-3);
     --color-secondary-0: var(--secondary-0);
 
     --color-gray: var(--gray-80);

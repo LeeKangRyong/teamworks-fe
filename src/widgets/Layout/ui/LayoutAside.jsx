@@ -8,10 +8,12 @@ import edit from "@/assets/icons/edit.png";
 
 export function LayoutAside() {
     return (
-        <aside className="absolute left-0 top-0 border-r-1 border-gray-10 w-[240px] h-full z-40 bg-gray-0">
-            <div className="mt-18">
-                <AsideList icon={home} blueIcon={homeBlue} title="홈" />
-                <AsideList icon={search} blueIcon={searchBlue} title="검색" />
+        <aside className="absolute left-0 top-0 border-r-1 border-gray-10 w-[240px] h-screen z-40 bg-gray-0">
+            <div className="relative mt-18">
+                <div className="absolute top-0 left-0 w-full">
+                    <AsideList icon={home} blueIcon={homeBlue} title="홈" />
+                    <AsideList icon={search} blueIcon={searchBlue} title="검색" />
+                </div>
             </div>
         </aside>
     );
