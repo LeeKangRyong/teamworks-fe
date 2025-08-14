@@ -3,6 +3,6 @@ import add from "@/assets/icons/add.png";
 
 export function Add() {
     return (
-        <Image src={add} alt="add" className="absolute right-2 h-20 w-20 hover:scale-103" />
+        <Image src={add} alt="add" className="absolute right-4 h-16 w-16 hover:scale-103" />
     );
 }
