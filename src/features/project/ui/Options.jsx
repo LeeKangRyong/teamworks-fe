@@ -26,7 +26,7 @@ export function Options({ activeTab, setActiveTab }) {
             {optionItems.map((item, index) => (
                 <Option 
                     key={index}
-                    img={hoveredIndex === index ? item.imgHover : item.img}
+                    img={hoveredIndex === index || activeTab === item.key ? item.imgHover : item.img}
                     title={item.title}
                     isHovered={hoveredIndex === index}
                     isActive={activeTab === item.key}
