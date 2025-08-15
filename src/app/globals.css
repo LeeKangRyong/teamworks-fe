@@ -59,6 +59,8 @@
     --support-primary: #5A7DF5;
     --support-green: #51CFBD;
     --support-blue: #44C0FF;
+    --support-red-10: #FFF2F5;
+    --support-red-100: #F96B8E;
 
     --background-neutral: #F0F0F0;
     --subtle: #666666;
@@ -119,6 +121,8 @@
     --color-support-primary: var(--support-primary);
     --color-support-green: var(--support-green);
     --color-support-blue: var(--support-blue);
+    --color-support-red-10: var(--support-red-10);
+    --color-support-red-100: var(--support-red-100);
 
     --color-background-neutral: var(--background-neutral);
     --color-subtle: var(--subtle);
@@ -138,11 +142,20 @@
     font-family: "Pretendard Variable", sans-serif;
 }
 
+/* 
+html {
+    overflow-y: scroll;
+} */
+
 body {
     background: var(--background);
     color: var(--foreground);
     font-family: "Pretendard Variable", sans-serif;
     -webkit-font-smoothing: antialiased;
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 .text-heading-xl { @apply text-[1.75rem] leading-[2.75rem] tracking-[-0.01em]; font-variation-settings: "wght" 700; }

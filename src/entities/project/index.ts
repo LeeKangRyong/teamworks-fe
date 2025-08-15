@@ -1,3 +1,3 @@
 export { Box } from "./ui/Box"
-export { WarningTeam } from "./ui/WarningTeam"
-export { NextSubmit } from "./ui/NextSubmit"
+export { TeamSummary } from "./ui/Dashboard/TeamSummary"
+export { NextSubmit } from "./ui/Dashboard/NextSubmit"

@@ -24,6 +24,7 @@ export function Project({ id }) {
 
     return (
         <div className="bg-secondary-5 flex justify-center w-full min-h-screen relative">
+            <div className="fixed left-0 top-0 w-[240px] h-screen bg-white z-30 border-r-1 border-gray-10" />
             <LayoutHeader />
             <LayoutAside />
             <div className="mt-20 ml-25">
