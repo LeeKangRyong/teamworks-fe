@@ -142,7 +142,7 @@
     font-family: "Pretendard Variable", sans-serif;
 }
 
-/* 
+/* 스크롤 바 모든 화면에 표시
 html {
     overflow-y: scroll;
 } */
@@ -154,8 +154,9 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* 스크롤바 다 없애버리기~ */
 body::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
 }
 
 .text-heading-xl { @apply text-[1.75rem] leading-[2.75rem] tracking-[-0.01em]; font-variation-settings: "wght" 700; }

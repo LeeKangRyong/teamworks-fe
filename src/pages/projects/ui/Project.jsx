@@ -6,6 +6,7 @@ import { Options } from "@/features/project";
 
 export function Project({ id }) {
     const [activeTab, setActiveTab] = useState("dashboard");
+    const [isAsideCollapsed, setIsAsideCollapsed] = useState(false);
 
     const renderContent = () => {
         switch(activeTab) {
@@ -24,10 +25,24 @@ export function Project({ id }) {
 
     return (
         <div className="bg-secondary-5 flex justify-center w-full min-h-screen relative">
-            <div className="fixed left-0 top-0 w-[240px] h-screen bg-white z-30 border-r-1 border-gray-10" />
+            <div 
+                className={`
+                    fixed left-0 top-0 h-screen bg-white z-30 border-r-1 border-gray-10
+                    transition-all duration-300 ease-in-out
+                    ${isAsideCollapsed ? 'w-6' : 'w-[240px]'}
+                `}
+            />
             <LayoutHeader />
-            <LayoutAside />
-            <div className="mt-20 ml-25">
+            <LayoutAside 
+                isCollapsed={isAsideCollapsed} 
+                onToggle={() => setIsAsideCollapsed(!isAsideCollapsed)} 
+            />
+            <div 
+                className={`
+                    mt-20 transition-all duration-300 ease-in-out
+                    ${isAsideCollapsed ? 'ml-8' : 'ml-25'}
+                `}
+            >
                 <h1 className="text-heading-m font-bold mt-10 mb-5">2025 스타트업 프로젝트</h1>
                 <article className="bg-white w-full max-w-none py-4">
                     <Options activeTab={activeTab} setActiveTab={setActiveTab} />

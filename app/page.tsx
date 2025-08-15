@@ -1,7 +1,7 @@
-import { UserDashBoard } from "@/pages/home";
+import { Login } from "@/pages/auth";
 
 export default function HomePage() {
   return (
-    <UserDashBoard />
+    <Login />
   );
 }
