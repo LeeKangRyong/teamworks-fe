@@ -13,7 +13,7 @@ export function Projects() {
                 className={`
                     fixed left-0 top-0 h-screen bg-white z-30 border-r-1 border-gray-10
                     transition-all duration-300 ease-in-out
-                    ${isAsideCollapsed ? 'w-6' : 'w-[240px]'}
+                    ${isAsideCollapsed ? 'w-6' : 'w-[200px]'}
                 `}
             />
             <LayoutHeader />

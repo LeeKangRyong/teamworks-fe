@@ -1,5 +1,4 @@
-import { More } from "@/shared/project";
-
+import { More } from "@/shared/project/dashboard";
 export function NextSubmit() {
     return (
         <article className="w-full border-1 border-gray-10 rounded-lg items-center pb-40 flex flex-row justify-between">

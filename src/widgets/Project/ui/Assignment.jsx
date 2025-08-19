@@ -1,6 +1,6 @@
 import { Box } from "@/entities/project/dashboard";
 
-export function Notice() {
+export function Assignment() {
     return (
         <main className="bg-white w-full max-w-none py-4">
             <article className="flex flex-row gap-6 w-full min-w-full px-12">

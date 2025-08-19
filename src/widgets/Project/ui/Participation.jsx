@@ -1,4 +1,4 @@
-import { Box } from "@/entities/project";
+import { Box } from "@/entities/project/dashboard";
 
 export function Participation() {
     return (

@@ -55,9 +55,11 @@
     --gray-100: #000000;
 
     --support-pink: #FA7C9B;
-    --support-yellow: #F9BE40;
+    --support-yellow-10: #FCF5E7;
+    --support-yellow-100: #F7B427;
     --support-primary: #5A7DF5;
-    --support-green: #51CFBD;
+    --support-green-10: #E9FCFA;
+    --support-green-100: #25C3AC;
     --support-blue: #44C0FF;
     --support-red-10: #FFF2F5;
     --support-red-100: #F96B8E;
@@ -117,9 +119,11 @@
     --color-gray-0: var(--gray-0);
 
     --color-support-pink: var(--support-pink);
-    --color-support-yellow: var(--support-yellow);
+    --color-support-yellow-10: var(--support-yellow-10);
+    --color-support-yellow-100: var(--support-yellow-100);
     --color-support-primary: var(--support-primary);
-    --color-support-green: var(--support-green);
+    --color-support-green-10: var(--support-green-10);
+    --color-support-green-100: var(--support-green-100);
     --color-support-blue: var(--support-blue);
     --color-support-red-10: var(--support-red-10);
     --color-support-red-100: var(--support-red-100);

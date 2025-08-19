@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import { LayoutHeader, LayoutAside } from "@/widgets/Layout";
-import { Dashboard, Team, Participation, Notice } from "@/widgets/Project";
-import { Options } from "@/features/project";
+import { Dashboard, Team, Participation, Notice, Assignment } from "@/widgets/Project";
+import { Options } from "@/features/project/layout";
 
 export function Project({ id }) {
     const [activeTab, setActiveTab] = useState("dashboard");
@@ -18,6 +18,8 @@ export function Project({ id }) {
                 return <Participation />;
             case "notice":
                 return <Notice />;
+            case "assignment":
+                return <Assignment />;
             default:
                 return <Dashboard />;
         }
@@ -29,7 +31,7 @@ export function Project({ id }) {
                 className={`
                     fixed left-0 top-0 h-screen bg-white z-30 border-r-1 border-gray-10
                     transition-all duration-300 ease-in-out
-                    ${isAsideCollapsed ? 'w-6' : 'w-[240px]'}
+                    ${isAsideCollapsed ? 'w-6' : 'w-[200px]'}
                 `}
             />
             <LayoutHeader />
