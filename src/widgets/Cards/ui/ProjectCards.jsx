@@ -1,40 +1,32 @@
+// ProjectCards.jsx
+"use client";
+import Image from "next/image";
 import { ProjectCard } from "@/entities/projects"
-import { More } from "@/features/projects";
-import { Add } from "@/features/projects";
+import { More, Add, MakeProject } from "@/features/projects";
+import noProject from "@/assets/icons/no-project.png";
 
-export function ProjectCards() {
+export function ProjectCards({ projects, setProjects }) {
     return (
         <section className="grid gap-x-6 gap-y-12 w-full h-full pb-20" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(max(280px, calc((100% - 48px) / 3)), 1fr))'}}>
-            <ProjectCard title="2025 스타트업 프로젝트" duration="7월 24일" members="32">
-                <More />
-            </ProjectCard>
-            <ProjectCard title="프랑스어기초" duration="7월 24일" members="32">
-                <More />
-            </ProjectCard>
-            <ProjectCard title="자료구조및실습" duration="7월 24일" members="32">
-                <More />
-            </ProjectCard>
-            <ProjectCard title="프랑스어기초" duration="7월 24일" members="32">
-                <More />
-            </ProjectCard>
-            <ProjectCard title="프랑스어기초" duration="7월 24일" members="32">
-                <More />
-            </ProjectCard>
-            <ProjectCard title="프랑스어기초" duration="7월 24일" members="32">
-                <More />
-            </ProjectCard>
-            <ProjectCard title="프랑스어기초" duration="7월 24일" members="32">
-                <More />
-            </ProjectCard>
-            <ProjectCard title="프랑스어기초" duration="7월 24일" members="32">
-                <More />
-            </ProjectCard>
-            <ProjectCard title="프랑스어기초" duration="7월 24일" members="32">
-                <More />
-            </ProjectCard>
-            <ProjectCard title="프랑스어기초" duration="7월 24일" members="32">
-                <More />
-            </ProjectCard>
+            {projects.length > 0 ? (
+                projects.map((project) => (
+                    <ProjectCard 
+                        key={project.id}
+                        title={project.title} 
+                        duration={project.duration} 
+                        members={project.members}
+                    >
+                        <More />
+                    </ProjectCard>
+                ))
+            ) : (
+                <div className="col-span-full flex flex-col items-center justify-center min-h-[90vh]">
+                    <Image src={noProject} alt="noProject" className="w-24 h-24 mb-5"/>
+                    <p className="text-secondary-50 text-body-m text-center p-0.5">현재 생성된 프로젝트가 없습니다</p>
+                    <p className="text-secondary-50 text-body-m text-center p-0.5 mb-8">새 프로젝트를 만들어 시작해보세요</p>
+                    <MakeProject />
+                </div>
+            )}
         </section>
     );
 }

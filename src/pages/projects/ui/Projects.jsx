@@ -1,3 +1,4 @@
+// Projects.jsx
 "use client";
 import { useState } from "react";
 import { LayoutHeader, LayoutAside } from "@/widgets/Layout";
@@ -6,6 +7,19 @@ import { Add } from "@/features/projects";
 
 export function Projects() {
     const [isAsideCollapsed, setIsAsideCollapsed] = useState(false);
+    
+    const [projects, setProjects] = useState([
+        { id: 1, title: "2025 스타트업 프로젝트", duration: "7월 24일", members: "32" },
+        { id: 2, title: "프랑스어기초", duration: "7월 24일", members: "32" },
+        { id: 3, title: "자료구조및실습", duration: "7월 24일", members: "32" },
+        { id: 4, title: "프랑스어기초", duration: "7월 24일", members: "32" },
+        { id: 5, title: "프랑스어기초", duration: "7월 24일", members: "32" },
+        { id: 6, title: "프랑스어기초", duration: "7월 24일", members: "32" },
+        { id: 7, title: "프랑스어기초", duration: "7월 24일", members: "32" },
+        { id: 8, title: "프랑스어기초", duration: "7월 24일", members: "32" },
+        { id: 9, title: "프랑스어기초", duration: "7월 24일", members: "32" },
+        { id: 10, title: "프랑스어기초", duration: "7월 24일", members: "32" }
+    ]);
 
     return (
         <div className="bg-secondary-5 flex justify-center w-full min-h-screen relative">
@@ -27,10 +41,12 @@ export function Projects() {
                     ${isAsideCollapsed ? 'pl-8' : 'pl-[12.5%]'}
                 `}
             >
-                <p className="text-heading-l mt-10 mb-5 font-bold">내 프로젝트</p>
-                <ProjectCards />
+                {projects.length > 0 && (
+                    <p className="text-heading-l mt-10 mb-5 font-bold">내 프로젝트</p>
+                )}
+                <ProjectCards projects={projects} setProjects={setProjects} />
             </main>
-            <Add />
+            {projects.length > 0 ? <Add /> : ""}
         </div>
     );
 }

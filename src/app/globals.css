@@ -66,6 +66,7 @@
 
     --background-neutral: #F0F0F0;
     --subtle: #666666;
+    --warning-100: #FF5E5E;
 }
 
 @theme {
@@ -130,6 +131,7 @@
 
     --color-background-neutral: var(--background-neutral);
     --color-subtle: var(--subtle);
+    --color-warning-100: var(--warning-100);
 
     --font-sans: "Pretendard Variable", sans-serif;
     --font-mono: "Pretendard Variable", monospace;
