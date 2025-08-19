@@ -66,15 +66,28 @@ export function Sort({ type, selectedList, onSortChange }) {
             {isOpen && (
                 <div className="absolute top-full left-0 mt-1 w-40 bg-secondary-3 rounded-lg z-50 shadow-lg">
                     <div>
-                        {sortOptions.map((option, index) => (
-                            <button
-                                key={option.value}
-                                onClick={() => handleSortSelect(option)}
-                                className="w-full px-3 py-3 text-left text-body-m bg-secondary-3 hover:bg-secondary-60 transition-colors duration-150 group first:rounded-t-lg last:rounded-b-lg whitespace-nowrap"
-                            >
-                                <span className="text-secondary-60 group-hover:text-gray-0">{option.label}</span>
-                            </button>
-                        ))}
+                        {sortOptions.map((option, index) => {
+                            const isSelected = selectedSort === option.label;
+                            return (
+                                <button
+                                    key={option.value}
+                                    onClick={() => handleSortSelect(option)}
+                                    className={`w-full px-3 py-3 text-left text-body-m transition-colors duration-150 group first:rounded-t-lg last:rounded-b-lg whitespace-nowrap ${
+                                        isSelected 
+                                            ? 'bg-secondary-60' 
+                                            : 'bg-secondary-3 hover:bg-secondary-10'
+                                    }`}
+                                >
+                                    <span className={`${
+                                        isSelected 
+                                            ? 'text-gray-0' 
+                                            : 'text-secondary-60'
+                                    }`}>
+                                        {option.label}
+                                    </span>
+                                </button>
+                            );
+                        })}
                     </div>
                 </div>
             )}

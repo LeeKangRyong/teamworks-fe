@@ -1,4 +1,3 @@
-// ProjectCards.jsx
 "use client";
 import Image from "next/image";
 import { ProjectCard } from "@/entities/projects"
