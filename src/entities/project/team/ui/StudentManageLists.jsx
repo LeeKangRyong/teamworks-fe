@@ -1,0 +1,64 @@
+import { StudentManageList } from "@/shared/project/team";
+
+export function StudentManageLists() {
+    return (
+        <article>
+            <StudentManageList 
+                name="김민수" 
+                team="노랑통닭" 
+                recent="25/08/14" 
+                status="좋음" 
+                contact="010-1234-5678" 
+                email="minsu.kim@example.com" 
+            />
+            <StudentManageList 
+                name="이영희" 
+                team="노랑통닭" 
+                recent="25/08/13" 
+                status="위험" 
+                contact="010-2345-6789" 
+                email="younghee.lee@example.com" 
+            />
+            <StudentManageList 
+                name="박철수" 
+                team="파랑돌고래" 
+                recent="25/08/12" 
+                status="무임승차" 
+                contact="010-3456-7890" 
+                email="chulsoo.park@example.com" 
+            />
+            <StudentManageList 
+                name="최수진" 
+                team="파랑돌고래" 
+                recent="25/08/15" 
+                status="좋음" 
+                contact="010-4567-8901" 
+                email="sujin.choi@example.com" 
+            />
+            <StudentManageList 
+                name="정하나" 
+                team="초록거북" 
+                recent="25/08/11" 
+                status="위험" 
+                contact="010-5678-9012" 
+                email="hana.jung@example.com" 
+            />
+            <StudentManageList 
+                name="김영수" 
+                team="초록거북" 
+                recent="25/08/10" 
+                status="좋음" 
+                contact="010-6789-0123" 
+                email="youngsu.kim@example.com" 
+            />
+            <StudentManageList 
+                name="이소연" 
+                team="빨강사자" 
+                recent="25/08/09" 
+                status="무임승차" 
+                contact="010-7890-1234" 
+                email="soyeon.lee@example.com" 
+            />
+        </article>
+    );
+}

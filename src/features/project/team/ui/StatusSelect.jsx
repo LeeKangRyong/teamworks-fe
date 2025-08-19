@@ -36,12 +36,8 @@ export function StatusSelect({ onStatusChange }) {
         console.log("Selected status:", status.value);
     };
 
-    const handleMouseLeave = () => {
-        setIsOpen(false);
-    };
-
     return (
-        <div className="w-30 flex-shrink-0 flex flex-row items-center" ref={dropdownRef} onMouseLeave={handleMouseLeave}>
+        <div className="w-30 flex-shrink-0 flex flex-row items-center" ref={dropdownRef}>
             <div className="relative">
                 <button
                     onClick={() => setIsOpen(!isOpen)}
@@ -56,19 +52,19 @@ export function StatusSelect({ onStatusChange }) {
                 </button>
 
                 {isOpen && (
-                    <div className="absolute top-full -left-2 mt-0 w-27 bg-secondary-3 z-50">
+                    <div className="absolute top-full -left-2 mt-1 w-27 bg-secondary-3 rounded-lg z-50 shadow-lg">
                         <div>
                             {statusOptions.map((option, index) => (
                                 <button
                                     key={option.value}
                                     onClick={() => handleStatusSelect(option)}
-                                    className="w-full px-2 py-2 text-left text-body-s bg-secondary-3 hover:bg-secondary-60 transition-colors duration-150 flex items-center justify-center group"
+                                    className="w-full px-2 py-2 text-left text-body-s bg-secondary-3 hover:bg-secondary-60 transition-colors duration-150 flex items-center justify-center group first:rounded-t-lg last:rounded-b-lg"
                                 >
                                     {option.value === "all" ? (
-                                        <span className="text-secondary-60 group-hover:text-gray-0">{option.label}</span>
+                                        <span className="text-secondary-60 group-hover:!text-gray-0">{option.label}</span>
                                     ) : (
                                         <div className={`px-2 py-1 ${option.bgColor} rounded-md flex items-center justify-center w-24 min-w-24`}>
-                                            <p className={`${option.textColor} text-body-s text-center truncate`}>{option.label}</p>
+                                            <p className={`${option.textColor} group-hover:!text-gray-0 text-body-s text-center truncate`}>{option.label}</p>
                                         </div>
                                     )}
                                 </button>

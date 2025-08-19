@@ -45,8 +45,8 @@ export function Project({ id }) {
                     ${isAsideCollapsed ? 'ml-8' : 'ml-25'}
                 `}
             >
-                <h1 className="text-heading-m font-bold mt-10 mb-5">2025 스타트업 프로젝트</h1>
-                <article className="bg-white w-full max-w-none py-4">
+                <h1 className="text-heading-m font-bold mt-10 mb-5 ml-4">2025 스타트업 프로젝트</h1>
+                <article className="bg-white w-full max-w-none py-4 ml-4">
                     <Options activeTab={activeTab} setActiveTab={setActiveTab} />
                     <div className="border-b-1 border-gray-20 w-full"/>
                     <div className="mt-8">
