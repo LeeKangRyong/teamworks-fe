@@ -136,15 +136,16 @@
     --font-sans: "Pretendard Variable", sans-serif;
     --font-mono: "Pretendard Variable", monospace;
 }
-
+/* 다크 모드 X
 @media (prefers-color-scheme: dark) {
     :root {
     --background: #0a0a0a;
     --foreground: #ededed;
     }
-}
+} */
 
 * {
+    color-scheme: light !important;
     font-family: "Pretendard Variable", sans-serif;
 }
 
@@ -154,8 +155,8 @@ html {
 } */
 
 body {
-    background: var(--background);
-    color: var(--foreground);
+    background: #ffffff !important;
+    color: #171717 !important;
     font-family: "Pretendard Variable", sans-serif;
     -webkit-font-smoothing: antialiased;
 }
