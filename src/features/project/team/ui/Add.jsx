@@ -1,6 +1,3 @@
-import Image from "next/image";
-import add from "@/assets/icons/add.png";
-
 export function Add({ type }) {
     return (
         <button className="relative bg-primary-5 flex flex-row rounded-lg justify-center items-center px-3 py-3 hover:bg-primary-10 transition-colors duration-150 w-25 mt-3">

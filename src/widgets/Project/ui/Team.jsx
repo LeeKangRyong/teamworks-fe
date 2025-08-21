@@ -3,12 +3,15 @@ import { useState } from "react";
 import { ListButtons } from "@/features/project/team";
 import { TeamManageLists, StudentManageLists } from "@/entities/project/team";
 import { StatusSelect, Sort, SortUpDown, SearchName, Add } from "@/features/project/team";
+import { studentsData, teamsData } from "@/shared/mock";
+
+// const studentsData = [];
+// const teamsData = [];
 
 export function Team() {
     const [selectedList, setSelectedList] = useState("팀 리스트");
 
     const handleStatusChange = (selectedStatus) => {
-        console.log("팀 목록 필터링:", selectedStatus);
     };
 
     const handleListChange = (listType) => {
@@ -16,8 +19,10 @@ export function Team() {
     };
 
     const handleSortChange = (sortValue) => {
-        console.log("정렬 변경:", sortValue);
     };
+
+    const currentData = selectedList === "팀 리스트" ? teamsData : studentsData;
+    const hasData = currentData && currentData.length > 0;
 
     const renderTeamListHeaders = () => (
         <div className="flex flex-row items-center py-2">
@@ -72,22 +77,29 @@ export function Team() {
             <section className="ml-6 px-8 w-240 -mt-2 border-1 border-gray-10 rounded-lg">
                 <div className="flex justify-between items-center">
                     <h1 className="text-secondary-80 text-body-m py-4 mt-2 font-semibold">
-                        {selectedList} (총 25명)
+                        {selectedList === "팀 리스트" ? `팀 리스트 (총 ${teamsData?.length || 0}개)` : `학생 리스트 (총 ${studentsData?.length || 0}명)`}
                     </h1>
                     <div className="flex flex-row gap-2 items-center">
-                        {selectedList === "팀 리스트" ? "" : <SearchName />}
-                        <Sort 
-                            type="최근 활동일 순" 
-                            selectedList={selectedList}
-                            onSortChange={handleSortChange} 
-                        />
-                        <SortUpDown type="오름차순" />
-                        <Add type={selectedList === "팀 리스트" ? "팀" : "학생"} />
+                        {hasData && (
+                            <>
+                                {selectedList === "학생 리스트" && <SearchName />}
+                                <Sort 
+                                    type="최근 활동일 순" 
+                                    selectedList={selectedList}
+                                    onSortChange={handleSortChange}
+                                />
+                                <SortUpDown type="오름차순" />
+                                <Add type={selectedList === "팀 리스트" ? "팀" : "학생"} />
+                            </>
+                        )}
                     </div>
                 </div>
                 <article className="mx-auto">
-                    {selectedList === "팀 리스트" ? renderTeamListHeaders() : renderStudentListHeaders()}
-                    {selectedList === "팀 리스트" ? <TeamManageLists /> : <StudentManageLists /> }
+                    {hasData && (selectedList === "팀 리스트" ? renderTeamListHeaders() : renderStudentListHeaders())}
+                    {selectedList === "팀 리스트" ? 
+                        <TeamManageLists teamsData={teamsData} /> : 
+                        <StudentManageLists studentsData={studentsData} />
+                    }
                 </article>
             </section>
         </main>

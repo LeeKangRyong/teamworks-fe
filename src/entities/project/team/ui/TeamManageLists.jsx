@@ -1,24 +1,28 @@
 import { TeamManageList } from "@/shared/project/team";
+import { AddTeam, SelectStudents } from "@/features/project/team";
 
-export function TeamManageLists() {
+export function TeamManageLists({ teamsData }) {
     return (
-        <article>
-            <TeamManageList team="노랑통닭" num="8" recent="25/08/14" status="무임승차" desc="채팅 10건 미만, 파일 미제출" />
-            <TeamManageList team="붉붉북" num="8" recent="25/08/14" status="위험" desc="안녕" />
-            <TeamManageList team="ㅁㄴㅇㅁㄴㅇㅁㅇ" num="8" recent="25/08/14" status="좋음" desc="안녀엉" />
-            <TeamManageList team="노랑통닭" num="8" recent="25/08/14" status="좋음" desc="안뇨옹" />
-            <TeamManageList team="노랑통닭" num="8" recent="25/08/14" status="위험" desc="채팅 10건 미만, 파일 미제출" />
-            <TeamManageList team="노랑통닭" num="8" recent="25/08/14" status="위험" desc="채팅 10건 미만, 파일 미제출" />
-            <TeamManageList team="노랑통닭" num="8" recent="25/08/14" status="무임승차" desc="채팅 10건 미만, 파일 미제출" />
-            <TeamManageList team="노랑통닭" num="8" recent="25/08/14" status="무임승차" desc="채팅 10건 미만, 파일 미제출" />
-            <TeamManageList team="노랑통닭" num="8" recent="25/08/14" status="무임승차" desc="채팅 10건 미만, 파일 미제출" />
-            <TeamManageList team="노랑통닭" num="8" recent="25/08/14" status="무임승차" desc="채팅 10건 미만, 파일 미제출" />
-            <TeamManageList team="노랑통닭" num="8" recent="25/08/14" status="무임승차" desc="채팅 10건 미만, 파일 미제출" />
-            <TeamManageList team="노랑통닭" num="8" recent="25/08/14" status="무임승차" desc="채팅 10건 미만, 파일 미제출" />
-            <TeamManageList team="노랑통닭" num="8" recent="25/08/14" status="무임승차" desc="채팅 10건 미만, 파일 미제출" />
-            <TeamManageList team="노랑통닭" num="8" recent="25/08/14" status="무임승차" desc="채팅 10건 미만, 파일 미제출" />
-            <TeamManageList team="노랑통닭" num="8" recent="25/08/14" status="무임승차" desc="채팅 10건 미만, 파일 미제출" />
-            <TeamManageList team="노랑통닭" num="8" recent="25/08/14" status="무임승차" desc="채팅 10건 미만, 파일 미제출" />
+        <article className="min-h-80">
+            {teamsData && teamsData.length > 0 ? (
+                teamsData.map((team) => (
+                    <TeamManageList
+                        key={team.id}
+                        team={team.team}
+                        num={team.num}
+                        recent={team.recent}
+                        status={team.status}
+                        desc={team.desc}
+                    />
+                ))
+            ) : (
+                <div className="flex flex-col justify-center items-center py-16">
+                    <p className="text-body-m text-secondary-60 mb-2">현재 생성된 팀이 없습니다</p>
+                    <p className="text-body-m text-secondary-60 mb-4">팀을 어쩌구저쩌구 해서 새로운 팀을 추가해보세요</p>
+                    <AddTeam />
+                    <SelectStudents />
+                </div>
+            )}
         </article>
     );
 }

@@ -1,9 +1,12 @@
 import { TeamSummaryList } from "@/shared/project/dashboard"
 
-export function TeamSummary() {
+export function TeamSummary({ children, num }) {
     return (
         <article className="border-1 border-gray-10 rounded-lg w-[50%] pb-5">
-            <h3 className="text-secondary-80 text-body-m p-5">주의 요망 팀</h3>
+            <div className="flex justify-between -mx-1">
+                <h3 className="text-secondary-80 text-body-m p-5"><b>주의 요망 팀</b> (총 {num}팀)</h3>
+                {children}
+            </div>
             <div>
                 <div className="flex flex-row px-2">
                     <div className="w-20 flex-shrink-0">

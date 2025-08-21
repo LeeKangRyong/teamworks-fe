@@ -1,6 +1,8 @@
 export { Add } from "./ui/Add"
+export { AddTeam } from "./ui/AddTeam"
 export { ListButtons } from "./ui/ListButtons"
 export { SearchName } from "./ui/SearchName"
+export { SelectStudents } from "./ui/SelectStudents"
 export { SendMessage } from "./ui/SendMessage"
 export { Sort } from "./ui/Sort"
 export { SortUpDown } from "./ui/SortUpDown"
