@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import { AsideList } from "@/features/layout";
 import home from "@/assets/icons/home.png";
@@ -9,6 +8,7 @@ import editLeft from "@/assets/icons/edit-left.png";
 import editRight from "@/assets/icons/edit-right.png";
 
 export function LayoutAside({ isCollapsed = false, onToggle = () => {} }) {
+
     return (
         <aside 
             className={`
@@ -28,7 +28,7 @@ export function LayoutAside({ isCollapsed = false, onToggle = () => {} }) {
                     <AsideList icon={search} blueIcon={searchBlue} title="검색" />
                 </div>
                 
-                {/* 접힌 상태에서만 보이는 아이콘들 */}
+                {/* 접힌 상태 */}
                 {isCollapsed && (
                     <div className="w-full">
                         <div className="flex flex-row gap-4 items-center h-12 px-2 py-3 hover:bg-primary-10 cursor-pointer transition-colors duration-200 justify-center group">

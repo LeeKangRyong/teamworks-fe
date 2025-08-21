@@ -1,15 +1,27 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+// import { useRouter } from "next/navigation";
 
 export function AsideList({ icon, blueIcon, title }) {
+    // const router = useRouter();
     const [isHovered, setIsHovered] = useState(false);
+
+    /* TODO: 명세서 나온 후 연결 (SSR 이슈)
+    const handleHome = () => {
+        if (title === "홈") {
+            router.push("/projects");
+        }
+        // TODO: 검색 기능 추가
+    };
+    */
 
     return (
         <div 
             className="flex flex-row gap-4 items-center h-12 px-5 py-3 hover:bg-primary-10 cursor-pointer transition-colors duration-200"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            // onClick={handleHome}
         >
             <Image 
                 src={isHovered ? blueIcon : icon} 

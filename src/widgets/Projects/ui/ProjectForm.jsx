@@ -1,6 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Cancel, Complete, Input, InputDate } from "@/features/projects";
+import Image from "next/image";
+import warning from "@/assets/icons/warning.png"
 
 export function ProjectForm({ type }) {
     const [projectName, setProjectName] = useState("");
@@ -12,6 +15,8 @@ export function ProjectForm({ type }) {
     const [showNameWarning, setShowNameWarning] = useState(false);
     const [nameInputFocused, setNameInputFocused] = useState(false);
     const [dateInputFocused, setDateInputFocused] = useState(false);
+
+    const router = useRouter();
 
     useEffect(() => {
         const isProjectNameFilled = projectName.trim() !== "";
@@ -27,8 +32,40 @@ export function ProjectForm({ type }) {
         setIsFormValid(isProjectNameFilled && isStartDateFilled && isEndDateFilled);
     }, [projectName, startDate, endDate, nameInputFocused, dateInputFocused]);
 
+    const handleComplete = async () => {
+        const isProjectNameFilled = projectName.trim() !== "";
+        const isStartDateFilled = startDate.replace(/\D/g, "").length === 8;
+        const isEndDateFilled = endDate.replace(/\D/g, "").length === 8;
+
+        if (!isFormValid) {
+            // 프로젝트명 -> 프로젝트 기간 순으로 에러 표시
+            if (!isProjectNameFilled) {
+                setShowNameWarning(true);
+                setNameInputFocused(true);
+                return;
+            }
+            
+            if (!isStartDateFilled || !isEndDateFilled) {
+                setShowDateWarning(true);
+                setDateInputFocused(true);
+                return;
+            }
+        }
+        
+        console.log("프로젝트 생성:", {
+            name: projectName,
+            startDate,
+            endDate,
+            description: projectDescription
+        });
+        
+        router.push('/projects');
+        
+    };
+
     return (
         <main className="w-140 bg-white rounded-md h-135 p-5 flex flex-col">
+
             <div className="flex flex-col gap-2 mb-8">
                 <p className="text-secondary-50 text-body-s">프로젝트명</p>
                 <Input 
@@ -40,8 +77,8 @@ export function ProjectForm({ type }) {
                 />
                 <div className="h-1">
                     {showNameWarning && (
-                        <div className="flex items-center gap-1 -mt-1">
-                            <span className="text-warning-100 text-caption-regular">⚠</span>
+                        <div className="flex flex-row items-center gap-1 -mt-1">
+                            <Image src={warning} alt="warning" className="w-3 h-3" />
                             <p className="text-warning-100 text-caption-regular">프로젝트명을 입력해주세요</p>
                         </div>
                     )}
@@ -60,8 +97,8 @@ export function ProjectForm({ type }) {
                 />
                 <div className="h-1">
                     {showDateWarning && (
-                        <div className="flex items-center gap-1 -mt-1">
-                            <span className="text-warning-100 text-caption-regular">⚠</span>
+                        <div className="flex flex-row items-center gap-1 -mt-1">
+                            <Image src={warning} alt="warning" className="w-3 h-3" />
                             <p className="text-warning-100 text-caption-regular">
                                 프로젝트 기간을 입력해주세요
                             </p>
@@ -79,7 +116,10 @@ export function ProjectForm({ type }) {
             <div className="flex-1"></div>
             <div className="flex gap-3 justify-end">
                 <Cancel />
-                <Complete isValid={isFormValid} />
+                <Complete 
+                    isValid={isFormValid} 
+                    onClick={handleComplete}
+                />
             </div>
         </main>
     );

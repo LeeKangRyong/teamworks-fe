@@ -2,9 +2,12 @@ import Image from "next/image";
 import calendar from "@/assets/icons/calendar.png";
 import person from "@/assets/icons/person.png";
 
-export function ProjectCard({ title, duration, members, children }) {
+export function ProjectCard({ title, duration, members, children, onClick }) {
     return (
-        <article className="rounded-lg shadow-lg bg-white h-fit">
+        <article 
+            className="rounded-lg shadow-lg bg-white h-fit cursor-pointer" 
+            onClick={onClick}
+        >
             <figure className="bg-support-yellow-100 h-40 rounded-t-lg"/>
             <div className="p-4">
                 <div className="flex flex-row justify-between items-start mb-2">

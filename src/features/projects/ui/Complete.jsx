@@ -1,6 +1,7 @@
-export function Complete({ isValid = false }) {
+export function Complete({ isValid = false, onClick }) {
     return (
         <button 
+            onClick={onClick}
             className={`rounded-md px-3 py-1 ${
                 isValid 
                     ? 'bg-white hover:bg-primary-10' 

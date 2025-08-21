@@ -17,6 +17,8 @@ export function InputDate({
                 hasError={hasError}
                 onFocus={onFocus}
                 onBlur={onBlur}
+                otherDate={endDate}
+                isStartDate={true}
             />
             <p className="text-body-l text-secondary-80 text-center"> ~ </p>
             <InputDateBox 
@@ -25,6 +27,8 @@ export function InputDate({
                 hasError={hasError}
                 onFocus={onFocus}
                 onBlur={onBlur}
+                otherDate={startDate}
+                isStartDate={false}
             />
         </div>
     );

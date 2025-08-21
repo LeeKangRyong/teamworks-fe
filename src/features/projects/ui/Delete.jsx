@@ -1,10 +1,10 @@
 "use client";
 import { useRouter } from "next/navigation";
 
-export function Cancel({ onClick }) {
+export function Delete({ onClick }) {
     const router = useRouter();
 
-    const handleCancel = () => {
+    const handleDelete = () => {
         // prop 있을 때 (우선)
         if (onClick) {
             onClick();
@@ -16,11 +16,11 @@ export function Cancel({ onClick }) {
 
     return (
         <button 
-            onClick={handleCancel}
-            className="bg-white rounded-lg px-3 py-1 group hover:bg-gray-5"
+            onClick={handleDelete}
+            className="bg-white hover:bg-warning-10 rounded-lg px-3 py-1"
         >
-            <span className="text-secondary-60 text-body-s text-center group-hover:text-secondary-60">
-                취소
+            <span className="text-warning-100 text-body-s text-center">
+                삭제
             </span>
         </button>
     );

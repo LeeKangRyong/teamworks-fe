@@ -5,7 +5,7 @@ import more from "@/assets/icons/more.png";
 import edit from "@/assets/icons/edit.png";
 import deleteIcon from "@/assets/icons/delete.png";
 
-export function More() {
+export function More({ onDeleteClick }) {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
@@ -22,20 +22,30 @@ export function More() {
         };
     }, []);
 
-    const handleEdit = () => {
+    const handleMoreClick = (e) => {
+        e.stopPropagation();
+        setIsOpen(!isOpen);
+    };
+
+    const handleEdit = (e) => {
+        e.stopPropagation();
         console.log("수정 클릭");
         setIsOpen(false);
     };
 
-    const handleDelete = () => {
+    const handleDelete = (e) => {
+        e.stopPropagation();
         console.log("삭제 클릭");
+        if (onDeleteClick) {
+            onDeleteClick();
+        }
         setIsOpen(false);
     };
 
     return (
         <div className="relative" ref={dropdownRef}>
             <button
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={handleMoreClick}
                 className="hover:bg-secondary-10 p-1 rounded transition-colors duration-150"
             >
                 <Image src={more} alt="more" className="h-5 w-5" />
