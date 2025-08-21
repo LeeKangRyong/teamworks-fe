@@ -1,8 +1,7 @@
-// Projects.jsx
 "use client";
 import { useState } from "react";
 import { LayoutHeader, LayoutAside } from "@/widgets/Layout";
-import { ProjectCards } from "@/widgets/Cards";
+import { ProjectCards } from "@/widgets/Projects";
 import { Add } from "@/features/projects";
 
 export function Projects() {
@@ -42,7 +41,7 @@ export function Projects() {
                 `}
             >
                 {projects.length > 0 && (
-                    <p className="text-heading-l mt-10 mb-5 font-bold">내 프로젝트</p>
+                    <h1 className="text-heading-l mt-10 mb-5 font-bold">내 프로젝트</h1>
                 )}
                 <ProjectCards projects={projects} setProjects={setProjects} />
             </main>
