@@ -1,5 +1,6 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useState, useRef, useEffect, use } from "react";
 import Image from "next/image";
 import more from "@/assets/icons/more.png";
 import edit from "@/assets/icons/edit.png";
@@ -8,6 +9,7 @@ import deleteIcon from "@/assets/icons/delete.png";
 export function More({ onDeleteClick }) {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
+    const router = useRouter();
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -30,7 +32,8 @@ export function More({ onDeleteClick }) {
     const handleEdit = (e) => {
         e.stopPropagation();
         console.log("수정 클릭");
-        setIsOpen(false);
+        router.push("/projects/update");
+        // setIsOpen(false);
     };
 
     const handleDelete = (e) => {
