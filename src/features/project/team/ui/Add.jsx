@@ -1,10 +1,10 @@
 import Image from "next/image";
 import add from "@/assets/icons/add.png";
 
-export function Add() {
+export function Add({ type }) {
     return (
-        <button className="fixed bottom-2 right-4">
-            <Image src={add} alt="add" className="fixed right-4 bottom-2 h-16 w-16 hover:scale-103 z-50" />
+        <button className="relative bg-primary-5 flex flex-row rounded-lg justify-center items-center px-3 py-3 hover:bg-primary-10 transition-colors duration-150 w-25 mt-3">
+            <span className="text-primary-100 text-body-s text-center">{type} 추가 +</span>
         </button>
-    );
+    )
 }

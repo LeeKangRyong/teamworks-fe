@@ -28,6 +28,14 @@ export function Sort({ type, selectedList, onSortChange }) {
     const sortOptions = getSortOptions();
 
     useEffect(() => {
+        const defaultOption = "최근 활동일 순";
+        setSelectedSort(defaultOption);
+        if (onSortChange) {
+            onSortChange("activity");
+        }
+    }, [selectedList, onSortChange]);
+
+    useEffect(() => {
         function handleClickOutside(event) {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
                 setIsOpen(false);
@@ -53,9 +61,9 @@ export function Sort({ type, selectedList, onSortChange }) {
         <div className="relative" ref={dropdownRef}>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="bg-secondary-3 flex flex-row rounded-lg items-center px-3 py-3 hover:bg-secondary-10 transition-colors duration-150 w-40"
+                className="bg-secondary-3 flex flex-row rounded-lg items-center px-3 py-3 hover:bg-secondary-10 transition-colors duration-150 w-32 mt-3"
             >
-                <p className="text-body-m text-secondary-60 text-left whitespace-nowrap flex-1">{selectedSort}</p>
+                <p className="text-body-s text-secondary-60 text-left whitespace-nowrap flex-1">{selectedSort}</p>
                 <Image 
                     src={arrowDown}
                     alt="arrow-down" 
@@ -64,7 +72,7 @@ export function Sort({ type, selectedList, onSortChange }) {
             </button>
 
             {isOpen && (
-                <div className="absolute top-full left-0 mt-1 w-40 bg-secondary-3 rounded-lg z-50 shadow-lg">
+                <div className="absolute top-full left-0 mt-1 w-32 bg-secondary-3 rounded-lg z-50 shadow-lg">
                     <div>
                         {sortOptions.map((option, index) => {
                             const isSelected = selectedSort === option.label;
@@ -72,7 +80,7 @@ export function Sort({ type, selectedList, onSortChange }) {
                                 <button
                                     key={option.value}
                                     onClick={() => handleSortSelect(option)}
-                                    className={`w-full px-3 py-3 text-left text-body-m transition-colors duration-150 group first:rounded-t-lg last:rounded-b-lg whitespace-nowrap ${
+                                    className={`w-full px-3 py-3 text-left text-body-s transition-colors duration-150 group first:rounded-t-lg last:rounded-b-lg whitespace-nowrap ${
                                         isSelected 
                                             ? 'bg-secondary-60' 
                                             : 'bg-secondary-3 hover:bg-secondary-10'

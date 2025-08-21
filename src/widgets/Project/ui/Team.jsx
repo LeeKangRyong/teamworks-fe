@@ -82,13 +82,13 @@ export function Team() {
                             onSortChange={handleSortChange} 
                         />
                         <SortUpDown type="오름차순" />
+                        <Add type={selectedList === "팀 리스트" ? "팀" : "학생"} />
                     </div>
                 </div>
                 <article className="mx-auto">
                     {selectedList === "팀 리스트" ? renderTeamListHeaders() : renderStudentListHeaders()}
                     {selectedList === "팀 리스트" ? <TeamManageLists /> : <StudentManageLists /> }
                 </article>
-                <Add />
             </section>
         </main>
     );
