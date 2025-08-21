@@ -1,4 +1,4 @@
-import { InputDateBox } from "@/shared/projects";
+import { InputDateBox } from "@/shared/ui/projects";
 
 export function InputDate({ 
     startDate = "", 

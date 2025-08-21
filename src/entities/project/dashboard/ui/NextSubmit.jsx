@@ -1,4 +1,4 @@
-import { More } from "@/shared/project/dashboard";
+import { More } from "@/shared/ui/project/dashboard";
 
 export function NextSubmit() {
     return (

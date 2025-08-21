@@ -1,17 +1,22 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/shared/hooks";
+import { Toast } from "@/shared/ui/common";
 
 export function Delete({ onClick }) {
     const router = useRouter();
+    const { showToast } = useToast();
 
     const handleDelete = () => {
         // prop 있을 때 (우선)
         if (onClick) {
             onClick();
+            showToast("프로젝트가 삭제되었습니다");
         } else {
             // prop 없을 때
             router.push("/projects");
         }
+
     };
 
     return (

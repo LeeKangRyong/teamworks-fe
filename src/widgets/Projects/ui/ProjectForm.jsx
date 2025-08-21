@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Cancel, Complete, Input, InputDate } from "@/features/projects";
+import { useToast } from "@/shared/hooks";
 import Image from "next/image";
 import warning from "@/assets/icons/warning.png"
 
@@ -17,6 +18,7 @@ export function ProjectForm({ type }) {
     const [dateInputFocused, setDateInputFocused] = useState(false);
 
     const router = useRouter();
+    const { showToast } = useToast();
 
     useEffect(() => {
         const isProjectNameFilled = projectName.trim() !== "";
@@ -52,15 +54,22 @@ export function ProjectForm({ type }) {
             }
         }
         
-        console.log("프로젝트 생성:", {
+        console.log("프로젝트 처리:", {
+            type,
             name: projectName,
             startDate,
             endDate,
             description: projectDescription
         });
         
-        router.push('/projects');
-        
+        router.push('/projects');        
+        setTimeout(() => {
+            if (type === "add") {
+                showToast("프로젝트가 생성되었습니다");
+            } else if (type === "update") {
+                showToast("프로젝트가 수정되었습니다");
+            }
+        }, 100);
     };
 
     return (

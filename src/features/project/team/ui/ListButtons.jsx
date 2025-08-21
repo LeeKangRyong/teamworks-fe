@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { ListButton } from "@/shared/project/team";
+import { ListButton } from "@/shared/ui/project/team";
 
 export function ListButtons({ onListChange }) {
     const [selectedButton, setSelectedButton] = useState("팀 리스트");

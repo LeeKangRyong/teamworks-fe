@@ -1,4 +1,4 @@
-import { ToDoSummaryList } from "@/shared/project/dashboard"
+import { ToDoSummaryList } from "@/shared/ui/project/dashboard"
 
 export function ToDoSummary({ children }) {
     return (

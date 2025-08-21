@@ -1,4 +1,4 @@
-import { TeamSummaryList } from "@/shared/project/dashboard"
+import { TeamSummaryList } from "@/shared/ui/project/dashboard"
 
 export function TeamSummary({ children, num }) {
     return (

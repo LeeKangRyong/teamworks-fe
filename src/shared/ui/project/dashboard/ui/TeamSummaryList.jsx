@@ -1,4 +1,4 @@
-import { TeamStatus } from "@/shared/project/base";
+import { TeamStatus } from "@/shared/ui/project/base";
 
 export function TeamSummaryList({ team, desc, status }) {
     return (

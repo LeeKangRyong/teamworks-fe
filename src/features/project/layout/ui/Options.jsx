@@ -11,7 +11,7 @@ import notice from "@/assets/icons/notice.png";
 import noticeBlue from "@/assets/icons/notice-blue.png";
 import assignment from "@/assets/icons/assignment.png";
 import assignmentBlue from "@/assets/icons/assignment-blue.png";
-import { Option } from "@/shared/project/layout";
+import { Option } from "@/shared/ui/project/layout";
 
 export function Options({ activeTab, setActiveTab }) {
     const [hoveredIndex, setHoveredIndex] = useState(null);

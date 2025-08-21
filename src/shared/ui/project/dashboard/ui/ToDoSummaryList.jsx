@@ -1,4 +1,4 @@
-import { ToDoStatus } from "@/shared/project/base";
+import { ToDoStatus } from "@/shared/ui/project/base";
 
 export function ToDoSummaryList({ desc, status }) {
     return (

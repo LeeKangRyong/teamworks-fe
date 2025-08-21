@@ -1,4 +1,4 @@
-import { TeamManageList } from "@/shared/project/team";
+import { TeamManageList } from "@/shared/ui/project/team";
 import { AddTeam, SelectStudents } from "@/features/project/team";
 
 export function TeamManageLists({ teamsData }) {

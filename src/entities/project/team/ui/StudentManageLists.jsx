@@ -1,4 +1,4 @@
-import { StudentManageList } from "@/shared/project/team";
+import { StudentManageList } from "@/shared/ui/project/team";
 import { Add } from "@/features/project/team";
 
 export function StudentManageLists({ studentsData }) {
