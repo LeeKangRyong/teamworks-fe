@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
+import "@/shared/lib/chartSetup";
 
 export const metadata: Metadata = {
   title: "TeamWorks",
@@ -15,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className="antialiased">
-        <div className="navbar" /> {/* 여기에 상단 bar 넣기 (link) */}
+        <div className="navbar" /> {/* 여기에 LayoutHeader 넣을 지 고민 */}
         {children}
       </body>
     </html>
