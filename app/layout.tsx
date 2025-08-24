@@ -16,10 +16,8 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className="antialiased">
-        <div className="horizontal-scroll-container">
-          <div className="navbar" /> {/* 여기에 LayoutHeader 넣을 지 고민 */}
-          {children}
-        </div>
+        <div className="navbar" /> {/* 여기에 LayoutHeader 넣을 지 고민 */}
+        {children}
       </body>
     </html>
   );

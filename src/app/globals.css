@@ -192,55 +192,16 @@ html {
     overflow-y: scroll;
 } */
 
-html {
-    overflow-x: auto; /* 가로 스크롤 활성화 */
-    overflow-y: auto; /* 세로 스크롤도 필요시 유지 */
-}
-
 body {
     background: #ffffff !important;
-    background-attachment: fixed; /* 배경 고정 */
     color: #171717 !important;
     font-family: "Pretendard Variable", sans-serif;
     -webkit-font-smoothing: antialiased;
-        min-width: 100vw; /* 최소 너비 보장 */
 }
 
 /* 스크롤바 다 없애버리기~ */
 body::-webkit-scrollbar {
     display: none;
-}
-
-html {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
-
-/* 가로 스크롤 컨테이너 클래스 by Claude */
-.horizontal-scroll-container {
-    display: flex;
-    width: fit-content;
-    min-width: 100vw;
-    background: inherit;
-}
-
-.horizontal-scroll-section {
-    min-width: 100vw;
-    width: 100vw;
-    flex-shrink: 0;
-    background: inherit;
-}
-
-/* 배경 그라데이션 유지 by Claude */
-.gradient-background {
-    background: linear-gradient(135deg, #EBF1FF 0%, #F3F4F6 50%, #EBF1FF 100%);
-    background-attachment: fixed;
-}
-
-.glass-background {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
 }
 
 .text-heading-xl { @apply text-[1.75rem] leading-[2.75rem] tracking-[-0.01em]; font-variation-settings: "wght" 700; }
