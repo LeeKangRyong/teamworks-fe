@@ -12,7 +12,7 @@ export function LayoutAside({ isCollapsed = false, onToggle = () => {} }) {
     return (
         <aside 
             className={`
-                absolute left-0 top-0 border-r-1 border-gray-10 h-screen z-40 bg-gray-0
+                fixed left-0 top-0 border-r-1 border-gray-10 h-screen z-40 bg-gray-0
                 transition-all duration-300 ease-in-out
                 ${isCollapsed ? 'w-[48px]' : 'w-[200px]'}
             `}
