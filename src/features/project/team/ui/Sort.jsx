@@ -3,9 +3,9 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import arrowDown from "@/assets/icons/arrow-down.png";
 
-export function Sort({ type, selectedList, onSortChange }) {
+export function Sort({ type, selectedList, onSortChange, initialSortType }) {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedSort, setSelectedSort] = useState(type);
+    const [selectedSort, setSelectedSort] = useState("최근 활동일 순");
     const dropdownRef = useRef(null);
 
     const getSortOptions = () => {
@@ -28,12 +28,13 @@ export function Sort({ type, selectedList, onSortChange }) {
     const sortOptions = getSortOptions();
 
     useEffect(() => {
-        const defaultOption = "최근 활동일 순";
-        setSelectedSort(defaultOption);
-        if (onSortChange) {
-            onSortChange("activity");
+        if (initialSortType) {
+            const option = sortOptions.find(opt => opt.value === initialSortType);
+            if (option) {
+                setSelectedSort(option.label);
+            }
         }
-    }, [selectedList, onSortChange]);
+    }, [initialSortType, selectedList]);
 
     useEffect(() => {
         function handleClickOutside(event) {

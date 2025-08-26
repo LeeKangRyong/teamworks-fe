@@ -1,11 +1,11 @@
 "use client";
 import { useRouter } from "next/navigation";
 
-export function SelectStudents({ href = "/projects" }) {
+export function SelectStudents() {
     const router = useRouter();
 
     const handleClick = () => {
-        router.push(href);
+        router.push("/projects/1/addteam");
     };
 
     return (

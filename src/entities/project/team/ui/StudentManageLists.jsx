@@ -18,8 +18,8 @@ export function StudentManageLists({ studentsData }) {
                 ))
             ) : (
                 <div className="flex flex-col justify-center items-center py-16">
-                    <p className="text-body-m text-secondary-60 mb-2">등록된 학생이 없습니다</p>
-                    <p className="text-body-m text-secondary-60 mb-4">새로운 학생을 추가해보세요</p>
+                    <p className="text-body-s text-secondary-60 mb-2">등록된 학생이 없습니다</p>
+                    <p className="text-body-s text-secondary-60 mb-4">새로운 학생을 추가해보세요</p>
                     <Add type="학생" />
                 </div>
             )}
