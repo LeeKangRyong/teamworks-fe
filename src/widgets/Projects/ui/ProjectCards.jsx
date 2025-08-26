@@ -24,18 +24,7 @@ export function ProjectCards({ projects, setProjects }) {
 
     const handleConfirmDelete = () => {
         if (!deleteProjectData) return;        
-        console.log(`삭제 확인: ${deleteProjectData.title}`);        
         closeDeleteModal();
-        
-        /* BE 연결 시
-        try {
-            await deleteProject(deleteProjectData.id);
-            setProjects(prev => prev.filter(project => project.id !== deleteProjectData.id));
-            closeDeleteModal();
-        } catch (error) {
-            console.error("삭제 실패:", error);
-        }
-        */
     };
 
     return (

@@ -3,22 +3,16 @@ import { useState } from "react";
 import { LayoutHeader, LayoutAside } from "@/widgets/Layout";
 import { ProjectCards } from "@/widgets/Projects";
 import { Add } from "@/features/projects";
+import { projectsData } from "@/shared/mock";
+
+// Test 용
+// const projectsData = [];
+//
 
 export function Projects() {
     const [isAsideCollapsed, setIsAsideCollapsed] = useState(false);
     
-    const [projects, setProjects] = useState([
-        { id: 1, title: "2025 스타트업 프로젝트", duration: "7월 24일", members: "32" },
-        { id: 2, title: "프랑스어기초", duration: "7월 24일", members: "32" },
-        { id: 3, title: "자료구조및실습", duration: "7월 24일", members: "32" },
-        { id: 4, title: "프랑스어기초", duration: "7월 24일", members: "32" },
-        { id: 5, title: "프랑스어기초", duration: "7월 24일", members: "32" },
-        { id: 6, title: "프랑스어기초", duration: "7월 24일", members: "32" },
-        { id: 7, title: "프랑스어기초", duration: "7월 24일", members: "32" },
-        { id: 8, title: "프랑스어기초", duration: "7월 24일", members: "32" },
-        { id: 9, title: "프랑스어기초", duration: "7월 24일", members: "32" },
-        { id: 10, title: "프랑스어기초", duration: "7월 24일", members: "32" }
-    ]);
+    const [projects, setProjects] = useState(projectsData);
 
     return (
         <div className="bg-secondary-5 flex justify-center w-full min-h-screen relative">
