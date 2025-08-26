@@ -5,6 +5,7 @@ import Image from "next/image";
 import logo from "@/assets/icons/logo.png";
 import { HeaderList } from "@/features/layout";
 import { useToast } from "@/shared/hooks";
+import { Toast } from "@/shared/ui/common";
 
 export function LayoutHeader() {
     const router = useRouter();
@@ -20,7 +21,9 @@ export function LayoutHeader() {
                 <Image src={logo} alt="logo" className="rounded-sm max-h-6 w-auto" />
                 <p className="text-body-l font-black">TeamWorks</p>
             </div>
-            <HeaderList />
+            <HeaderList />         
+            {isVisible && <Toast message={message} />}
+
         </header>
     );
 }
