@@ -8,7 +8,7 @@ export function Search({
     hasError = false, 
     onFocus, 
     onBlur,
-    onClick  // 새로 추가
+    onClick
 }) {
     const handleChange = (e) => {
         if (onChange) {

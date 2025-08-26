@@ -66,7 +66,8 @@ export function AddTeamForm() {
     };
 
     const searchDisplayValue = selectedMembers.length > 0 
-        ? `${selectedMembers.length}명 선택됨`
+        ? selectedMembers.length === 1 ? selectedMembers[0].name
+        : `${selectedMembers[0].name} 외 ${selectedMembers.length - 1}명`
         : "";
 
     return (
@@ -111,7 +112,7 @@ export function AddTeamForm() {
                     {showMemberWarning && (
                         <div className="flex flex-row items-center gap-1 -mt-6">
                             <Image src={warning} alt="warning" className="w-3 h-3" />
-                            <p className="text-warning-100 text-caption-regular">참여자를 선택해주세요</p>
+                            <p className="text-warning-100 text-caption-regular">팀 참여자를 선택해주세요</p>
                         </div>
                     )}
                 </div>
