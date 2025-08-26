@@ -10,7 +10,7 @@ export function Cancel({ onClick }) {
             onClick();
         } else {
             // prop 없을 때
-            router.push("/projects");
+            router.back();
         }
     };
 

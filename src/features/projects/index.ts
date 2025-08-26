@@ -1,8 +1,4 @@
 export { Add } from "./ui/Add"
-export { Cancel } from "./ui/Cancel"
-export { Complete } from "./ui/Complete"
 export { Delete } from "./ui/Delete"
-export { Input } from "./ui/Input"
-export { InputDate } from "./ui/InputDate"
 export { MakeProject } from "./ui/MakeProject"
 export { More } from "./ui/More"

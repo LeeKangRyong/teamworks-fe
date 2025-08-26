@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { LayoutHeader, LayoutAside } from "@/widgets/Layout";
-import { Dashboard, Team, Participation, Notice, Assignment } from "@/widgets/Project";
+import { Dashboard, Team, Participation, Notice, Assignment } from "@/widgets/Project/Whole";
 import { Options } from "@/features/project/layout";
 
 export function Project({ id }) {
