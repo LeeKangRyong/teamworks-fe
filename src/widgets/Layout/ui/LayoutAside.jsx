@@ -1,3 +1,4 @@
+// LayoutAside.jsx 수정
 import Image from "next/image";
 import { AsideList } from "@/features/layout";
 import home from "@/assets/icons/home.png";
@@ -8,12 +9,12 @@ import editLeft from "@/assets/icons/edit-left.png";
 import editRight from "@/assets/icons/edit-right.png";
 
 export function LayoutAside({ isCollapsed = false, onToggle = () => {} }) {
-
     return (
         <aside 
             className={`
-                absolute left-0 top-0 border-r-1 border-gray-10 h-screen z-40 bg-gray-0
+                absolute left-0 top-0 border-r-1 border-gray-10 z-40 bg-gray-0
                 transition-all duration-300 ease-in-out
+                h-full min-h-screen
                 ${isCollapsed ? 'w-[48px]' : 'w-[200px]'}
             `}
         >
