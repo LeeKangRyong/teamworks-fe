@@ -2,7 +2,7 @@ import { Box, TeamSummary, NextSubmit, ToDoSummary } from "@/entities/project/da
 import { More } from "@/features/project/dashboard";
 import { teamsData, studentsData } from "@/shared/mock";
 
-export function Dashboard() {
+export function DashboardWidget() {
     const warningTeams = teamsData.filter(team => team.status !== "좋음").length;
 
     return (

@@ -1,6 +1,7 @@
-import { Team } from "@/pages/project/team";
+
+import { Participation } from "@/pages/project/participation"
 
 export default async function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
-    return <Team id={id} />;
+    return <Participation id={id} />;
 }

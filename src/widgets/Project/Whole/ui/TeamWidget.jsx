@@ -11,7 +11,7 @@ import { processTeamData, validateData } from "@/shared/utils/teamsDataFormat";
 // const studentsData = [];
 // const teamsData = [];
 
-export function Team() {
+export function TeamWidget() {
     const [selectedList, setSelectedList] = useState("팀 리스트");
     const [selectedStatus, setSelectedStatus] = useState("all");
     const [sortType, setSortType] = useState("activity");
