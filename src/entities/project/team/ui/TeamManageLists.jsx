@@ -7,7 +7,7 @@ export function TeamManageLists({ teamsData }) {
             {teamsData && teamsData.length > 0 ? (
                 teamsData.map((team) => (
                     <TeamManageList
-                        key={team.id}
+                        key={team.team_id}
                         team={team.team}
                         num={team.num}
                         recent={team.recent}

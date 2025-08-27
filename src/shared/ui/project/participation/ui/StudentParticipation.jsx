@@ -1,7 +1,7 @@
 import { TeamStatus } from "@/shared/ui/project/base";
 import { SendMessage } from "@/features/project/team";
 
-export function StudentParticipation({ name, team, recent, status, desc, onClick }) {
+export function StudentParticipation({ name, team, recent, status, desc, onClick, student_id }) {
 
     if (onClick) {
         onClick();

@@ -1,11 +1,13 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 
 export function AddTeam() {
     const router = useRouter();
+    const params = useParams();
+    const projectId = params.id;
 
     const handleAdd = () => {
-        router.push("/projects/1/addteamall");
+        router.push(`/projects/${projectId}/addteamall`);
     };
 
     return (

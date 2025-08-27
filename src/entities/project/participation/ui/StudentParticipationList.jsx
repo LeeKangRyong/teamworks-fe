@@ -1,13 +1,15 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { StudentParticipation } from "@/shared/ui/project/participation";
 import { Add } from "@/features/project/team";
 
 export function StudentParticipationList({ studentsData }) {
     const router = useRouter();
+    const params = useParams();
+    const projectId = params.id;
 
-    const handlePart = () => {
-        router.push("/projects/1/part");
+    const handlePart = (studentId) => {
+        router.push(`/projects/${projectId}/part/${studentId}`);
     };
 
     return (
@@ -15,13 +17,13 @@ export function StudentParticipationList({ studentsData }) {
             {studentsData && studentsData.length > 0 ? (
                 studentsData.map((student) => (
                     <StudentParticipation
-                        key={student.id}
+                        key={student.student_id}
                         name={student.name}
                         team={student.team}
                         recent={student.recent}
                         status={student.status}
                         desc={student.desc}
-                        onClick={handlePart}
+                        onClick={() => handlePart(student.student_id)}
                     />
                 ))
             ) : (

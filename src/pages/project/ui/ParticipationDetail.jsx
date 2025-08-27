@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { LayoutHeader, LayoutAside } from "@/widgets/Layout";
 import { AddTeamAllForm } from "@/widgets/Project/Team";
 
-export function ParticipationDetail({ id }) {
+export function ParticipationDetail({ projectId, studentId }) {
     const [isAsideCollapsed, setIsAsideCollapsed] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
 

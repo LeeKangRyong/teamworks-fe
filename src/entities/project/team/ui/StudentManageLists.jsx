@@ -7,7 +7,7 @@ export function StudentManageLists({ studentsData }) {
             {studentsData && studentsData.length > 0 ? (
                 studentsData.map((student) => (
                     <StudentManageList
-                        key={student.id}
+                        key={student.student_id}
                         name={student.name}
                         team={student.team}
                         recent={student.recent}

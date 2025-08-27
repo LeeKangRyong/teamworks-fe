@@ -11,8 +11,8 @@ export function ProjectCards({ projects, setProjects }) {
     const { isOpen: isDeleteModalOpen, modalData: deleteProjectData, openModal: openDeleteModal, closeModal: closeDeleteModal } = useModal();
     const router = useRouter();
 
-    const handleDetail = () => {
-        router.push("/projects/1");
+    const handleDetail = (projectId) => {
+        router.push(`/projects/${projectId}`);
     };
 
     const handleDeleteClick = (project) => {
@@ -33,11 +33,11 @@ export function ProjectCards({ projects, setProjects }) {
                 {projects.length > 0 ? (
                     projects.map((project) => (
                         <ProjectCard 
-                            key={project.id}
+                            key={project.project_id}
                             title={project.title} 
                             duration={project.duration} 
                             members={project.members}
-                            onClick={handleDetail}
+                            onClick={() => handleDetail(project.project_id)}
                         >
                             <More 
                                 onDeleteClick={() => handleDeleteClick(project)}

@@ -1,13 +1,18 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 
 export function Add({ type }) {
     const router = useRouter();
+    const params = useParams();
+    const projectId = params.id;
 
     const handleAdd = () => {
         if (type === "팀") {
-            router.push("/projects/1/addteam");        
+            router.push(`/projects/${projectId}/addteam`);        
         }
+        // if (type === "학생") {
+        //     router.push(`/projects/${projectId}/addstudent`);        
+        // }
     };
 
     return (

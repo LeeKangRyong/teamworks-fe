@@ -1,11 +1,13 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 
 export function SelectStudents() {
     const router = useRouter();
+    const params = useParams();
+    const projectId = params.id;
 
     const handleClick = () => {
-        router.push("/projects/1/addteam");
+        router.push(`/projects/${projectId}/addteam`);
     };
 
     return (

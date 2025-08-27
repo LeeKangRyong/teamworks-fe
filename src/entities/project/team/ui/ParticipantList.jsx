@@ -1,4 +1,3 @@
-
 import { Participant } from "@/shared/ui/project/team";
 
 export function ParticipantList({ participants, selectedIds, onCheck }) {
@@ -6,9 +5,9 @@ export function ParticipantList({ participants, selectedIds, onCheck }) {
         <div className="space-y-0">
             {participants.map(participant => (
                 <Participant 
-                    key={participant.id}
+                    key={participant.student_id}
                     participant={participant}
-                    isSelected={selectedIds.includes(participant.id)}
+                    isSelected={selectedIds.includes(participant.student_id)}
                     onCheck={onCheck}
                 />
             ))}
