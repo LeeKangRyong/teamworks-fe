@@ -1,15 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import logo from "@/assets/icons/logo.png";
 import { HeaderList } from "@/features/layout";
-import { useToast } from "@/shared/hooks";
-import { Toast } from "@/shared/ui/common";
 
 export function LayoutHeader() {
     const router = useRouter();
-    const { isVisible, message, showToast } = useToast();
 
     const handleLogo = () => {
         router.push("/projects");
@@ -21,9 +17,7 @@ export function LayoutHeader() {
                 <Image src={logo} alt="logo" className="rounded-sm max-h-6 w-auto" />
                 <p className="text-body-l font-black">TeamWorks</p>
             </div>
-            <HeaderList />         
-            {isVisible && <Toast message={message} />}
-
+            <HeaderList />
         </header>
     );
 }

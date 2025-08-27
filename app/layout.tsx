@@ -1,23 +1,22 @@
-import type { Metadata } from "next";
+"use client";
 import "@/app/globals.css";
 import "@/shared/lib/chartSetup";
-
-export const metadata: Metadata = {
-  title: "TeamWorks",
-  description: "Teamworks Web Service by 노랑통닭",
-  icons: '/logo.png',
-};
+import { useToast } from "@/shared/hooks";
+import { Toast } from "@/shared/ui/common";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { isVisible, message } = useToast();
+
   return (
     <html lang="ko">
       <body className="antialiased">
-        <div className="navbar" /> {/* 여기에 LayoutHeader 넣을 지 고민 */}
+        <div className="navbar" />
         {children}
+        {isVisible && <Toast message={message} />}
       </body>
     </html>
   );

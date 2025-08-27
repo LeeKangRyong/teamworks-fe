@@ -4,14 +4,17 @@ import Image from "next/image";
 import copy from "@/assets/icons/copy-blue.png";
 import check from "@/assets/icons/check-blue.png";
 
-export function CopyCheck({ code = "asdasdasdaasdsdasda" }) {
+export function CopyCheck({ code = "asdasdasdaasdsdasda", onClick }) {
     const [isChecked, setIsChecked] = useState(false);
 
     const handleCopy = async () => {
         try {
             await navigator.clipboard.writeText(code);
             setIsChecked(true);
-            
+
+            if (onClick) {
+            onClick();
+        }   
             setTimeout(() => {
                 setIsChecked(false);
             }, 2000);

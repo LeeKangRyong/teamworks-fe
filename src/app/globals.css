@@ -204,6 +204,12 @@ body::-webkit-scrollbar {
     display: none;
 }
 
+@layer utilities {
+    .scrollbar-thin {
+        scrollbar-width: thin;
+        scrollbar-color: #CED2DB transparent;
+    }
+}
 .text-heading-xl { @apply text-[1.75rem] leading-[2.75rem] tracking-[-0.01em]; font-variation-settings: "wght" 700; }
 .text-heading-l { @apply text-[1.5rem] leading-[2.25rem] tracking-[-0.01em]; font-variation-settings: "wght" 600; }
 .text-heading-m { @apply text-[1.25rem] leading-[1.875rem] tracking-[-0.01em]; font-variation-settings: "wght" 600; }

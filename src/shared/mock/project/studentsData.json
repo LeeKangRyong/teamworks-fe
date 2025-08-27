@@ -6,7 +6,8 @@
         "recent": "25/08/20",
         "status": "좋음",
         "contact": "010-1234-5678",
-        "email": "minsu.kim@example.com"
+        "email": "minsu.kim@example.com",
+        "desc": "참여도 우수"
     },
     {
         "id": 2,
@@ -15,7 +16,8 @@
         "recent": "25/08/19",
         "status": "위험",
         "contact": "010-2345-6789",
-        "email": "younghee.lee@example.com"
+        "email": "younghee.lee@example.com",
+        "desc": "파일 미제출"
     },
     {
         "id": 3,
@@ -24,7 +26,8 @@
         "recent": "25/08/18",
         "status": "무임승차",
         "contact": "010-3456-7890",
-        "email": "chulsoo.park@example.com"
+        "email": "chulsoo.park@example.com",
+        "desc": "기여도 부족"
     },
     {
         "id": 4,
@@ -33,7 +36,8 @@
         "recent": "25/08/17",
         "status": "좋음",
         "contact": "010-4567-8901",
-        "email": "sujin.choi@example.com"
+        "email": "sujin.choi@example.com",
+        "desc": "문서화 완료"
     },
     {
         "id": 5,
@@ -42,7 +46,8 @@
         "recent": "25/08/16",
         "status": "위험",
         "contact": "010-5678-9012",
-        "email": "hana.jung@example.com"
+        "email": "hana.jung@example.com",
+        "desc": "소통 부족"
     },
     {
         "id": 6,
@@ -51,7 +56,8 @@
         "recent": "25/08/15",
         "status": "좋음",
         "contact": "010-6789-0123",
-        "email": "youngsu.kim@example.com"
+        "email": "youngsu.kim@example.com",
+        "desc": "코드 품질 우수"
     },
     {
         "id": 7,
@@ -60,7 +66,8 @@
         "recent": "25/08/14",
         "status": "무임승차",
         "contact": "010-7890-1234",
-        "email": "soyeon.lee@example.com"
+        "email": "soyeon.lee@example.com",
+        "desc": "역할 분담 불균형"
     },
     {
         "id": 8,
@@ -69,7 +76,8 @@
         "recent": "25/08/13",
         "status": "좋음",
         "contact": "010-8901-2345",
-        "email": "donghyun.kang@example.com"
+        "email": "donghyun.kang@example.com",
+        "desc": "리더십 우수"
     },
     {
         "id": 9,
@@ -78,7 +86,8 @@
         "recent": "25/08/12",
         "status": "위험",
         "contact": "010-9012-3456",
-        "email": "seoyeon.yoon@example.com"
+        "email": "seoyeon.yoon@example.com",
+        "desc": "마감일 지연"
     },
     {
         "id": 10,
@@ -87,7 +96,8 @@
         "recent": "25/08/11",
         "status": "좋음",
         "contact": "010-0123-4567",
-        "email": "jimin.han@example.com"
+        "email": "jimin.han@example.com",
+        "desc": "아이디어 창의"
     },
     {
         "id": 11,
@@ -96,7 +106,8 @@
         "recent": "25/08/10",
         "status": "무임승차",
         "contact": "010-1122-3344",
-        "email": "taehyun.song@example.com"
+        "email": "taehyun.song@example.com",
+        "desc": "참여율 저조"
     },
     {
         "id": 12,
@@ -105,7 +116,8 @@
         "recent": "25/08/09",
         "status": "위험",
         "contact": "010-2233-4455",
-        "email": "mirae.jang@example.com"
+        "email": "mirae.jang@example.com",
+        "desc": "이해도 부족"
     },
     {
         "id": 13,
@@ -114,7 +126,8 @@
         "recent": "25/08/08",
         "status": "좋음",
         "contact": "010-3344-5566",
-        "email": "junseok.oh@example.com"
+        "email": "junseok.oh@example.com",
+        "desc": "기술 역량 우수"
     },
     {
         "id": 14,
@@ -123,7 +136,8 @@
         "recent": "25/08/07",
         "status": "무임승차",
         "contact": "010-4455-6677",
-        "email": "yeeun.shin@example.com"
+        "email": "yeeun.shin@example.com",
+        "desc": "자료 조사 미완"
     },
     {
         "id": 15,
@@ -132,7 +146,8 @@
         "recent": "25/08/06",
         "status": "위험",
         "contact": "010-5566-7788",
-        "email": "seongho.lim@example.com"
+        "email": "seongho.lim@example.com",
+        "desc": "연락 두절"
     },
     {
         "id": 16,
@@ -141,7 +156,8 @@
         "recent": "25/08/05",
         "status": "좋음",
         "contact": "010-6677-8899",
-        "email": "jiwon.baek@example.com"
+        "email": "jiwon.baek@example.com",
+        "desc": "디자인 우수"
     },
     {
         "id": 17,
@@ -150,7 +166,8 @@
         "recent": "25/08/04",
         "status": "무임승차",
         "contact": "010-7788-9900",
-        "email": "hyunwoo.cho@example.com"
+        "email": "hyunwoo.cho@example.com",
+        "desc": "업무 회피"
     },
     {
         "id": 18,
@@ -159,7 +176,8 @@
         "recent": "25/08/03",
         "status": "위험",
         "contact": "010-8899-0011",
-        "email": "daeun.nam@example.com"
+        "email": "daeun.nam@example.com",
+        "desc": "번아웃 징후"
     },
     {
         "id": 19,
@@ -168,7 +186,8 @@
         "recent": "25/08/02",
         "status": "좋음",
         "contact": "010-9900-1122",
-        "email": "jaemin.yu@example.com"
+        "email": "jaemin.yu@example.com",
+        "desc": "분석 능력 우수"
     },
     {
         "id": 20,
@@ -177,7 +196,8 @@
         "recent": "25/08/01",
         "status": "무임승차",
         "contact": "010-0011-2233",
-        "email": "seojin.hong@example.com"
+        "email": "seojin.hong@example.com",
+        "desc": "협업 기피"
     },
     {
         "id": 21,
@@ -186,7 +206,8 @@
         "recent": "25/07/31",
         "status": "위험",
         "contact": "010-1133-2244",
-        "email": "jihoon.moon@example.com"
+        "email": "jihoon.moon@example.com",
+        "desc": "참여 제한적"
     },
     {
         "id": 22,
@@ -195,7 +216,8 @@
         "recent": "25/07/30",
         "status": "좋음",
         "contact": "010-2244-3355",
-        "email": "sohee.kwon@example.com"
+        "email": "sohee.kwon@example.com",
+        "desc": "품질 관리 우수"
     },
     {
         "id": 23,
@@ -204,7 +226,8 @@
         "recent": "25/07/29",
         "status": "무임승차",
         "contact": "010-3355-4466",
-        "email": "taewoo.ahn@example.com"
+        "email": "taewoo.ahn@example.com",
+        "desc": "의지 부족"
     },
     {
         "id": 24,
@@ -213,7 +236,8 @@
         "recent": "25/07/28",
         "status": "위험",
         "contact": "010-4466-5577",
-        "email": "minjeong.seo@example.com"
+        "email": "minjeong.seo@example.com",
+        "desc": "시간 관리 어려움"
     },
     {
         "id": 25,
@@ -222,7 +246,8 @@
         "recent": "25/07/27",
         "status": "좋음",
         "contact": "010-5577-6688",
-        "email": "hyunbin.ryu@example.com"
+        "email": "hyunbin.ryu@example.com",
+        "desc": "문제 해결 우수"
     },
     {
         "id": 26,
@@ -231,7 +256,8 @@
         "recent": "25/07/26",
         "status": "위험",
         "contact": "010-6688-7799",
-        "email": "sua.jeon@example.com"
+        "email": "sua.jeon@example.com",
+        "desc": "기술적 어려움"
     },
     {
         "id": 27,
@@ -240,7 +266,8 @@
         "recent": "25/07/25",
         "status": "무임승차",
         "contact": "010-7799-8800",
-        "email": "minjae.ko@example.com"
+        "email": "minjae.ko@example.com",
+        "desc": "미팅 불참"
     },
     {
         "id": 28,
@@ -249,7 +276,8 @@
         "recent": "25/07/24",
         "status": "좋음",
         "contact": "010-8800-9911",
-        "email": "yerin.no@example.com"
+        "email": "yerin.no@example.com",
+        "desc": "일정 준수 우수"
     },
     {
         "id": 29,
@@ -258,7 +286,8 @@
         "recent": "25/07/23",
         "status": "위험",
         "contact": "010-9911-0022",
-        "email": "junhyuk.do@example.com"
+        "email": "junhyuk.do@example.com",
+        "desc": "팀원 갈등"
     },
     {
         "id": 30,
@@ -267,7 +296,8 @@
         "recent": "25/07/22",
         "status": "무임승차",
         "contact": "010-0022-1133",
-        "email": "haneul.mo@example.com"
+        "email": "haneul.mo@example.com",
+        "desc": "수동적 태도"
     },
     {
         "id": 31,
@@ -276,7 +306,8 @@
         "recent": "25/07/21",
         "status": "좋음",
         "contact": "010-1144-2255",
-        "email": "jihye.ro@example.com"
+        "email": "jihye.ro@example.com",
+        "desc": "연구 역량 우수"
     },
     {
         "id": 32,
@@ -285,7 +316,8 @@
         "recent": "25/07/20",
         "status": "위험",
         "contact": "010-2255-3366",
-        "email": "jisung.so@example.com"
+        "email": "jisung.so@example.com",
+        "desc": "진도 뒤처짐"
     },
     {
         "id": 33,
@@ -294,7 +326,8 @@
         "recent": "25/07/19",
         "status": "무임승차",
         "contact": "010-3366-4477",
-        "email": "jungwoo.bo@example.com"
+        "email": "jungwoo.bo@example.com",
+        "desc": "책임 회피"
     },
     {
         "id": 34,
@@ -303,7 +336,8 @@
         "recent": "25/07/18",
         "status": "좋음",
         "contact": "010-4477-5588",
-        "email": "sumin.cho@example.com"
+        "email": "sumin.cho@example.com",
+        "desc": "팀 화합 기여"
     },
     {
         "id": 35,
@@ -312,7 +346,8 @@
         "recent": "25/07/17",
         "status": "위험",
         "contact": "010-5588-6699",
-        "email": "sunyoung.to@example.com"
+        "email": "sunyoung.to@example.com",
+        "desc": "집중력 저하"
     },
     {
         "id": 36,
@@ -321,7 +356,8 @@
         "recent": "25/07/16",
         "status": "무임승차",
         "contact": "010-6699-7700",
-        "email": "yunho.po@example.com"
+        "email": "yunho.po@example.com",
+        "desc": "소극적 참여"
     },
     {
         "id": 37,
@@ -330,7 +366,8 @@
         "recent": "25/07/15",
         "status": "좋음",
         "contact": "010-7700-8811",
-        "email": "jaehun.ho@example.com"
+        "email": "jaehun.ho@example.com",
+        "desc": "혁신적 아이디어"
     },
     {
         "id": 38,
@@ -339,7 +376,8 @@
         "recent": "25/07/14",
         "status": "위험",
         "contact": "010-8811-9922",
-        "email": "siwoo.go@example.com"
+        "email": "siwoo.go@example.com",
+        "desc": "소통 어려움"
     },
     {
         "id": 39,
@@ -348,7 +386,8 @@
         "recent": "25/07/13",
         "status": "무임승차",
         "contact": "010-9922-0033",
-        "email": "dayeon.no@example.com"
+        "email": "dayeon.no@example.com",
+        "desc": "의존적 성향"
     },
     {
         "id": 40,
@@ -357,7 +396,8 @@
         "recent": "25/07/12",
         "status": "좋음",
         "contact": "010-0033-1144",
-        "email": "sion.do@example.com"
+        "email": "sion.do@example.com",
+        "desc": "안정적 성과"
     },
     {
         "id": 41,
@@ -366,7 +406,8 @@
         "recent": "25/07/11",
         "status": "위험",
         "contact": "010-1155-2266",
-        "email": "yejun.mo@example.com"
+        "email": "yejun.mo@example.com",
+        "desc": "정서적 불안"
     },
     {
         "id": 42,
@@ -375,7 +416,8 @@
         "recent": "25/07/10",
         "status": "무임승차",
         "contact": "010-2266-3377",
-        "email": "haeun.ro@example.com"
+        "email": "haeun.ro@example.com",
+        "desc": "집중도 낮음"
     },
     {
         "id": 43,
@@ -384,7 +426,8 @@
         "recent": "25/07/09",
         "status": "좋음",
         "contact": "010-3377-4488",
-        "email": "minjun.so@example.com"
+        "email": "minjun.so@example.com",
+        "desc": "코딩 스킬 우수"
     },
     {
         "id": 44,
@@ -393,7 +436,8 @@
         "recent": "25/07/08",
         "status": "위험",
         "contact": "010-4488-5599",
-        "email": "seohyun.bo@example.com"
+        "email": "seohyun.bo@example.com",
+        "desc": "완벽주의 지연"
     },
     {
         "id": 45,
@@ -402,7 +446,8 @@
         "recent": "25/07/07",
         "status": "무임승차",
         "contact": "010-5599-6600",
-        "email": "yejin.cho@example.com"
+        "email": "yejin.cho@example.com",
+        "desc": "무관심 태도"
     },
     {
         "id": 46,
@@ -411,7 +456,8 @@
         "recent": "25/07/06",
         "status": "좋음",
         "contact": "010-6600-7711",
-        "email": "gunwoo.to@example.com"
+        "email": "gunwoo.to@example.com",
+        "desc": "문서화 우수"
     },
     {
         "id": 47,
@@ -420,7 +466,8 @@
         "recent": "25/07/05",
         "status": "위험",
         "contact": "010-7711-8822",
-        "email": "nayul.po@example.com"
+        "email": "nayul.po@example.com",
+        "desc": "자신감 부족"
     },
     {
         "id": 48,
@@ -429,7 +476,8 @@
         "recent": "25/07/04",
         "status": "무임승차",
         "contact": "010-8822-9933",
-        "email": "siwon.ho@example.com"
+        "email": "siwon.ho@example.com",
+        "desc": "형식적 참여"
     },
     {
         "id": 49,
@@ -438,7 +486,8 @@
         "recent": "25/07/03",
         "status": "좋음",
         "contact": "010-9933-0044",
-        "email": "dayun.go@example.com"
+        "email": "dayun.go@example.com",
+        "desc": "긍정적 에너지"
     },
     {
         "id": 50,
@@ -447,7 +496,8 @@
         "recent": "25/07/02",
         "status": "위험",
         "contact": "010-0044-1155",
-        "email": "junseo.no@example.com"
+        "email": "junseo.no@example.com",
+        "desc": "잦은 결석"
     },
     {
         "id": 51,
@@ -456,7 +506,8 @@
         "recent": "25/07/01",
         "status": "무임승차",
         "contact": "010-1166-2277",
-        "email": "haeyun.do@example.com"
+        "email": "haeyun.do@example.com",
+        "desc": "지시 대기형"
     },
     {
         "id": 52,
@@ -465,7 +516,8 @@
         "recent": "25/06/30",
         "status": "좋음",
         "contact": "010-2277-3388",
-        "email": "jia.mo@example.com"
+        "email": "jia.mo@example.com",
+        "desc": "다재다능함"
     },
     {
         "id": 53,
@@ -474,7 +526,8 @@
         "recent": "25/06/29",
         "status": "위험",
         "contact": "010-3388-4499",
-        "email": "seojun.ro@example.com"
+        "email": "seojun.ro@example.com",
+        "desc": "기초 실력 부족"
     },
     {
         "id": 54,
@@ -483,7 +536,8 @@
         "recent": "25/06/28",
         "status": "무임승차",
         "contact": "010-4499-5500",
-        "email": "yewon.so@example.com"
+        "email": "yewon.so@example.com",
+        "desc": "이해도 부족"
     },
     {
         "id": 55,
@@ -492,7 +546,8 @@
         "recent": "25/06/27",
         "status": "좋음",
         "contact": "010-5500-6611",
-        "email": "minsung.bo@example.com"
+        "email": "minsung.bo@example.com",
+        "desc": "창의적 발상"
     },
     {
         "id": 56,
@@ -501,7 +556,8 @@
         "recent": "25/06/26",
         "status": "위험",
         "contact": "010-6611-7722",
-        "email": "harin.cho@example.com"
+        "email": "harin.cho@example.com",
+        "desc": "개인적 어려움"
     },
     {
         "id": 57,
@@ -510,7 +566,8 @@
         "recent": "25/06/25",
         "status": "무임승차",
         "contact": "010-7722-8833",
-        "email": "yechan.to@example.com"
+        "email": "yechan.to@example.com",
+        "desc": "게임 몰두"
     },
     {
         "id": 58,
@@ -519,7 +576,8 @@
         "recent": "25/06/24",
         "status": "좋음",
         "contact": "010-8833-9944",
-        "email": "siyul.po@example.com"
+        "email": "siyul.po@example.com",
+        "desc": "성실한 학습"
     },
     {
         "id": 59,
@@ -528,7 +586,8 @@
         "recent": "25/06/23",
         "status": "위험",
         "contact": "010-9944-0055",
-        "email": "daeun.ho@example.com"
+        "email": "daeun.ho@example.com",
+        "desc": "가정 환경 변화"
     },
     {
         "id": 60,
@@ -537,7 +596,8 @@
         "recent": "25/06/22",
         "status": "무임승차",
         "contact": "010-0055-1166",
-        "email": "junhyung.go@example.com"
+        "email": "junhyung.go@example.com",
+        "desc": "시간 부족"
     },
     {
         "id": 61,
@@ -546,7 +606,8 @@
         "recent": "25/06/21",
         "status": "좋음",
         "contact": "010-1177-2288",
-        "email": "seoyul.no@example.com"
+        "email": "seoyul.no@example.com",
+        "desc": "균형잡힌 활동"
     },
     {
         "id": 62,
@@ -555,7 +616,8 @@
         "recent": "25/06/20",
         "status": "위험",
         "contact": "010-2288-3399",
-        "email": "hajun.do@example.com"
+        "email": "hajun.do@example.com",
+        "desc": "포기 위험"
     },
     {
         "id": 63,
@@ -564,7 +626,8 @@
         "recent": "25/06/19",
         "status": "무임승차",
         "contact": "010-3399-4400",
-        "email": "siyeon.mo@example.com"
+        "email": "siyeon.mo@example.com",
+        "desc": "개인주의 성향"
     },
     {
         "id": 64,
@@ -573,7 +636,8 @@
         "recent": "25/06/18",
         "status": "좋음",
         "contact": "010-4400-5511",
-        "email": "yesung.ro@example.com"
+        "email": "yesung.ro@example.com",
+        "desc": "예술적 감각"
     },
     {
         "id": 65,
@@ -582,7 +646,8 @@
         "recent": "25/06/17",
         "status": "위험",
         "contact": "010-5511-6622",
-        "email": "damin.so@example.com"
+        "email": "damin.so@example.com",
+        "desc": "체력 관리 필요"
     },
     {
         "id": 66,
@@ -591,7 +656,8 @@
         "recent": "25/06/16",
         "status": "무임승차",
         "contact": "010-6622-7733",
-        "email": "junhyuk.bo@example.com"
+        "email": "junhyuk.bo@example.com",
+        "desc": "의무감 부족"
     },
     {
         "id": 67,
@@ -600,7 +666,8 @@
         "recent": "25/06/15",
         "status": "좋음",
         "contact": "010-7733-8844",
-        "email": "hayul.cho@example.com"
+        "email": "hayul.cho@example.com",
+        "desc": "소통 능력 우수"
     },
     {
         "id": 68,
@@ -609,7 +676,8 @@
         "recent": "25/06/14",
         "status": "위험",
         "contact": "010-8844-9955",
-        "email": "sieun.to@example.com"
+        "email": "sieun.to@example.com",
+        "desc": "자존감 저하"
     },
     {
         "id": 69,
@@ -618,7 +686,8 @@
         "recent": "25/06/13",
         "status": "무임승차",
         "contact": "010-9955-0066",
-        "email": "dayoung.po@example.com"
+        "email": "dayoung.po@example.com",
+        "desc": "동기 부족"
     },
     {
         "id": 70,
@@ -627,7 +696,8 @@
         "recent": "25/06/12",
         "status": "좋음",
         "contact": "010-0066-1177",
-        "email": "junwoo.ho@example.com"
+        "email": "junwoo.ho@example.com",
+        "desc": "적응력 우수"
     },
     {
         "id": 71,
@@ -636,7 +706,8 @@
         "recent": "25/06/11",
         "status": "위험",
         "contact": "010-1188-2299",
-        "email": "seoyul.go@example.com"
+        "email": "seoyul.go@example.com",
+        "desc": "컨디션 관리"
     },
     {
         "id": 72,
@@ -645,7 +716,8 @@
         "recent": "25/06/10",
         "status": "무임승차",
         "contact": "010-2299-3300",
-        "email": "hajin.no@example.com"
+        "email": "hajin.no@example.com",
+        "desc": "의욕 저조"
     },
     {
         "id": 73,
@@ -654,7 +726,8 @@
         "recent": "25/06/09",
         "status": "좋음",
         "contact": "010-3300-4411",
-        "email": "sia.do@example.com"
+        "email": "sia.do@example.com",
+        "desc": "글로벌 마인드"
     },
     {
         "id": 74,
@@ -663,7 +736,8 @@
         "recent": "25/06/08",
         "status": "위험",
         "contact": "010-4411-5522",
-        "email": "yehun.mo@example.com"
+        "email": "yehun.mo@example.com",
+        "desc": "목표 설정 필요"
     },
     {
         "id": 75,
@@ -672,7 +746,8 @@
         "recent": "25/06/07",
         "status": "무임승차",
         "contact": "010-5522-6633",
-        "email": "dayun.ro@example.com"
+        "email": "dayun.ro@example.com",
+        "desc": "변화 거부"
     },
     {
         "id": 76,
@@ -681,7 +756,8 @@
         "recent": "25/06/06",
         "status": "좋음",
         "contact": "010-6633-7744",
-        "email": "hasung.so@example.com"
+        "email": "hasung.so@example.com",
+        "desc": "논리적 사고"
     },
     {
         "id": 77,
@@ -690,7 +766,8 @@
         "recent": "25/06/05",
         "status": "위험",
         "contact": "010-7744-8855",
-        "email": "siyeon.bo@example.com"
+        "email": "siyeon.bo@example.com",
+        "desc": "감정 기복"
     },
     {
         "id": 78,
@@ -699,7 +776,8 @@
         "recent": "25/06/04",
         "status": "무임승차",
         "contact": "010-8855-9966",
-        "email": "junhyuk.cho@example.com"
+        "email": "junhyuk.cho@example.com",
+        "desc": "타과목 몰입"
     },
     {
         "id": 79,
@@ -708,7 +786,8 @@
         "recent": "25/06/03",
         "status": "좋음",
         "contact": "010-9966-0077",
-        "email": "haeun.to@example.com"
+        "email": "haeun.to@example.com",
+        "desc": "세심한 관찰"
     },
     {
         "id": 80,
@@ -717,7 +796,8 @@
         "recent": "25/06/02",
         "status": "위험",
         "contact": "010-0077-1188",
-        "email": "sijun.po@example.com"
+        "email": "sijun.po@example.com",
+        "desc": "사회성 부족"
     },
     {
         "id": 81,
@@ -726,7 +806,8 @@
         "recent": "25/06/01",
         "status": "무임승차",
         "contact": "010-1199-2200",
-        "email": "dayul.ho@example.com"
+        "email": "dayul.ho@example.com",
+        "desc": "도전 의식 부족"
     },
     {
         "id": 82,
@@ -735,7 +816,8 @@
         "recent": "25/05/31",
         "status": "좋음",
         "contact": "010-2200-3311",
-        "email": "seojin.go@example.com"
+        "email": "seojin.go@example.com",
+        "desc": "지속적 성장"
     },
     {
         "id": 83,
@@ -744,7 +826,8 @@
         "recent": "25/05/30",
         "status": "위험",
         "contact": "010-3311-4422",
-        "email": "harin.no@example.com"
+        "email": "harin.no@example.com",
+        "desc": "적응 어려움"
     },
     {
         "id": 84,
@@ -753,7 +836,8 @@
         "recent": "25/05/29",
         "status": "무임승차",
         "contact": "010-4422-5533",
-        "email": "yejun.do@example.com"
+        "email": "yejun.do@example.com",
+        "desc": "규칙 무시"
     },
     {
         "id": 85,
@@ -762,7 +846,8 @@
         "recent": "25/05/28",
         "status": "좋음",
         "contact": "010-5533-6644",
-        "email": "siyul.mo@example.com"
+        "email": "siyul.mo@example.com",
+        "desc": "전략적 사고"
     },
     {
         "id": 86,
@@ -771,7 +856,8 @@
         "recent": "25/05/27",
         "status": "위험",
         "contact": "010-6644-7755",
-        "email": "hajun.ro@example.com"
+        "email": "hajun.ro@example.com",
+        "desc": "반복 학습 거부"
     },
     {
         "id": 87,
@@ -780,7 +866,8 @@
         "recent": "25/05/26",
         "status": "무임승차",
         "contact": "010-7755-8866",
-        "email": "daeun.so@example.com"
+        "email": "daeun.so@example.com",
+        "desc": "안주 성향"
     },
     {
         "id": 88,
@@ -789,7 +876,8 @@
         "recent": "25/05/25",
         "status": "좋음",
         "contact": "010-8866-9977",
-        "email": "sihyun.bo@example.com"
+        "email": "sihyun.bo@example.com",
+        "desc": "균형잡힌 학습"
     },
     {
         "id": 89,
@@ -798,7 +886,8 @@
         "recent": "25/05/24",
         "status": "위험",
         "contact": "010-9977-0088",
-        "email": "hayun.cho@example.com"
+        "email": "hayun.cho@example.com",
+        "desc": "스트레스 과다"
     },
     {
         "id": 90,
@@ -807,6 +896,7 @@
         "recent": "25/05/23",
         "status": "무임승차",
         "contact": "010-0088-1199",
-        "email": "yerin.to@example.com"
+        "email": "yerin.to@example.com",
+        "desc": "수동적 참여"
     }
 ]

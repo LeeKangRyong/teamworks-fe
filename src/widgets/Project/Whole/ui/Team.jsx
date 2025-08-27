@@ -105,7 +105,7 @@ export function Team() {
     );
 
     return (
-        <main className="w-250">
+        <main className="w-250 py-4 mb-10">
             <nav className="px-6 mb-8 -mt-2" aria-label="팀 관리 탭">
                 <ListButtons onListChange={handleListChange} />
             </nav>            

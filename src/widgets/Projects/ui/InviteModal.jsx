@@ -17,6 +17,10 @@ export function InviteModal({ isOpen, onClose }) {
             showToast("프로젝트가 생성되었습니다");
         }, 200);
     };
+    
+    const handleCopy = () => {
+        showToast("초대 코드가 복사되었습니다");
+    };
 
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
@@ -36,7 +40,7 @@ export function InviteModal({ isOpen, onClose }) {
                 </div>
                 <div className="flex flex-row gap-2 mt-4">
                     <InviteCode code={inviteCode} />
-                    <CopyCheck code={inviteCode} />
+                    <CopyCheck code={inviteCode} onClick={handleCopy} />
                 </div>
             </div>
         </div>
