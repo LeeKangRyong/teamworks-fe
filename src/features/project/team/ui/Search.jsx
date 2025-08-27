@@ -22,6 +22,13 @@ export function Search({
         }
     };
 
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleClick();
+        }
+    };
+
     return (
         <div 
             role="button" 
@@ -38,6 +45,7 @@ export function Search({
                 onChange={handleChange}
                 onFocus={onFocus}
                 onBlur={onBlur}
+                onKeyDown={handleKeyDown}
                 placeholder={placeholder}
                 className="bg-transparent outline-none border-none text-body-s text-secondary-80 placeholder:text-secondary-30 flex-1 w-100 cursor-pointer"
                 readOnly
@@ -46,4 +54,3 @@ export function Search({
         </div>
     );
 }
-

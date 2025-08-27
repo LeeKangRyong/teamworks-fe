@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { Cancel, Complete, Input } from "@/features/common";
 import { Search } from "@/features/project/team";
 import { AddMemberModal } from "./AddMemberModal";
@@ -19,6 +19,8 @@ export function AddTeamForm() {
     const [nameInputFocused, setNameInputFocused] = useState(false);
 
     const router = useRouter();
+    const params = useParams();
+    const projectId = params.id;
     const { showToast } = useToast();
 
     useEffect(() => {
@@ -46,7 +48,7 @@ export function AddTeamForm() {
             return;
         }
         
-        router.push('/projects/1');        
+        router.push(`/projects/${projectId}/team`);        
         setTimeout(() => {
             showToast("팀이 생성되었습니다");
         }, 100);

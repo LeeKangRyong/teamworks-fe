@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { ListButtons } from "@/features/project/team";
 import { TeamManageLists, StudentManageLists } from "@/entities/project/team";
 import { StatusSelect, Sort, SortUpDown, SearchName, Add } from "@/features/project/team";
@@ -11,12 +11,18 @@ import { processTeamData, validateData } from "@/shared/utils/teamsDataFormat";
 // const studentsData = [];
 // const teamsData = [];
 
-export function TeamWidget() {
+export function TeamWidget({ initialStatus }) {
     const [selectedList, setSelectedList] = useState("팀 리스트");
     const [selectedStatus, setSelectedStatus] = useState("all");
     const [sortType, setSortType] = useState("activity");
     const [sortOrder, setSortOrder] = useState("desc");
     const [searchName, setSearchName] = useState("");
+
+    useEffect(() => {
+        if (initialStatus) {
+            setSelectedStatus(initialStatus);
+        }
+    }, [initialStatus]);
 
     const handleStatusChange = (selectedStatus) => {
         setSelectedStatus(selectedStatus);
@@ -70,7 +76,10 @@ export function TeamWidget() {
             <div className="w-30 flex-shrink-0">
                 <p className="text-body-s text-secondary-50 text-left">최근 활동일</p>
             </div>
-            <StatusSelect onStatusChange={handleStatusChange} />
+            <StatusSelect 
+                onStatusChange={handleStatusChange} 
+                initialStatus={selectedStatus}
+            />
             <div className="flex-1 min-w-0">
                 <p className="text-body-s text-secondary-50 text-left">내용</p>
             </div>
@@ -91,7 +100,10 @@ export function TeamWidget() {
             <div className="w-30 flex-shrink-0">
                 <p className="text-body-s text-secondary-50 text-left">최근 활동일</p>
             </div>
-            <StatusSelect onStatusChange={handleStatusChange} />
+            <StatusSelect 
+                onStatusChange={handleStatusChange} 
+                initialStatus={selectedStatus}
+            />
             <div className="w-32 flex-shrink-0">
                 <p className="text-body-s text-secondary-50 text-left">연락처</p>
             </div>

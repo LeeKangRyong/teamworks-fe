@@ -1,6 +1,19 @@
 import { TeamSummaryList } from "@/shared/ui/project/dashboard"
+import { teamsData } from "@/shared/mock";
+import { useState, useEffect } from "react";
 
 export function TeamSummary({ children, num }) {
+    const [randomWarningTeams, setRandomWarningTeams] = useState([]);
+
+    useEffect(() => {
+        const warningTeams = teamsData.filter(team => 
+            team.status === "무임승차" && team.team.length <= 4
+        );
+        
+        const shuffled = [...warningTeams].sort(() => 0.5 - Math.random());
+        setRandomWarningTeams(shuffled.slice(0, 3));
+    }, []);
+
     return (
         <article className="border-1 border-gray-10 rounded-lg w-[50%] pb-5">
             <div className="flex justify-between -mx-1">
@@ -20,9 +33,14 @@ export function TeamSummary({ children, num }) {
                     </div>
                 </div>
                 <div className="px-3">
-                    <TeamSummaryList team="노랑통닭" desc="기여도 편차 87%, 파일 미제출" status="무임승차" />
-                    <TeamSummaryList team="ㅁㄴㄴ" desc="채팅 10건 미만, 파일 미제출" status="위험" />
-                    <TeamSummaryList team="노랑통닭" desc="채팅 20건 미만" status="좋음" />
+                    {randomWarningTeams.map((team, index) => (
+                        <TeamSummaryList 
+                            key={team.team_id}
+                            team={team.team} 
+                            desc={team.desc} 
+                            status={team.status} 
+                        />
+                    ))}
                 </div>
             </div>
         </article>

@@ -12,7 +12,7 @@ export function ProjectCards({ projects, setProjects }) {
     const router = useRouter();
 
     const handleDetail = (projectId) => {
-        router.push(`/projects/${projectId}`);
+        router.push(`/projects/${projectId}/dashboard`);
     };
 
     const handleDeleteClick = (project) => {

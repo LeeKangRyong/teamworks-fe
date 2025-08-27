@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import filter from "@/assets/icons/filter.png";
 
-export function StatusSelect({ onStatusChange }) {
+export function StatusSelect({ onStatusChange, initialStatus }) {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedStatus, setSelectedStatus] = useState("상태");
     const dropdownRef = useRef(null);
@@ -14,6 +14,16 @@ export function StatusSelect({ onStatusChange }) {
         { value: "warning", label: "위험", textColor: "text-secondary-60" },
         { value: "freeload", label: "무임승차", textColor: "text-secondary-60" }
     ];
+
+    // initialStatus가 변경될 때 상태 업데이트
+    useEffect(() => {
+        if (initialStatus) {
+            const matchedOption = statusOptions.find(option => option.value === initialStatus);
+            if (matchedOption) {
+                setSelectedStatus(matchedOption.label);
+            }
+        }
+    }, [initialStatus]);
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -63,29 +73,11 @@ export function StatusSelect({ onStatusChange }) {
                                         onClick={() => handleStatusSelect(option)}
                                         className={`w-full px-2 py-2 text-left text-body-s transition-colors duration-150 flex items-center justify-center group first:rounded-t-lg last:rounded-b-lg ${
                                             isSelected 
-                                                ? 'bg-secondary-60' 
-                                                : 'bg-secondary-3 hover:bg-secondary-10'
+                                                ? 'bg-primary-10 text-primary-100 font-medium' 
+                                                : 'hover:bg-secondary-10 text-secondary-60'
                                         }`}
                                     >
-                                        {option.value === "all" ? (
-                                            <span className={`${
-                                                isSelected 
-                                                    ? 'text-gray-0' 
-                                                    : 'text-secondary-60'
-                                            }`}>
-                                                {option.label}
-                                            </span>
-                                        ) : (
-                                            <div className={`px-2 py-1 ${option.bgColor} rounded-md flex items-center justify-center w-24 min-w-24`}>
-                                                <p className={`text-body-s text-center truncate ${
-                                                    isSelected 
-                                                        ? 'text-gray-0' 
-                                                        : 'text-secondary-60'
-                                                }`}>
-                                                    {option.label}
-                                                </p>
-                                            </div>
-                                        )}
+                                        {option.label}
                                     </button>
                                 );
                             })}
