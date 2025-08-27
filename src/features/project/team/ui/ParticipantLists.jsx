@@ -16,7 +16,7 @@ export function ParticipantLists({ onSelectionChange }) {
         });
     };
 
-    const allIds = studentsData.map(student => student.id);
+    const allIds = studentsData.map(student => student.student_id);
     const isAllSelected = allIds.length > 0 && allIds.every(id => selectedIds.includes(id));
     const isIndeterminate = selectedIds.length > 0 && !isAllSelected;
 
@@ -36,10 +36,10 @@ export function ParticipantLists({ onSelectionChange }) {
     // useEffect로 선택 변경사항을 상위 컴포넌트에 전달
     useEffect(() => {
         const selectedMembers = studentsData.filter(p => 
-            selectedIds.includes(p.id)
+            selectedIds.includes(p.student_id)
         );
         onSelectionChange?.(selectedMembers, selectedIds.length);
-    }, [selectedIds]);
+    }, [selectedIds, onSelectionChange]);
 
     return (
         <div className="h-full flex flex-col">

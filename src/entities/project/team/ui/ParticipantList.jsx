@@ -13,4 +13,4 @@ export function ParticipantList({ participants, selectedIds, onCheck }) {
             ))}
         </div>
     );
-}
+};

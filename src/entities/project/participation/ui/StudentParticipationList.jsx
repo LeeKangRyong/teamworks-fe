@@ -9,7 +9,7 @@ export function StudentParticipationList({ studentsData }) {
     const projectId = params.id;
 
     const handlePart = (studentId) => {
-        router.push(`/projects/${projectId}/part/${studentId}`);
+        router.push(`/projects/${projectId}/participation/${studentId}`);
     };
 
     return (

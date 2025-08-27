@@ -2,11 +2,11 @@ import { CheckBox } from "@/shared/ui/common";
 
 export function Participant({ participant, isSelected, onCheck }) {
     const handleClick = () => {
-        onCheck(participant.id);
+        onCheck(participant.student_id);
     };
 
     const handleCheckboxChange = (newChecked) => {
-        onCheck(participant.id);
+        onCheck(participant.student_id);
     };
 
     return (

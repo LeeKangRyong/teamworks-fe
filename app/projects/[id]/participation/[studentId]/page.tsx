@@ -1,8 +1,7 @@
 import { ParticipationDetail } from "@/pages/project";
 
-export default function ParticipationDetailPage({ params }) {
-    const projectId = params.id;  
-    const studentId = params.studentId;
+export default async function ParticipationDetailPage({ params }) {
+    const { id: projectId, studentId } = await params;
     
     return <ParticipationDetail projectId={projectId} studentId={studentId} />;
 }
