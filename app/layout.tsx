@@ -13,6 +13,10 @@ export default function RootLayout({
 
   return (
     <html lang="ko">
+      <head>
+        <link rel="icon" href="/logo.png" type="image/x-icon" />
+        <title>TeamWorks</title>
+      </head>
       <body className="antialiased">
         <div className="navbar" />
         {children}

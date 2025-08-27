@@ -5,7 +5,7 @@
     font-weight: 45 920;
     font-style: normal;
     font-display: swap;
-    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Variable.woff2') format('woff2-variations');
+    src: url('/fonts/PretendardVariable.woff2') format('woff2-variations');
 }
 
 @keyframes slideUp {
