@@ -2,12 +2,15 @@ import { useState, useRef, useEffect } from "react";
 
 export function TextEditor() {
     const [content, setContent] = useState("");
-    const [showPreview, setShowPreview] = useState(false);
     const [showEmojiModal, setShowEmojiModal] = useState(false);
+    const [showFontSizeModal, setShowFontSizeModal] = useState(false);
+    const [currentFontSize, setCurrentFontSize] = useState(14);
     const editorRef = useRef(null);
     const fileInputRef = useRef(null);
     const emojiButtonRef = useRef(null);
     const emojiModalRef = useRef(null);
+    const fontSizeButtonRef = useRef(null);
+    const fontSizeModalRef = useRef(null);
 
     const emojis = [
         '😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇',
@@ -22,14 +25,27 @@ export function TextEditor() {
         '🔥', '⭐', '🌟', '✨', '⚡', '☄', '💥', '🔴', '🟠', '🟡'
     ];
 
+    const fontSizes = [12, 14, 16, 18, 20, 24, 28, 32, 36, 42, 48];
+    // TODO: Small, body/S, body/M, body/L, heading/M, heading/L, heading/XL로 표시
+    // TODO: text-caption-regular, text-body-s, text-body-m, text-body-l, text-heading-m, text-heading-l, text-heading-xl 적용 (globals.css에 있는 거)
+
+
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (showEmojiModal && 
-                emojiModalRef.current && 
+            if (showEmojiModal &&
+                emojiModalRef.current &&
                 !emojiModalRef.current.contains(event.target) &&
-                emojiButtonRef.current && 
+                emojiButtonRef.current &&
                 !emojiButtonRef.current.contains(event.target)) {
                 setShowEmojiModal(false);
+            }
+
+            if (showFontSizeModal &&
+                fontSizeModalRef.current &&
+                !fontSizeModalRef.current.contains(event.target) &&
+                fontSizeButtonRef.current &&
+                !fontSizeButtonRef.current.contains(event.target)) {
+                setShowFontSizeModal(false);
             }
         };
 
@@ -37,25 +53,34 @@ export function TextEditor() {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [showEmojiModal]);
+    }, [showEmojiModal, showFontSizeModal]);
+    
+    useEffect(() => {
+        const editor = editorRef.current;
+        if (editor) {
+            editor.style.fontSize = currentFontSize + 'px';
+        }
+    }, []);
 
     const insertTextAtCursor = (text) => {
         const editor = editorRef.current;
         if (!editor) return;
-        
+
         const selection = window.getSelection();
         if (selection.rangeCount > 0) {
             const range = selection.getRangeAt(0);
             range.deleteContents();
-            
+
             if (text.includes('<img') || text.includes('<')) {
                 const fragment = range.createContextualFragment(text);
                 range.insertNode(fragment);
             } else {
-                const textNode = document.createTextNode(text);
-                range.insertNode(textNode);
+                const span = document.createElement('span');
+                span.style.fontSize = currentFontSize + 'px';
+                span.textContent = text;
+                range.insertNode(span);
             }
-            
+
             range.collapse(false);
             selection.removeAllRanges();
             selection.addRange(range);
@@ -63,10 +88,13 @@ export function TextEditor() {
             if (text.includes('<img') || text.includes('<')) {
                 editor.innerHTML += text;
             } else {
-                editor.appendChild(document.createTextNode(text));
+                const span = document.createElement('span');
+                span.style.fontSize = currentFontSize + 'px';
+                span.textContent = text;
+                editor.appendChild(span);
             }
         }
-        
+
         setContent(editor.innerHTML);
         editor.focus();
     };
@@ -82,14 +110,12 @@ export function TextEditor() {
         fileInputRef.current?.click();
     };
 
-    // 파일 업로드
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = (event) => {
                 const fileContent = event.target.result;
-                
                 const fileUrl = URL.createObjectURL(file);
                 const fileSize = (file.size / 1024).toFixed(1) + ' KB';
                 const fileElement = `
@@ -156,8 +182,7 @@ export function TextEditor() {
             }
         }
     };
-
-    // 이미지 업로드
+    
     const handleUploadImage = () => {
         const imageInput = document.createElement('input');
         imageInput.type = 'file';
@@ -178,30 +203,43 @@ export function TextEditor() {
         };
         imageInput.click();
     };
-
-    // 코드로 만들기
-    const handleFormatCode = () => {
+    
+    // TODO: 잘 안됨
+    const handleFontSizeChange = (fontSize) => {
+        setCurrentFontSize(fontSize);
+        
         const selection = window.getSelection();
-        if (selection.rangeCount > 0) {
+        if (selection.rangeCount > 0 && selection.toString().length > 0) {
+            // 선택된 텍스트가 있는 경우: 선택된 부분만 폰트 사이즈 변경
             const range = selection.getRangeAt(0);
-            const selectedText = selection.toString();
+            const selectedContent = range.extractContents();
             
-            if (selectedText) {
-                const codeText = `<pre style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 10px 0;"><code>${selectedText}</code></pre>`;
-                range.deleteContents();
-                const fragment = range.createContextualFragment(codeText);
-                range.insertNode(fragment);
-                range.collapse(false);
-                selection.removeAllRanges();
-                selection.addRange(range);
-                setContent(editorRef.current.innerHTML);
-            } else {
-                insertTextAtCursor(`<pre style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; margin: 10px 0;"><code>코드를 입력하세요</code></pre>`);
+            // 선택된 내용을 감쌀 span 요소 생성
+            const span = document.createElement('span');
+            span.style.fontSize = fontSize + 'px';
+            span.appendChild(selectedContent);
+            
+            // 새로운 span을 range에 삽입
+            range.insertNode(span);
+            
+            // 선택 영역을 새로 삽입한 내용 끝으로 이동
+            range.setStartAfter(span);
+            range.collapse(true);
+            selection.removeAllRanges();
+            selection.addRange(range);
+        } else {
+            // 선택된 텍스트가 없는 경우: 전체 에디터의 기본 폰트 사이즈 변경 (새로 입력할 텍스트 용)
+            const editor = editorRef.current;
+            if (editor) {
+                editor.style.fontSize = fontSize + 'px';
+                editor.focus();
             }
         }
+        
+        setContent(editorRef.current.innerHTML);
+        setShowFontSizeModal(false);
     };
 
-    // 이모지
     const handleEmojiClick = (emoji) => {
         insertTextAtCursor(emoji);
         setShowEmojiModal(false);
@@ -211,53 +249,56 @@ export function TextEditor() {
         setShowEmojiModal(!showEmojiModal);
     };
 
-    // Bold체 적용
+    const handleToggleFontSizeModal = () => {
+        setShowFontSizeModal(!showFontSizeModal);
+    };
+    
+
+    // TODO: 글씨체를 Pretandard-variable로 바꾸니까 맘대로 굴게 안되네 style 지정해도
     const handleBoldText = () => {
         const selection = window.getSelection();
+        
         if (selection.rangeCount > 0) {
             const range = selection.getRangeAt(0);
             const selectedText = selection.toString();
             
-            if (selectedText) {
-                const boldText = `<strong>${selectedText}</strong>`;
-                range.deleteContents();
-                const fragment = range.createContextualFragment(boldText);
-                range.insertNode(fragment);
-                range.collapse(false);
+            if (selectedText.length > 0) {
+                // 선택된 텍스트가 있는 경우: 선택된 부분만 굵게
+                const selectedContent = range.extractContents();
+                
+                const strong = document.createElement('strong');
+                strong.appendChild(selectedContent);
+                
+                range.insertNode(strong);
+                
+                // 선택 영역을 굵게 처리한 내용 뒤로 이동
+                range.setStartAfter(strong);
+                range.collapse(true);
                 selection.removeAllRanges();
                 selection.addRange(range);
-                setContent(editorRef.current.innerHTML);
             } else {
-                insertTextAtCursor(`<strong>굵은 텍스트</strong>`);
+                // 선택된 텍스트가 없는 경우: 굵은 텍스트 샘플 삽입
+                const strong = document.createElement('strong');
+                strong.textContent = '굵은 텍스트';
+                range.insertNode(strong);
+                
+                // 커서를 삽입한 내용 뒤로 이동
+                range.setStartAfter(strong);
+                range.collapse(true);
+                selection.removeAllRanges();
+                selection.addRange(range);
             }
+        } else {
+            // 선택 영역이 없는 경우: 굵은 텍스트 샘플 삽입
+            insertTextAtCursor('<strong>굵은 텍스트</strong>');
         }
+        
+        setContent(editorRef.current.innerHTML);
+        editorRef.current.focus();
     };
 
-    // 항목 추가
     const handleAddList = () => {
-        insertTextAtCursor(`<ul style="margin: 10px 0; padding-left: 20px;"><li>항목 1</li><li>항목 2</li><li>항목 3</li></ul>`);
-    };
-
-    // 타임라인 추가
-    const handleTimeline = () => {
-        const now = new Date();
-        const timestamp = now.toLocaleString('ko-KR');
-        insertTextAtCursor(`<div style="margin: 10px 0;">⏰ ${timestamp}: </div>`);
-    };
-
-    // 미리보기
-    const handleTogglePreview = () => {
-        setShowPreview(!showPreview);
-    };
-
-    const renderPreview = (text) => {
-        return text
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/```\n(.*?)\n```/gs, '<pre style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; overflow-wrap: break-word;"><code>$1</code></pre>')
-            .replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" style="max-width: 100%; height: auto; margin: 10px 0;" />')
-            .replace(/\[첨부파일: (.*?)\]/g, '<span style="background-color: #e3f2fd; padding: 4px 8px; border-radius: 4px; color: #1976d2;">📎 $1</span>')
-            .replace(/\n/g, '<br>')
-            .replace(/--- (.*?) ---\n(.*?)\n--- 파일 끝 ---/gs, '<div style="border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px;"><h4 style="margin-top: 0;">📄 $1</h4><pre style="background-color: #f9f9f9; padding: 10px; white-space: pre-wrap;">$2</pre></div>');
+        insertTextAtCursor(`<ul style="margin: 10px 0; padding-left: 20px;"><li>• </li></ul>`);
     };
 
     const handleDownloadPDF = () => {
@@ -286,6 +327,10 @@ export function TextEditor() {
                         border-radius: 5px;
                         overflow-wrap: break-word;
                         white-space: pre-wrap;
+                    }
+                    img {
+                        max-width: 100%;
+                        height: auto;
                     }
                 </style>
             </head>
@@ -321,6 +366,8 @@ export function TextEditor() {
                 <div className="flex items-center justify-between px-3 py-2 border-b border-gray-200">
                     <div className="flex flex-wrap items-center divide-gray-200 sm:divide-x sm:rtl:divide-x-reverse dark:divide-gray-600">
                         <div className="flex items-center space-x-1 rtl:space-x-reverse sm:pe-6">
+                            
+                            {/* 파일 */}
                             <button 
                                 type="button" 
                                 onClick={handleAttachFile}
@@ -332,6 +379,7 @@ export function TextEditor() {
                                 <span className="sr-only">Attach file</span>
                             </button>
                             
+                            {/* 사진 */}
                             <button 
                                 type="button" 
                                 onClick={handleUploadImage}
@@ -343,19 +391,46 @@ export function TextEditor() {
                                 </svg>
                                 <span className="sr-only">Upload image</span>
                             </button>
+
+                            {/* 글씨 크기 */}
+                            <div className="relative">
+                                <button 
+                                    ref={fontSizeButtonRef}
+                                    type="button" 
+                                    onClick={handleToggleFontSizeModal}
+                                    className="p-2 text-gray-500 rounded-sm cursor-pointer border border-transparent transition-colors hover:bg-secondary-10 hover:border-secondary-50 focus-within:border-secondary-50"
+                                >
+                                    <div className="w-4 h-4 flex items-center justify-center">
+                                        <span className="text-xs font-bold">Aa</span>
+                                    </div>
+                                    <span className="sr-only">Font size</span>
+                                </button>
+                                {showFontSizeModal && (
+                                    <div 
+                                        ref={fontSizeModalRef}
+                                        className="absolute top-full left-0 mt-1 z-50 bg-white border border-gray-200 rounded-lg shadow-lg p-2"
+                                        style={{ width: '120px', maxHeight: '200px', overflowY: 'auto' }}
+                                    >
+                                        {fontSizes.map((size) => (
+                                            <button
+                                                key={size}
+                                                type="button"
+                                                onClick={() => handleFontSizeChange(size)}
+                                                className={`w-full text-left px-3 py-1 rounded hover:bg-gray-100 transition-colors ${
+                                                    currentFontSize === size ? 'bg-blue-50 text-blue-600 font-semibold' : 'text-gray-700'
+                                                }`}
+                                            >
+                                                {size}px
+                                            </button>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* TODO: 글씨 색깔 지정 (빨강, 주황, 노랑, 초롱, 파랑, 남색, 보라) */}
+                            {/* 여기에 코드 작성 */}
                             
-                            <button 
-                                type="button" 
-                                onClick={handleFormatCode}
-                                className="p-2 text-gray-500 rounded-sm cursor-pointer border border-transparent transition-colors hover:bg-secondary-10 hover:border-secondary-50 focus-within:border-secondary-50"
-                            >
-                                <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
-                                    <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z"/>
-                                    <path d="M14.067 0H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18V2a1.97 1.97 0 0 0-1.933-2ZM6.709 13.809a1 1 0 1 1-1.418 1.409l-2-2.013a1 1 0 0 1 0-1.412l2-2a1 1 0 0 1 1.414 1.414L5.412 12.5l1.297 1.309Zm6-.6-2 2.013a1 1 0 1 1-1.418-1.409l1.3-1.307-1.295-1.295a1 1 0 0 1 1.414-1.414l2 2a1 1 0 0 1-.001 1.408v.004Z"/>
-                                </svg>
-                                <span className="sr-only">Format code</span>
-                            </button>
-                            
+                            {/* 이모티콘 */}
                             <div className="relative">
                                 <button 
                                     ref={emojiButtonRef}
@@ -392,11 +467,12 @@ export function TextEditor() {
                                 )}
                             </div>
 
+                            {/* 글씨 굵게 */}
                             <button 
                                 type="button" 
                                 onClick={handleBoldText}
                                 className="p-2 text-gray-500 rounded-sm cursor-pointer border border-transparent transition-colors hover:bg-secondary-10 hover:border-secondary-50 focus-within:border-secondary-50"
-                                >
+                            >
                                 <div className="w-4 h-4 flex items-center justify-center">
                                     <span className="text-body-l font-black">B</span>
                                 </div>
@@ -405,6 +481,8 @@ export function TextEditor() {
                         </div>
                         
                         <div className="flex flex-wrap items-center space-x-1 rtl:space-x-reverse sm:ps-6">
+                            
+                            {/* 항목 */}
                             <button 
                                 type="button" 
                                 onClick={handleAddList}
@@ -415,19 +493,8 @@ export function TextEditor() {
                                 </svg>
                                 <span className="sr-only">Add list</span>
                             </button>
-
-                            <button 
-                                type="button" 
-                                onClick={handleTimeline}
-                                className="p-2 text-gray-500 rounded-sm cursor-pointer border border-transparent transition-colors hover:bg-secondary-10 hover:border-secondary-50 focus-within:border-secondary-50"
-                            >
-                                <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M18 2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2ZM2 18V7h6.7l.4-.409A4.309 4.309 0 0 1 15.753 7H18v11H2Z"/>
-                                    <path d="M8.139 10.411 5.289 13.3A1 1 0 0 0 5 14v2a1 1 0 0 0 1 1h2a1 1 0 0 0 .7-.288l2.886-2.851-3.447-3.45ZM14 8a2.463 2.463 0 0 0-3.484 0l-.971.983 3.468 3.468.987-.971A2.463 2.463 0 0 0 14 8Z"/>
-                                </svg>
-                                <span className="sr-only">Timeline</span>
-                            </button>
                             
+                            {/* PDF 다운로드 */}
                             <button 
                                 type="button" 
                                 onClick={handleDownloadPDF}
@@ -441,42 +508,22 @@ export function TextEditor() {
                             </button>
                         </div>
                     </div>
-                    
-                    <button 
-                        type="button" 
-                        onClick={handleTogglePreview}
-                        className={`px-3 py-1 rounded-sm cursor-pointer border border-transparent transition-colors hover:bg-secondary-10 hover:border-secondary-50 ${
-                            showPreview ? 'text-primary-100 bg-primary-10' : 'text-gray-500'
-                        }`}
-                    >
-                        <span className="text-caption-semibold text-center">Preview</span>
-                    </button>
                 </div>
                 
                 <div className="mt-4 bg-secondary-3 rounded-lg transition-colors border border-transparent focus-within:border-secondary-50 h-55">
-                    {showPreview ? (
-                        <div className="p-3 h-full overflow-y-auto">
-                            <div 
-                                className="text-body-s text-secondary-80"
-                                dangerouslySetInnerHTML={{
-                                    __html: content || '<span style="color: #999;">프리뷰할 내용이 없습니다</span>'
-                                }}
-                            />
-                        </div>
-                    ) : (
-                        <div
-                            ref={editorRef}
-                            contentEditable={true}
-                            onInput={handleEditorChange}
-                            className="resize-none block w-full h-full text-body-s text-secondary-80 bg-transparent outline-none border-none rounded-lg px-3 py-1 min-h-full overflow-y-auto"
-                            style={{ 
-                                minHeight: '200px',
-                                color: content ? 'inherit' : '#999'
-                            }}
-                            suppressContentEditableWarning={true}
-                            data-placeholder={content ? '' : '공지사항을 입력하세요'}
-                        />
-                    )}
+                    <div
+                        ref={editorRef}
+                        contentEditable={true}
+                        onInput={handleEditorChange}
+                        className="resize-none block w-full h-full text-body-s text-secondary-80 bg-transparent outline-none border-none rounded-lg px-3 py-1 min-h-full overflow-y-auto"
+                        style={{ 
+                            minHeight: '200px',
+                            color: content ? 'inherit' : '#999',
+                            fontSize: currentFontSize + 'px',
+                        }}
+                        suppressContentEditableWarning={true}
+                        data-placeholder={content ? '' : '공지사항을 입력하세요'}
+                    />
                 </div>
             </div>
         </form>
