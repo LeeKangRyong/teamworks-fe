@@ -53,7 +53,7 @@ export function DashboardWidget() {
             </article>
             <div className="justify-between gap-4 flex flex-row mx-10 mt-5">
                 <TeamSummary children={<More onClick={handleWarningTeamsClick} />} num={warningTeams} />
-                <ToDoSummary children={<More />} />
+                <ToDoSummary children={<More />} /> {/* TODO: More 클릭 시, projects/{projectId}/assignment?status=progress로 이동 */}
             </div>
             <div className="px-10 mt-3">
                 <NextSubmit />

@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'Pretendard Variable';
-    font-weight: 45 920;
+    font-weight: 100 900;
     font-style: normal;
     font-display: swap;
     src: url('/fonts/PretendardVariable.woff2') format('woff2-variations');
@@ -210,11 +210,11 @@ body::-webkit-scrollbar {
         scrollbar-color: #CED2DB transparent;
     }
 }
-.text-heading-xl { @apply text-[1.75rem] leading-[2.75rem] tracking-[-0.01em]; font-variation-settings: "wght" 700; }
-.text-heading-l { @apply text-[1.5rem] leading-[2.25rem] tracking-[-0.01em]; font-variation-settings: "wght" 600; }
-.text-heading-m { @apply text-[1.25rem] leading-[1.875rem] tracking-[-0.01em]; font-variation-settings: "wght" 600; }
-.text-body-l { @apply text-[1.125rem] leading-[1.75rem]; font-variation-settings: "wght" 500; }
-.text-body-m { @apply text-[1rem] leading-[1.5rem]; font-variation-settings: "wght" 400; }
-.text-body-s { @apply text-[0.875rem] leading-[1.25rem]; font-variation-settings: "wght" 400; }
-.text-caption-semibold { @apply text-[0.75rem] leading-[1.125rem]; font-variation-settings: "wght" 600; }
-.text-caption-regular { @apply text-[0.75rem] leading-[1.125rem]; font-variation-settings: "wght" 400; }
+.text-heading-xl { @apply text-[1.75rem] leading-[2.75rem] tracking-[-0.01em] font-bold; }
+.text-heading-l { @apply text-[1.5rem] leading-[2.25rem] tracking-[-0.01em] font-semibold; }
+.text-heading-m { @apply text-[1.25rem] leading-[1.875rem] tracking-[-0.01em] font-semibold; }
+.text-body-l { @apply text-[1.125rem] leading-[1.75rem] font-medium; }
+.text-body-m { @apply text-[1rem] leading-[1.5rem] font-normal; }
+.text-body-s { @apply text-[0.875rem] leading-[1.25rem] font-normal; }
+.text-caption-semibold { @apply text-[0.75rem] leading-[1.125rem] font-semibold; }
+.text-caption-regular { @apply text-[0.75rem] leading-[1.125rem] font-normal; }

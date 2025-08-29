@@ -1,7 +1,7 @@
 import { More } from "@/features/project/dashboard";
-import { AddNotice } from "@/features/project/notice";
 import { useModal } from "@/shared/hooks";
 import { AddNoticeModal } from "@/widgets/Project/Notice";
+import { AddButton } from "@/features/common";
 
 export function RecentNotice() {
     const { isOpen, openModal, closeModal } = useModal();
@@ -29,7 +29,7 @@ export function RecentNotice() {
                     <p className="text-body-m text-secondary-70">1차 과제 관련 안내</p>
                 </div>
                 <div className="flex flex-col gap-6">
-                    <AddNotice onClick={handleModal} />
+                    <AddButton onClick={handleModal} title="공지 작성 +" />
                     <p className="text-body-m text-secondary-40 text-right">25/08/21</p>
                 </div>
             </article>
