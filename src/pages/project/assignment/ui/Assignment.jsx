@@ -1,5 +1,5 @@
 "use client";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import { LayoutHeader, LayoutAside } from "@/widgets/Layout";
 import { AssignmentWidget } from "@/widgets/Project/Whole";
@@ -9,11 +9,20 @@ import { projectsData } from "@/shared/mock";
 export function Assignment({ id }) {
     const [activeTab, setActiveTab] = useState("assignment");
     const [isAsideCollapsed, setIsAsideCollapsed] = useState(false);
+    const [initialStatus, setInitialStatus] = useState(null);
     const [projectData, setProjectData] = useState(null);
-
 
     const params = useParams();
     const projectId = params.id || id;
+    
+    const searchParams = useSearchParams();
+
+    useEffect(() => {
+        const statusParam = searchParams.get('status');
+        if (statusParam) {
+            setInitialStatus(statusParam);
+        }
+    }, [searchParams]);
 
     useEffect(() => {
         const foundProject = projectsData.find(project => 
@@ -37,7 +46,7 @@ export function Assignment({ id }) {
                     <Options activeTab={activeTab} setActiveTab={setActiveTab} />
                     <div className="border-b-1 border-gray-20 w-full"/>
                     <div className="mt-8 bg-transparent">
-                        <AssignmentWidget />
+                        <AssignmentWidget initialStatus={initialStatus} />
                     </div>
                 </article>
             </div>

@@ -3,8 +3,8 @@ import Image from "next/image";
 import { useState } from "react";
 import arrowDown from "@/assets//icons/arrow-down.png"
 
-export function Sort({ onSortDirectionChange }) {
-    const [selectedDirection, setSelectedDirection] = useState("asc"); // "asc" 또는 "desc"
+export function Sort({ onSortDirectionChange, type }) {
+    const [selectedDirection, setSelectedDirection] = useState("desc");
 
     const sortOptions = {
         asc: { value: "asc", label: "최신 순" },
@@ -33,7 +33,7 @@ export function Sort({ onSortDirectionChange }) {
                 src={arrowDown} 
                 alt="arrowDown" 
                 className={`w-5 h-5 ml-10 flex-shrink-0 transition-transform duration-200 ${
-                    selectedDirection === "desc" ? 'rotate-180' : ''
+                    selectedDirection === "desc" ? '' : 'rotate-180'
                 }`} 
             />
         </button>

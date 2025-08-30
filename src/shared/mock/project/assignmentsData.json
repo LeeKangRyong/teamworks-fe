@@ -3,7 +3,7 @@
     {
         "assignment_id": 1,
         "title": "중간고사 대체 과제 - 리포트 작성 및 발표",
-        "deadline": "25/08/14",
+        "deadline": "25/08/15",
         "submit": "20/25팀 (80%)",
         "mark": "10/25팀 (40%)",
         "status": "진행중"
@@ -14,12 +14,12 @@
         "deadline": "25/08/14",
         "submit": "20/25팀 (80%)",
         "mark": "10/25팀 (40%)",
-        "status": "채점완료"
+        "status": "진행중"
     },
     {
         "assignment_id": 3,
         "title": "중간고사 대체 과제 - 리포트 작성 및 발표",
-        "deadline": "25/08/14",
+        "deadline": "25/08/13",
         "submit": "20/25팀 (80%)",
         "mark": "10/25팀 (40%)",
         "status": "채점완료"
@@ -27,15 +27,23 @@
     {
         "assignment_id": 4,
         "title": "중간고사 대체 과제 - 리포트 작성 및 발표",
-        "deadline": "25/08/14",
+        "deadline": "25/08/12",
+        "submit": "20/25팀 (80%)",
+        "mark": "10/25팀 (40%)",
+        "status": "채점완료"
+    },
+    {
+        "assignment_id": 5,
+        "title": "중간고사 대체 과제 - 리포트 작성 및 발표",
+        "deadline": "25/08/11",
         "submit": "20/25팀 (80%)",
         "mark": "10/25팀 (40%)",
         "status": "마감"
     },
     {
-        "assignment_id": 5,
+        "assignment_id": 6,
         "title": "중간고사 대체 과제 - 리포트 작성 및 발표",
-        "deadline": "25/08/14",
+        "deadline": "25/08/10",
         "submit": "20/25팀 (80%)",
         "mark": "10/25팀 (40%)",
         "status": "마감"

@@ -2,7 +2,7 @@
 import { useRouter, useParams } from "next/navigation";
 import { Box, TeamSummary, NextSubmit, ToDoSummary } from "@/entities/project/dashboard";
 import { More } from "@/features/project/dashboard";
-import { teamsData, studentsData } from "@/shared/mock";
+import { teamsData, studentsData, assignmentsData } from "@/shared/mock";
 
 export function DashboardWidget() {
     const router = useRouter();
@@ -10,6 +10,7 @@ export function DashboardWidget() {
     const projectId = params.id;
     
     const warningTeams = teamsData.filter(team => team.status === "무임승차").length;
+    const progressAssignments = assignmentsData.filter(assign => assign.status === "진행중").length;
 
     const handleTotalTeamsClick = () => {
         router.push(`/projects/${projectId}/team`);
@@ -20,7 +21,7 @@ export function DashboardWidget() {
     };
 
     const handleAssignmentClick = () => {
-        router.push(`/projects/${projectId}/assignment`);
+        router.push(`/projects/${projectId}/assignment?status=progress`);
     };
 
     const handleQuestionsClick = () => {
@@ -53,7 +54,7 @@ export function DashboardWidget() {
             </article>
             <div className="justify-between gap-4 flex flex-row mx-10 mt-5">
                 <TeamSummary children={<More onClick={handleWarningTeamsClick} />} num={warningTeams} />
-                <ToDoSummary children={<More />} /> {/* TODO: More 클릭 시, projects/{projectId}/assignment?status=progress로 이동 */}
+                <ToDoSummary children={<More onClick={handleAssignmentClick} />} num={progressAssignments} />
             </div>
             <div className="px-10 mt-3">
                 <NextSubmit />
