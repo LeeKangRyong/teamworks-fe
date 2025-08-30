@@ -1,3 +1,4 @@
+export { default as assignmentsData } from "./project/assignmentsData.json"
 export { default as projectsData } from "./project/projectsData.json"
 export { default as studentsData } from "./project/studentsData.json"
 export { default as teamsData } from "./project/teamsData.json"
