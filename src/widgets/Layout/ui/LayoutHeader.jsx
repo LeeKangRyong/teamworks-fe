@@ -15,7 +15,9 @@ export function LayoutHeader() {
         <header className="absolute w-full h-18 bg-gray-0 top-0 flex justify-between items-center border-b-1 border-gray-10 z-50">
             <div className="flex flex-row gap-2 items-center cursor-pointer px-4" onClick={handleLogo}>
                 <Image src={logo} alt="logo" className="rounded-sm max-h-6 w-auto" />
-                <p className="text-body-l font-black">TeamWorks</p>
+                <p className="text-body-l !font-black">Team</p>
+                <p className="text-body-l font-black -ml-2">Works</p>
+                <p>(로고 누르면 /projects로 이동)</p>
             </div>
             <HeaderList />
         </header>
