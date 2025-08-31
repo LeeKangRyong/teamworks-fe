@@ -2,7 +2,7 @@
 import { useRouter, useParams } from "next/navigation";
 import { Box, TeamSummary, NextSubmit, ToDoSummary } from "@/entities/project/dashboard";
 import { More } from "@/features/project/dashboard";
-import { teamsData, studentsData, assignmentsData } from "@/shared/mock";
+import { teamsData, studentsData, assignmentsData, chartData } from "@/shared/mock";
 
 export function DashboardWidget() {
     const router = useRouter();
@@ -57,7 +57,7 @@ export function DashboardWidget() {
                 <ToDoSummary children={<More onClick={handleAssignmentClick} />} num={progressAssignments} />
             </div>
             <div className="px-10 mt-3">
-                <NextSubmit />
+                <NextSubmit chartData={chartData} />
             </div>
         </main>
     );

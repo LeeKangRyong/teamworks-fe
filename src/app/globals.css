@@ -103,6 +103,7 @@
     --warning-100: #FF5E5E;
     --warning-10: #FFEFEF;
     --toast: #5F92FBCC;
+    --chart-hover: #5F92FB;
 }
 
 @theme {
@@ -170,6 +171,7 @@
     --color-warning-100: var(--warning-100);
     --color-warning-10: var(--warning-10);
     --color-toast: var(--toast);
+    --color-chart-hover: var(--chart-hover);
 
     --font-sans: "Pretendard Variable", sans-serif;
     --font-mono: "Pretendard Variable", monospace;

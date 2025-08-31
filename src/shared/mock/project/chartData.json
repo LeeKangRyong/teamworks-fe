@@ -1,0 +1,38 @@
+[
+    {
+        "submit_id": 1,
+        "title": "1차 과제",
+        "date": "25/07/20",
+        "submit_p": 0.5
+    },
+    {
+        "submit_id": 2,
+        "title": "2차 과제",
+        "date": "25/07/27",
+        "submit_p": 1.0
+    },
+    {
+        "submit_id": 3,
+        "title": "3차 과제",
+        "date": "25/08/14",
+        "submit_p": 0.6
+    },
+    {
+        "submit_id": 4,
+        "title": "4차 과제",
+        "date": "25/08/11",
+        "submit_p": 0.78
+    },
+    {
+        "submit_id": 5,
+        "title": "5차 과제",
+        "date": "25/08/18",
+        "submit_p": 0.46
+    },
+    {
+        "submit_id": 6,
+        "title": "6차 과제",
+        "date": "25/08/25",
+        "submit_p": 0.8
+    }
+]
