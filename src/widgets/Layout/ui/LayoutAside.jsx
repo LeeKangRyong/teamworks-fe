@@ -1,6 +1,6 @@
-// LayoutAside.jsx 수정
 import Image from "next/image";
 import { AsideList } from "@/features/layout";
+import { useAsideStore } from "@/shared/stores/asideStore";
 import home from "@/assets/icons/home.png";
 import search from "@/assets/icons/search.png";
 import homeBlue from "@/assets/icons/home-blue.png";
@@ -8,7 +8,9 @@ import searchBlue from "@/assets/icons/search-blue.png";
 import editLeft from "@/assets/icons/edit-left.png";
 import editRight from "@/assets/icons/edit-right.png";
 
-export function LayoutAside({ isCollapsed = false, onToggle = () => {} }) {
+export function LayoutAside() {
+    const { isCollapsed, toggleCollapsed } = useAsideStore();
+
     return (
         <aside 
             className={`
@@ -19,6 +21,7 @@ export function LayoutAside({ isCollapsed = false, onToggle = () => {} }) {
             `}
         >
             <div className="relative mt-18">
+                {/* 펼쳐진 상태 */}
                 <div 
                     className={`
                         absolute top-0 left-0 w-full transition-opacity duration-300
@@ -62,7 +65,7 @@ export function LayoutAside({ isCollapsed = false, onToggle = () => {} }) {
             </div>
             
             <button
-                onClick={onToggle}
+                onClick={toggleCollapsed}
                 className="fixed w-10 h-10 bottom-4 z-50 transition-all duration-300 hover:scale-110"
                 style={{
                     left: isCollapsed ? "5px" : "150px",
