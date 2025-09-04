@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
-
-const socketEndpoint = process.env.NEXT_PUBLIC_BFF_URL;
+import { ENV } from '@/shared/config/env';
 
 export function SendNotice() {
     const [message, setMessage] = useState("");
@@ -10,11 +9,9 @@ export function SendNotice() {
     const [isConnected, setIsConnected] = useState(false);
 
     useEffect(() => {
-        console.log('Connecting to:', socketEndpoint);
+        console.log('Connecting to:', ENV.SOCKET.URL);
         
-        const newSocket = io(socketEndpoint, {
-            transports: ['websocket', 'polling']
-        });
+        const newSocket = io(ENV.SOCKET.URL, ENV.SOCKET.OPTIONS);
 
         newSocket.on('connect', () => {
             console.log('Connected to server');
@@ -99,3 +96,43 @@ export function SendNotice() {
         </article>
     );
 }
+
+/*
+[내장 이벤트 in FE]
+connect : 서버 연결 성공
+disconnect : 연결 끊어짐
+connect_error : 연결 실패/에러
+reconnect : 재연결 성공
+reconnecting : 재연결 시도 중
+reconnect_errror : 재연결 실패
+reconnect_failed ; 재연결 포기
+ping/pong : 연결 상태 확인
+
+[내장 이벤트 in BE]
+connection : 클라이언트 연결 성공
+disconnect : 클라이언트 연결 끊어짐
+disconnecting : 연결 끊어지는 중
+ping/pong : 연결 상태 확인
+
+socket.broadcast.~ : 모든 socket에 event 발생
+
+socket.join('room1'); : 방 입장
+socket.leave('room1); : 방 나가기
+socket.to('room1').emit('msg'); : 특정 방에 메세지
+io.in('room1').emit('msg'); : 특정 방 전체에 메세지
+
+socket.rooms; : 현재 참여 중인 방들 조회
+io.sockets.adapter.rooms; : 모든 방 정보 조회
+
+클라이언트는 Room event에 대해 그냥 emit, on으로 연결
+*/
+
+/*
+[교수님 - 학생들]
+학생이 문의 시작하면 동적으로 채팅방 생성
+교수님이 자동으로 초대됨 + 교수님에게 새 문의 알림
+
+[연결 끊겼다가 다시 그 채팅방에서 채팅 시]
+socket.id는 새롤 부여되지만, 기존 사용자/교수 ID는 동일
+emit할 때 userId를 지정하면 됨
+*/
