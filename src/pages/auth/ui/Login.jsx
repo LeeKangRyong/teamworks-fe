@@ -28,7 +28,7 @@ export function Login() {
             <header className="absolute w-full h-18 bg-gray-0 top-0 flex justify-between items-center px-4 border-b-1 border-gray-10 z-50">
                 <div className="flex flex-row gap-2 items-center">
                     <Image src={logo} alt="logo" className="rounded-sm max-h-6 w-auto" />
-                    <p className="text-body-l font-black">TeamWorks</p>
+                    <p className="text-body-l"><span className="!font-black">Team</span>Works</p>
                 </div>
             </header>
             

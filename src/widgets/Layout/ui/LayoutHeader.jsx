@@ -12,7 +12,7 @@ export function LayoutHeader() {
     };
 
     return (
-        <header className="absolute w-full h-18 bg-gray-0 top-0 flex justify-between items-center border-b-1 border-gray-10 z-50">
+        <header className="absolute w-full min-w-fit max-x-none h-18 bg-gray-0 top-0 flex justify-between items-center border-b-1 border-gray-10 z-50">
             <div className="flex flex-row gap-2 items-center cursor-pointer px-4" onClick={handleLogo}>
                 <Image src={logo} alt="logo" className="rounded-sm max-h-6 w-auto" />
                 <p className="text-body-l !font-black">Team</p>

@@ -35,7 +35,10 @@ export function LayoutAside() {
                 {/* 접힌 상태 */}
                 {isCollapsed && (
                     <div className="w-full">
-                        <div className="flex flex-row gap-4 items-center h-12 px-2 py-3 hover:bg-primary-10 cursor-pointer transition-colors duration-200 justify-center group">
+                        <div
+                            className="flex flex-row gap-4 items-center h-12 px-2 py-3 hover:bg-primary-10 cursor-pointer transition-colors duration-200 justify-center group"
+                            role="button"
+                        >
                             <Image 
                                 src={home} 
                                 alt="icon" 
@@ -48,7 +51,10 @@ export function LayoutAside() {
                             />
                         </div>
                         
-                        <div className="flex flex-row gap-4 items-center h-12 px-2 py-3 hover:bg-primary-10 cursor-pointer transition-colors duration-200 justify-center group">
+                        <div 
+                            className="flex flex-row gap-4 items-center h-12 px-2 py-3 hover:bg-primary-10 cursor-pointer transition-colors duration-200 justify-center group"
+                            role="button"
+                            >
                             <Image 
                                 src={search} 
                                 alt="icon" 
@@ -66,10 +72,12 @@ export function LayoutAside() {
             
             <button
                 onClick={toggleCollapsed}
-                className="fixed w-10 h-10 bottom-4 z-50 transition-all duration-300 hover:scale-110"
+                className="sticky w-10 h-10 z-50 transition-all duration-300 hover:scale-110"
                 style={{
                     left: isCollapsed ? "5px" : "150px",
+                    top: "calc(100vh - 50px)", // 화면 하단에서 64px 위
                 }}
+                aria-label="사이드바"
             >
                 <Image 
                     src={isCollapsed ? editRight : editLeft} 
