@@ -13,9 +13,11 @@ export function ProjectsAdd() {
                 isCollapsed={isAsideCollapsed} 
                 onToggle={() => setIsAsideCollapsed(!isAsideCollapsed)} 
             />
-            <div className="mt-20 ml-[208px]">
-                <h1 className="text-heading-m mt-7 mb-5 font-bold">프로젝트 생성</h1>
-                <ProjectForm type="add" />
+            <div className="flex-1 ml-20 flex justify-center">
+                <div className="mt-20">
+                    <h1 className="text-heading-m mt-7 mb-5 font-bold">프로젝트 생성</h1>
+                    <ProjectForm type="add" />
+                </div>
             </div>
         </div>
     );

@@ -17,7 +17,6 @@ export function LayoutHeader() {
                 <Image src={logo} alt="logo" className="rounded-sm max-h-6 w-auto" />
                 <p className="text-body-l !font-black">Team</p>
                 <p className="text-body-l font-black -ml-2">Works</p>
-                <p>(로고 누르면 /projects로 이동)</p>
             </div>
             <HeaderList />
         </header>
