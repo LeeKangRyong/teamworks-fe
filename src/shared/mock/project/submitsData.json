@@ -1,0 +1,782 @@
+[
+    {
+        "submit_id": 1,
+        "assignment_id": 1,
+        "student_id": 1,
+        "file_name": "중간고사 대체 과제 20211600.pdf",
+        "name": "김민수",
+        "team": "노랑통닭",
+        "submit_time": "25/08/25 23:59",
+        "score": 95
+    },
+    {
+        "submit_id": 2,
+        "assignment_id": 1,
+        "student_id": 2,
+        "file_name": "중간고사_리포트_20211601.pdf",
+        "name": "이영희",
+        "team": "노랑통닭",
+        "submit_time": "25/08/25 22:30",
+        "score": 88
+    },
+    {
+        "submit_id": 3,
+        "assignment_id": 1,
+        "student_id": 3,
+        "file_name": "과제제출_박철수_20211602.pdf",
+        "name": "박철수",
+        "team": "파랑돌고래",
+        "submit_time": "25/08/25 21:15",
+        "score": null
+    },
+    {
+        "submit_id": 4,
+        "assignment_id": 1,
+        "student_id": 4,
+        "file_name": "중간고사과제_최수진.pdf",
+        "name": "최수진",
+        "team": "파랑돌고래",
+        "submit_time": "25/08/25 20:45",
+        "score": 92
+    },
+    {
+        "submit_id": 5,
+        "assignment_id": 1,
+        "student_id": 5,
+        "file_name": "Assignment_정하나_20211604.pdf",
+        "name": "정하나",
+        "team": "초록거북",
+        "submit_time": "25/08/25 19:20",
+        "score": null
+    },
+    {
+        "submit_id": 6,
+        "assignment_id": 1,
+        "student_id": 6,
+        "file_name": "중간_대체과제_김영수.pdf",
+        "name": "김영수",
+        "team": "초록거북",
+        "submit_time": "25/08/25 18:30",
+        "score": 90
+    },
+    {
+        "submit_id": 7,
+        "assignment_id": 1,
+        "student_id": 7,
+        "file_name": "리포트_이소연_20211606.pdf",
+        "name": "이소연",
+        "team": "빨강사자",
+        "submit_time": "25/08/25 17:50",
+        "score": null
+    },
+    {
+        "submit_id": 8,
+        "assignment_id": 1,
+        "student_id": 8,
+        "file_name": "중간고사_강동현_제출.pdf",
+        "name": "강동현",
+        "team": "노랑통닭",
+        "submit_time": "25/08/25 16:40",
+        "score": 85
+    },
+    {
+        "submit_id": 9,
+        "assignment_id": 1,
+        "student_id": 9,
+        "file_name": "과제_윤서연_20211608.pdf",
+        "name": "윤서연",
+        "team": "파랑돌고래",
+        "submit_time": "25/08/25 15:25",
+        "score": null
+    },
+    {
+        "submit_id": 10,
+        "assignment_id": 1,
+        "student_id": 10,
+        "file_name": "중간고사대체_한지민.pdf",
+        "name": "한지민",
+        "team": "초록거북",
+        "submit_time": "25/08/25 14:10",
+        "score": 87
+    },
+    {
+        "submit_id": 11,
+        "assignment_id": 1,
+        "student_id": 11,
+        "file_name": "Report_임준영_20211610.pdf",
+        "name": "임준영",
+        "team": "빨강사자",
+        "submit_time": "25/08/25 13:55",
+        "score": 94
+    },
+    {
+        "submit_id": 12,
+        "assignment_id": 1,
+        "student_id": 12,
+        "file_name": "중간과제_송하윤_제출본.pdf",
+        "name": "송하윤",
+        "team": "빨강사자",
+        "submit_time": "25/08/25 12:30",
+        "score": null
+    },
+    {
+        "submit_id": 13,
+        "assignment_id": 1,
+        "student_id": 13,
+        "file_name": "과제제출_장시우_20211612.pdf",
+        "name": "장시우",
+        "team": "보라범",
+        "submit_time": "25/08/25 11:20",
+        "score": 89
+    },
+    {
+        "submit_id": 14,
+        "assignment_id": 1,
+        "student_id": 14,
+        "file_name": "중간리포트_오예은.pdf",
+        "name": "오예은",
+        "team": "보라범",
+        "submit_time": "25/08/25 10:45",
+        "score": 91
+    },
+    {
+        "submit_id": 15,
+        "assignment_id": 1,
+        "student_id": 15,
+        "file_name": "Assignment_신도윤_20211614.pdf",
+        "name": "신도윤",
+        "team": "흰곰",
+        "submit_time": "25/08/25 09:15",
+        "score": null
+    },
+    {
+        "submit_id": 16,
+        "assignment_id": 1,
+        "student_id": 16,
+        "file_name": "중간_유서준_제출.pdf",
+        "name": "유서준",
+        "team": "흰곰",
+        "submit_time": "25/08/25 08:30",
+        "score": 86
+    },
+    {
+        "submit_id": 17,
+        "assignment_id": 1,
+        "student_id": 17,
+        "file_name": "과제_배지훈_20211616.pdf",
+        "name": "배지훈",
+        "team": "검은표범",
+        "submit_time": "25/08/25 07:50",
+        "score": 93
+    },
+    {
+        "submit_id": 18,
+        "assignment_id": 1,
+        "student_id": 18,
+        "file_name": "중간고사_홍민서_리포트.pdf",
+        "name": "홍민서",
+        "team": "검은표범",
+        "submit_time": "25/08/25 06:20",
+        "score": null
+    },
+    {
+        "submit_id": 19,
+        "assignment_id": 1,
+        "student_id": 19,
+        "file_name": "Report_진우진_20211618.pdf",
+        "name": "진우진",
+        "team": "황금독수리",
+        "submit_time": "25/08/25 05:40",
+        "score": 88
+    },
+    {
+        "submit_id": 20,
+        "assignment_id": 1,
+        "student_id": 20,
+        "file_name": "중간_과제_표채원.pdf",
+        "name": "표채원",
+        "team": "황금독수리",
+        "submit_time": "25/08/25 04:15",
+        "score": 90
+    },
+    {
+        "submit_id": 21,
+        "assignment_id": 2,
+        "student_id": 1,
+        "file_name": "기말프로젝트_김민수.pdf",
+        "name": "김민수",
+        "team": "노랑통닭",
+        "submit_time": "25/08/14 23:55",
+        "score": 92
+    },
+    {
+        "submit_id": 22,
+        "assignment_id": 2,
+        "student_id": 2,
+        "file_name": "최종과제_이영희_20211601.pdf",
+        "name": "이영희",
+        "team": "노랑통닭",
+        "submit_time": "25/08/14 22:40",
+        "score": 85
+    },
+    {
+        "submit_id": 23,
+        "assignment_id": 2,
+        "student_id": 3,
+        "file_name": "Project_박철수.pdf",
+        "name": "박철수",
+        "team": "파랑돌고래",
+        "submit_time": "25/08/14 21:20",
+        "score": null
+    },
+    {
+        "submit_id": 24,
+        "assignment_id": 2,
+        "student_id": 4,
+        "file_name": "과제_최수진_최종.pdf",
+        "name": "최수진",
+        "team": "파랑돌고래",
+        "submit_time": "25/08/14 20:30",
+        "score": 88
+    },
+    {
+        "submit_id": 25,
+        "assignment_id": 2,
+        "student_id": 5,
+        "file_name": "Final_정하나_20211604.pdf",
+        "name": "정하나",
+        "team": "초록거북",
+        "submit_time": "25/08/14 19:45",
+        "score": 90
+    },
+    {
+        "submit_id": 26,
+        "assignment_id": 2,
+        "student_id": 6,
+        "file_name": "기말_김영수_제출.pdf",
+        "name": "김영수",
+        "team": "초록거북",
+        "submit_time": "25/08/14 18:50",
+        "score": null
+    },
+    {
+        "submit_id": 27,
+        "assignment_id": 2,
+        "student_id": 7,
+        "file_name": "프로젝트_이소연.pdf",
+        "name": "이소연",
+        "team": "빨강사자",
+        "submit_time": "25/08/14 17:30",
+        "score": 87
+    },
+    {
+        "submit_id": 28,
+        "assignment_id": 2,
+        "student_id": 8,
+        "file_name": "최종제출_강동현.pdf",
+        "name": "강동현",
+        "team": "노랑통닭",
+        "submit_time": "25/08/14 16:20",
+        "score": 91
+    },
+    {
+        "submit_id": 29,
+        "assignment_id": 2,
+        "student_id": 9,
+        "file_name": "Final_윤서연.pdf",
+        "name": "윤서연",
+        "team": "파랑돌고래",
+        "submit_time": "25/08/14 15:10",
+        "score": null
+    },
+    {
+        "submit_id": 30,
+        "assignment_id": 2,
+        "student_id": 10,
+        "file_name": "기말과제_한지민.pdf",
+        "name": "한지민",
+        "team": "초록거북",
+        "submit_time": "25/08/14 14:40",
+        "score": 89
+    },
+    {
+        "submit_id": 31,
+        "assignment_id": 2,
+        "student_id": 11,
+        "file_name": "Project_임준영_Final.pdf",
+        "name": "임준영",
+        "team": "빨강사자",
+        "submit_time": "25/08/14 13:25",
+        "score": 93
+    },
+    {
+        "submit_id": 32,
+        "assignment_id": 2,
+        "student_id": 12,
+        "file_name": "최종_송하윤.pdf",
+        "name": "송하윤",
+        "team": "빨강사자",
+        "submit_time": "25/08/14 12:15",
+        "score": 86
+    },
+    {
+        "submit_id": 33,
+        "assignment_id": 2,
+        "student_id": 13,
+        "file_name": "기말_장시우_20211612.pdf",
+        "name": "장시우",
+        "team": "보라범",
+        "submit_time": "25/08/14 11:30",
+        "score": null
+    },
+    {
+        "submit_id": 34,
+        "assignment_id": 2,
+        "student_id": 14,
+        "file_name": "Final_오예은.pdf",
+        "name": "오예은",
+        "team": "보라범",
+        "submit_time": "25/08/14 10:20",
+        "score": 88
+    },
+    {
+        "submit_id": 35,
+        "assignment_id": 2,
+        "student_id": 15,
+        "file_name": "과제제출_신도윤.pdf",
+        "name": "신도윤",
+        "team": "흰곰",
+        "submit_time": "25/08/14 09:45",
+        "score": 90
+    },
+    {
+        "submit_id": 36,
+        "assignment_id": 2,
+        "student_id": 16,
+        "file_name": "기말_유서준.pdf",
+        "name": "유서준",
+        "team": "흰곰",
+        "submit_time": "25/08/14 08:55",
+        "score": null
+    },
+    {
+        "submit_id": 37,
+        "assignment_id": 2,
+        "student_id": 17,
+        "file_name": "Project_배지훈.pdf",
+        "name": "배지훈",
+        "team": "검은표범",
+        "submit_time": "25/08/14 07:40",
+        "score": 92
+    },
+    {
+        "submit_id": 38,
+        "assignment_id": 2,
+        "student_id": 18,
+        "file_name": "최종과제_홍민서.pdf",
+        "name": "홍민서",
+        "team": "검은표범",
+        "submit_time": "25/08/14 06:30",
+        "score": 87
+    },
+    {
+        "submit_id": 39,
+        "assignment_id": 2,
+        "student_id": 19,
+        "file_name": "Final_진우진.pdf",
+        "name": "진우진",
+        "team": "황금독수리",
+        "submit_time": "25/08/14 05:20",
+        "score": null
+    },
+    {
+        "submit_id": 40,
+        "assignment_id": 2,
+        "student_id": 20,
+        "file_name": "기말_표채원_제출.pdf",
+        "name": "표채원",
+        "team": "황금독수리",
+        "submit_time": "25/08/14 04:10",
+        "score": 89
+    },
+    {
+        "submit_id": 41,
+        "assignment_id": 3,
+        "student_id": 1,
+        "file_name": "1차과제_김민수.pdf",
+        "name": "김민수",
+        "team": "노랑통닭",
+        "submit_time": "25/08/13 23:50",
+        "score": 88
+    },
+    {
+        "submit_id": 42,
+        "assignment_id": 3,
+        "student_id": 2,
+        "file_name": "과제1_이영희.pdf",
+        "name": "이영희",
+        "team": "노랑통닭",
+        "submit_time": "25/08/13 22:35",
+        "score": 91
+    },
+    {
+        "submit_id": 43,
+        "assignment_id": 3,
+        "student_id": 3,
+        "file_name": "Report1_박철수.pdf",
+        "name": "박철수",
+        "team": "파랑돌고래",
+        "submit_time": "25/08/13 21:40",
+        "score": 85
+    },
+    {
+        "submit_id": 44,
+        "assignment_id": 3,
+        "student_id": 4,
+        "file_name": "1차_최수진.pdf",
+        "name": "최수진",
+        "team": "파랑돌고래",
+        "submit_time": "25/08/13 20:25",
+        "score": null
+    },
+    {
+        "submit_id": 45,
+        "assignment_id": 3,
+        "student_id": 5,
+        "file_name": "Assignment1_정하나.pdf",
+        "name": "정하나",
+        "team": "초록거북",
+        "submit_time": "25/08/13 19:15",
+        "score": 89
+    },
+    {
+        "submit_id": 46,
+        "assignment_id": 3,
+        "student_id": 6,
+        "file_name": "과제_김영수_1차.pdf",
+        "name": "김영수",
+        "team": "초록거북",
+        "submit_time": "25/08/13 18:40",
+        "score": 92
+    },
+    {
+        "submit_id": 47,
+        "assignment_id": 3,
+        "student_id": 7,
+        "file_name": "1차제출_이소연.pdf",
+        "name": "이소연",
+        "team": "빨강사자",
+        "submit_time": "25/08/13 17:30",
+        "score": null
+    },
+    {
+        "submit_id": 48,
+        "assignment_id": 3,
+        "student_id": 8,
+        "file_name": "Report_강동현_1.pdf",
+        "name": "강동현",
+        "team": "노랑통닭",
+        "submit_time": "25/08/13 16:20",
+        "score": 87
+    },
+    {
+        "submit_id": 49,
+        "assignment_id": 3,
+        "student_id": 9,
+        "file_name": "1차_윤서연.pdf",
+        "name": "윤서연",
+        "team": "파랑돌고래",
+        "submit_time": "25/08/13 15:10",
+        "score": 90
+    },
+    {
+        "submit_id": 50,
+        "assignment_id": 3,
+        "student_id": 10,
+        "file_name": "과제1_한지민.pdf",
+        "name": "한지민",
+        "team": "초록거북",
+        "submit_time": "25/08/13 14:45",
+        "score": null
+    },
+    {
+        "submit_id": 51,
+        "assignment_id": 3,
+        "student_id": 11,
+        "file_name": "Assignment1_임준영.pdf",
+        "name": "임준영",
+        "team": "빨강사자",
+        "submit_time": "25/08/13 13:30",
+        "score": 93
+    },
+    {
+        "submit_id": 52,
+        "assignment_id": 3,
+        "student_id": 12,
+        "file_name": "1차_송하윤.pdf",
+        "name": "송하윤",
+        "team": "빨강사자",
+        "submit_time": "25/08/13 12:20",
+        "score": 86
+    },
+    {
+        "submit_id": 53,
+        "assignment_id": 3,
+        "student_id": 13,
+        "file_name": "Report1_장시우.pdf",
+        "name": "장시우",
+        "team": "보라범",
+        "submit_time": "25/08/13 11:15",
+        "score": 88
+    },
+    {
+        "submit_id": 54,
+        "assignment_id": 3,
+        "student_id": 14,
+        "file_name": "과제1_오예은.pdf",
+        "name": "오예은",
+        "team": "보라범",
+        "submit_time": "25/08/13 10:40",
+        "score": null
+    },
+    {
+        "submit_id": 55,
+        "assignment_id": 3,
+        "student_id": 15,
+        "file_name": "1차제출_신도윤.pdf",
+        "name": "신도윤",
+        "team": "흰곰",
+        "submit_time": "25/08/13 09:25",
+        "score": 91
+    },
+    {
+        "submit_id": 56,
+        "assignment_id": 3,
+        "student_id": 16,
+        "file_name": "Assignment_유서준_1.pdf",
+        "name": "유서준",
+        "team": "흰곰",
+        "submit_time": "25/08/13 08:50",
+        "score": 89
+    },
+    {
+        "submit_id": 57,
+        "assignment_id": 3,
+        "student_id": 17,
+        "file_name": "1차_배지훈.pdf",
+        "name": "배지훈",
+        "team": "검은표범",
+        "submit_time": "25/08/13 07:35",
+        "score": null
+    },
+    {
+        "submit_id": 58,
+        "assignment_id": 3,
+        "student_id": 18,
+        "file_name": "Report1_홍민서.pdf",
+        "name": "홍민서",
+        "team": "검은표범",
+        "submit_time": "25/08/13 06:40",
+        "score": 87
+    },
+    {
+        "submit_id": 59,
+        "assignment_id": 3,
+        "student_id": 19,
+        "file_name": "과제1_진우진.pdf",
+        "name": "진우진",
+        "team": "황금독수리",
+        "submit_time": "25/08/13 05:30",
+        "score": 90
+    },
+    {
+        "submit_id": 60,
+        "assignment_id": 3,
+        "student_id": 20,
+        "file_name": "1차_표채원.pdf",
+        "name": "표채원",
+        "team": "황금독수리",
+        "submit_time": "25/08/13 04:20",
+        "score": 92
+    },
+    {
+        "submit_id": 61,
+        "assignment_id": 4,
+        "student_id": 1,
+        "file_name": "2차과제_김민수.pdf",
+        "name": "김민수",
+        "team": "노랑통닭",
+        "submit_time": "25/08/12 23:45",
+        "score": null
+    },
+    {
+        "submit_id": 62,
+        "assignment_id": 4,
+        "student_id": 2,
+        "file_name": "Assignment2_이영희.pdf",
+        "name": "이영희",
+        "team": "노랑통닭",
+        "submit_time": "25/08/12 22:30",
+        "score": 86
+    },
+    {
+        "submit_id": 63,
+        "assignment_id": 4,
+        "student_id": 3,
+        "file_name": "2차_박철수.pdf",
+        "name": "박철수",
+        "team": "파랑돌고래",
+        "submit_time": "25/08/12 21:35",
+        "score": 88
+    },
+    {
+        "submit_id": 64,
+        "assignment_id": 4,
+        "student_id": 4,
+        "file_name": "과제2_최수진.pdf",
+        "name": "최수진",
+        "team": "파랑돌고래",
+        "submit_time": "25/08/12 20:20",
+        "score": 91
+    },
+    {
+        "submit_id": 65,
+        "assignment_id": 4,
+        "student_id": 5,
+        "file_name": "Report2_정하나.pdf",
+        "name": "정하나",
+        "team": "초록거북",
+        "submit_time": "25/08/12 19:40",
+        "score": null
+    },
+    {
+        "submit_id": 66,
+        "assignment_id": 4,
+        "student_id": 6,
+        "file_name": "2차제출_김영수.pdf",
+        "name": "김영수",
+        "team": "초록거북",
+        "submit_time": "25/08/12 18:25",
+        "score": 89
+    },
+    {
+        "submit_id": 67,
+        "assignment_id": 4,
+        "student_id": 7,
+        "file_name": "Assignment_이소연_2.pdf",
+        "name": "이소연",
+        "team": "빨강사자",
+        "submit_time": "25/08/12 17:50",
+        "score": 92
+    },
+    {
+        "submit_id": 68,
+        "assignment_id": 4,
+        "student_id": 8,
+        "file_name": "2차_강동현.pdf",
+        "name": "강동현",
+        "team": "노랑통닭",
+        "submit_time": "25/08/12 16:15",
+        "score": null
+    },
+    {
+        "submit_id": 69,
+        "assignment_id": 4,
+        "student_id": 9,
+        "file_name": "과제_윤서연_2차.pdf",
+        "name": "윤서연",
+        "team": "파랑돌고래",
+        "submit_time": "25/08/12 15:30",
+        "score": 87
+    },
+    {
+        "submit_id": 70,
+        "assignment_id": 4,
+        "student_id": 10,
+        "file_name": "Report2_한지민.pdf",
+        "name": "한지민",
+        "team": "초록거북",
+        "submit_time": "25/08/12 14:40",
+        "score": 90
+    },
+    {
+        "submit_id": 71,
+        "assignment_id": 4,
+        "student_id": 11,
+        "file_name": "2차_임준영.pdf",
+        "name": "임준영",
+        "team": "빨강사자",
+        "submit_time": "25/08/12 13:20",
+        "score": 93
+    },
+    {
+        "submit_id": 72,
+        "assignment_id": 4,
+        "student_id": 12,
+        "file_name": "Assignment2_송하윤.pdf",
+        "name": "송하윤",
+        "team": "빨강사자",
+        "submit_time": "25/08/12 12:35",
+        "score": null
+    },
+    {
+        "submit_id": 73,
+        "assignment_id": 4,
+        "student_id": 13,
+        "file_name": "2차과제_장시우.pdf",
+        "name": "장시우",
+        "team": "보라범",
+        "submit_time": "25/08/12 11:45",
+        "score": 85
+    },
+    {
+        "submit_id": 74,
+        "assignment_id": 4,
+        "student_id": 14,
+        "file_name": "Report_오예은_2.pdf",
+        "name": "오예은",
+        "team": "보라범",
+        "submit_time": "25/08/12 10:30",
+        "score": 88
+    },
+    {
+        "submit_id": 75,
+        "assignment_id": 4,
+        "student_id": 15,
+        "file_name": "2차_신도윤.pdf",
+        "name": "신도윤",
+        "team": "흰곰",
+        "submit_time": "25/08/12 09:50",
+        "score": 91
+    },
+    {
+        "submit_id": 76,
+        "assignment_id": 4,
+        "student_id": 16,
+        "file_name": "과제2_유서준.pdf",
+        "name": "유서준",
+        "team": "흰곰",
+        "submit_time": "25/08/12 08:40",
+        "score": null
+    },
+    {
+        "submit_id": 77,
+        "assignment_id": 4,
+        "student_id": 17,
+        "file_name": "Assignment_배지훈_2.pdf",
+        "name": "배지훈",
+        "team": "검은표범",
+        "submit_time": "25/08/12 07:25",
+        "score": 89
+    },
+    {
+        "submit_id": 78,
+        "assignment_id": 4,
+        "student_id": 18,
+        "file_name": "2차_홍민서.pdf",
+        "name": "홍민서",
+        "team": "검은표범",
+        "submit_time": "25/08/12 06:35",
+        "score": 87
+    }
+]

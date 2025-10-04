@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from "react";
 import { assignmentsData } from "@/shared/mock";
-import { AssignmentTitle } from "@/widgets/Project/Assignment";
+import { AssignmentTitle, SubmitListWidget } from "@/widgets/Project/Assignment";
 import { GoBack } from "@/features/project/participation";
 
 export function AssignmentDetailWidget({ assignmentId }) {
@@ -16,7 +16,7 @@ export function AssignmentDetailWidget({ assignmentId }) {
     }, [assignmentId]);
 
     if (!assignmentData) {
-        return <div>Loarding...</div>;
+        return <div>Loading...</div>;
     }
 
     return (
@@ -30,9 +30,7 @@ export function AssignmentDetailWidget({ assignmentId }) {
                 submit={assignmentData.submit}
                 mark={assignmentData.mark}
             />
-            <article className="mt-8 -mb-8 ml-6 px-8 w-240 h-90 border-1 border-gray-10 rounded-lg">
-            </article>
+            <SubmitListWidget assignmentId={assignmentId} />
         </main>
     )
 }
-

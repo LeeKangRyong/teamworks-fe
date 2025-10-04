@@ -30,12 +30,12 @@ export function Options({ activeTab, setActiveTab }) {
     ];
 
     useEffect(() => {
-        const currentPath = pathname.split('/').pop();
+        const pathParts = pathname.split('/');
         
-        if (currentPath === projectId) {
+        if (pathname === `/projects/${projectId}`) {
             setActiveTab("dashboard");
         } else {
-            const matchedItem = optionItems.find(item => item.path === currentPath);
+            const matchedItem = optionItems.find(item => pathname.includes(`/${item.path}`));
             if (matchedItem) {
                 setActiveTab(matchedItem.key);
             }
