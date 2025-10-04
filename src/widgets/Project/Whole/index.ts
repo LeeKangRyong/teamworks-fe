@@ -1,3 +1,4 @@
+export { AssignmentDetailWidget } from "./ui/AssignmentDetailWidget"
 export { AssignmentWidget } from "./ui/AssignmentWidget"
 export { DashboardWidget } from "./ui/DashboardWidget"
 export { TeamWidget } from "./ui/TeamWidget"

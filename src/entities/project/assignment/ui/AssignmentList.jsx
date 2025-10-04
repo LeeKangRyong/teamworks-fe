@@ -1,6 +1,16 @@
+"use client";
+import { useRouter, useParams } from "next/navigation";
 import { AssignmentItem } from "@/shared/ui/project/assignment";
 
 export function AssignmentList({ assignmentsData }) {
+    const router = useRouter();
+    const params = useParams();
+    const projectId = params.id;
+
+    const handlePart = (assignmentId) => {
+        router.push(`/projects/${projectId}/assignment/${assignmentId}`);
+    };
+    
     return (
         <article className="min-h-80 mt-1">
             {assignmentsData && assignmentsData.length > 0 ? (
@@ -12,6 +22,7 @@ export function AssignmentList({ assignmentsData }) {
                         submit={assignment.submit}
                         mark={assignment.mark}
                         status={assignment.status}
+                        onClick={() => handlePart(assignment.assignment_id)} 
                     />
                 ))
             ) : (
