@@ -36,7 +36,7 @@ export function StudentParticipationDetail({ studentId }) {
     }, [studentId]);
 
     return (
-        <main className="bg-white w-250 py-4 mb-10">
+        <main className="bg-white w-250 py-4 mb-10 relative">
             <div className="px-6">
                 <div className="space-y-2">
                     <GoBack />

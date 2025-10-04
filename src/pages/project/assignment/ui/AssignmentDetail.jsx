@@ -33,8 +33,7 @@ export function AssignmentDetail({ projectId, assignmentId }) {
                     <div className="border-b-1 border-gray-20 w-full"/>
                     <div className="mt-8 bg-transparent">
                         <AssignmentDetailWidget 
-                            projectId={projectId}
-                            assignmnetId={assignmentId}
+                            assignmentId={assignmentId}
                         />
                     </div>
                 </article>
