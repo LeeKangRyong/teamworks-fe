@@ -22,15 +22,14 @@ export function SubmitListWidget({ assignmentId }) {
         console.log('download:', submitId);
     };
 
-    const handleRegrade = (submitId, studentId) => {
-        console.log('regrade:', submitId);
-        router.push(`/projects/${projectId}/assignment/${assignmentId}/submit/${studentId}`);
+    const handleMark = (submitId, studentId) => {
+        console.log('mark:', submitId);
     };
 
     const renderActions = (submit) => (
         <>
             <Download onClick={() => handleDownload(submit.submit_id)} />
-            <Mark onClick={() => handleRegrade(submit.submit_id, submit.student_id)} />
+            <Mark onClick={() => handleMark(submit.submit_id, submit.student_id)} />
         </>
     );
 

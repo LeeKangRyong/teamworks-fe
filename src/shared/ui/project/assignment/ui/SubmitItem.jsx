@@ -1,6 +1,9 @@
-export function SubmitItem({ fileName, name, team, submitTime, children }) {
+export function SubmitItem({ fileName, name, team, submitTime, children, onClick }) {
     return (
-        <div className="flex flex-row items-center py-3 hover:bg-gray-10 px-3 border-b-1 border-gray-10">
+        <div
+            className="flex flex-row items-center py-1 hover:bg-gray-10 px-3 border-b-1 border-gray-10"
+            onClick={onClick}    
+        >
             <div className="w-90 flex-shrink-0">
                 <p className="text-body-s text-secondary-70 text-left truncate">{fileName}</p>
             </div>

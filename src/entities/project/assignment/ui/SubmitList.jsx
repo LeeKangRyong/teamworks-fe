@@ -1,7 +1,16 @@
 "use client";
+import { useRouter, useParams } from "next/navigation";
 import { SubmitItem } from "@/shared/ui/project/assignment";
 
 export function SubmitList({ submitsData, renderActions }) {
+    const router = useRouter();
+    const params = useParams();
+    const projectId = params.id;
+    const assignmentId = params.assignmentId;
+
+    const handleSubmit = (submitId) => {
+        router.push(`/projects/${projectId}/assignment/${assignmentId}/${submitId}`);
+    };
 
     return (
         <article className="mt-4">
@@ -35,6 +44,7 @@ export function SubmitList({ submitsData, renderActions }) {
                             name={submit.name}
                             team={submit.team}
                             submitTime={submit.submit_time}
+                            onClick={() => handleSubmit(submit.submit_id)}
                         >
                             {renderActions && renderActions(submit)}
                         </SubmitItem>

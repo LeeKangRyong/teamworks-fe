@@ -7,10 +7,6 @@ import { SearchEmptyState } from "@/widgets/Project/Team";
 import { studentsData, teamsData } from "@/shared/mock";
 import { processTeamData, validateData } from "@/shared/utils/teamsDataFormat";
 
-{/* Test 용 */}
-// const studentsData = [];
-// const teamsData = [];
-
 export function TeamWidget({ initialStatus }) {
     const [selectedList, setSelectedList] = useState("팀 리스트");
     const [selectedStatus, setSelectedStatus] = useState("all");
@@ -155,39 +151,41 @@ export function TeamWidget({ initialStatus }) {
                 <article className="mx-auto">
                     {hasData && (selectedList === "팀 리스트" ? renderTeamListHeaders() : renderStudentListHeaders())}
                     
-                    {hasData ? (
-                        selectedList === "팀 리스트" ? 
-                        <TeamManageLists teamsData={currentData} /> : 
-                        <StudentManageLists studentsData={currentData} />
-                    ) : (
-                        <div className="flex flex-col justify-center items-center py-16">
-                            {!hasOriginalData ? (
-                                <>
-                                    <p className="text-body-m text-secondary-60 mb-2">
-                                        {selectedList === "팀 리스트" ? "현재 생성된 팀이 없습니다" : "등록된 학생이 없습니다"}
-                                    </p>
-                                    <p className="text-body-m text-secondary-60 mb-4">
-                                        {selectedList === "팀 리스트" ? "새로운 팀을 추가해보세요" : "새로운 학생을 추가해보세요"}
-                                    </p>
-                                    <Add type={selectedList === "팀 리스트" ? "팀" : "학생"} />
-                                </>
-                            ) : isSearching ? (
-                                <>
-                                    <p className="text-body-m text-secondary-60 mb-10">
-                                        '{searchName}'에 대한 검색 결과가 없습니다
-                                    </p>
-                                    <button
-                                        onClick={() => setSearchName("")}
-                                        className="px-4 py-2 bg-primary-50 text-white rounded-lg hover:bg-primary-60 transition-colors"
-                                    >
-                                        검색 초기화
-                                    </button>
-                                </>
-                            ) : (
-                                <p className="text-body-m text-secondary-60 mb-2">이건 데이터 없는 거도 아니고 검색도 아니고...</p>
-                            )}
-                        </div>
-                    )}
+                    <div className="h-104 overflow-y-auto scrollbar-thin">
+                        {hasData ? (
+                            selectedList === "팀 리스트" ? 
+                            <TeamManageLists teamsData={currentData} /> : 
+                            <StudentManageLists studentsData={currentData} />
+                        ) : (
+                            <div className="flex flex-col justify-center items-center py-16">
+                                {!hasOriginalData ? (
+                                    <>
+                                        <p className="text-body-m text-secondary-60 mb-2">
+                                            {selectedList === "팀 리스트" ? "현재 생성된 팀이 없습니다" : "등록된 학생이 없습니다"}
+                                        </p>
+                                        <p className="text-body-m text-secondary-60 mb-4">
+                                            {selectedList === "팀 리스트" ? "새로운 팀을 추가해보세요" : "새로운 학생을 추가해보세요"}
+                                        </p>
+                                        <Add type={selectedList === "팀 리스트" ? "팀" : "학생"} />
+                                    </>
+                                ) : isSearching ? (
+                                    <>
+                                        <p className="text-body-m text-secondary-60 mb-10">
+                                            '{searchName}'에 대한 검색 결과가 없습니다
+                                        </p>
+                                        <button
+                                            onClick={() => setSearchName("")}
+                                            className="px-4 py-2 bg-primary-50 text-white rounded-lg hover:bg-primary-60 transition-colors"
+                                        >
+                                            검색 초기화
+                                        </button>
+                                    </>
+                                ) : (
+                                    <p className="text-body-m text-secondary-60 mb-2">이건 데이터 없는 거도 아니고 검색도 아니고...</p>
+                                )}
+                            </div>
+                        )}
+                    </div>
                 </article>
             </section>
         </main>
