@@ -2,9 +2,14 @@ import Image from "next/image";
 import mark from "@/assets/icons/marker.png"
 
 export function Mark({ onClick }) {
+    const handleClick = (e) => {
+        e.stopPropagation();
+        onClick?.();
+    };
+
     return (
         <button 
-            onClick={onClick}
+            onClick={handleClick}
             className="p-1 cursor-pointer rounded"
             title="채점하기"
         >
