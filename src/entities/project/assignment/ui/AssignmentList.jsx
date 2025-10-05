@@ -12,7 +12,7 @@ export function AssignmentList({ assignmentsData }) {
     };
     
     return (
-        <article className="min-h-80 mt-1">
+        <article className="h-106 mt-1 overflow-y-auto scrollbar-thin">
             {assignmentsData && assignmentsData.length > 0 ? (
                 assignmentsData.map((assignment) => (
                     <AssignmentItem

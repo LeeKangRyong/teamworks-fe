@@ -35,7 +35,7 @@ export function SubmitList({ submitsData, renderActions }) {
                 </div>
             </div>
 
-            <div className="h-60 overflow-y-auto scrollbar-thin">
+            <div className="h-62 overflow-y-auto scrollbar-thin">
                 {submitsData && submitsData.length > 0 ? (
                     submitsData.map((submit) => (
                         <SubmitItem

@@ -33,7 +33,7 @@ export function ParticipationWidget() {
     );
 
     return (
-        <main className="bg-white w-250 py-4 mb-10">
+        <main className="bg-white w-250 py-4.5 mb-10">
             <div className="justify-between gap-10 flex flex-row mx-5 mb-8 h-60">
                 <PercentageWidget />
                 <PercentageWidget />

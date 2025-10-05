@@ -86,7 +86,7 @@ export function AssignmentWidget({ initialStatus }) {
 
     return (
         <main className="bg-white w-250 py-4 mb-10">
-            <article className="ml-6 px-8 w-240 h-140 border-1 border-gray-10 rounded-lg">
+            <article className="ml-6 px-8 w-240 h-145 border-1 border-gray-10 rounded-lg">
                 <div className="flex justify-between pt-5">
                     <h3 className="text-body-l text-secondary-80 mt-2">과제 리스트</h3>
                     <div className="flex flex-row gap-3">
