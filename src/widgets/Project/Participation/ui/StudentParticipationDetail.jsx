@@ -40,7 +40,7 @@ export function StudentParticipationDetail({ studentId }) {
             <div className="px-6">
                 <div className="space-y-2">
                     <GoBack />
-                    <div className="flex flex-row gap-4">
+                    <div className="flex flex-row gap-4 mt-2">
                         <div className="flex flex-col gap-2">
                             <Profile name={studentData?.name} team={studentData?.team} status={studentData?.status} />
                             <MessageDistribution />
