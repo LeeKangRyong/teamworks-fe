@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 
-function PDFViewer({ fileUrl }) {
+export function PDFViewer({ fileUrl }) {
     const [Document, setDocument] = useState(null);
     const [Page, setPage] = useState(null);
     const [numPages, setNumPages] = useState(null);
