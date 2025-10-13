@@ -1,0 +1,1 @@
+export { NoticeList } from "./ui/NoticeList"
