@@ -5,9 +5,14 @@ import { Chat } from "@/widgets/Project/Notice";
 
 export function ChatWidget() {
     const [searchValue, setSearchValue] = useState("");
+    const [selectedChatId, setSelectedChatId] = useState(null);
 
     const handleSearchChange = (value) => {
         setSearchValue(value);
+    };
+
+    const handleSelectChat = (chatId) => {
+        setSelectedChatId(chatId);
     };
 
     return (
@@ -17,9 +22,13 @@ export function ChatWidget() {
                     <div className="flex justify-center h-[10%] my-3">
                         <SearchNotice value={searchValue} onChange={handleSearchChange} />
                     </div>
-                    <NoticeList searchValue={searchValue} />
+                    <NoticeList 
+                        searchValue={searchValue} 
+                        onSelectChat={handleSelectChat}
+                        selectedChatId={selectedChatId}
+                    />
                 </div>
-                <Chat />
+                <Chat selectedChatId={selectedChatId} />
             </div>
         </section>
     );
