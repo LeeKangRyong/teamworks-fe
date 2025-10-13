@@ -15,7 +15,7 @@ export function SubmitDetailWidget({ data }) {
                 team={data.team}
                 submitTime={data.submit_time}
             />
-            <div className="flex flex-row gap-6 px-6 mt-6">
+            <div className="flex flex-row gap-6 ml-6 mt-6" style={{ width: '960px' }}>
                 <SubmitPreview fileUrl={data.file_url} />
                 <SubmitMemo 
                     initialMemo={data.memo} 

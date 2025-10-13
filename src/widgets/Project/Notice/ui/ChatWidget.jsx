@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { SendNotice, SearchNotice } from "@/features/project/notice";
+import { SearchNotice } from "@/features/project/notice";
 import { NoticeList } from "@/entities/project/notice";
+import { Chat } from "@/widgets/Project/Notice";
 
 export function ChatWidget() {
     const [searchValue, setSearchValue] = useState("");
@@ -18,7 +19,7 @@ export function ChatWidget() {
                     </div>
                     <NoticeList searchValue={searchValue} />
                 </div>
-                <SendNotice />
+                <Chat />
             </div>
         </section>
     );

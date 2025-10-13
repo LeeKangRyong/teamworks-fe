@@ -1,0 +1,32 @@
+[
+    {
+        "manager_id": 1,
+        "name": "김교수",
+        "role": "담당교수"
+    },
+    {
+        "manager_id": 2,
+        "name": "이조교",
+        "role": "조교"
+    },
+    {
+        "manager_id": 3,
+        "name": "박멘토",
+        "role": "멘토"
+    },
+    {
+        "manager_id": 4,
+        "name": "최관리",
+        "role": "운영진"
+    },
+    {
+        "manager_id": 5,
+        "name": "정교수",
+        "role": "담당교수"
+    },
+    {
+        "manager_id": 6,
+        "name": "한조교",
+        "role": "조교"
+    }
+]
