@@ -1,8 +1,7 @@
 import Image from "next/image";
 import user from "@/assets/icons/user.png";
-import download from "@/assets/icons/download.png";
 
-export function ChatList({ messages }) {
+export function ChatList({ messages, DownloadButton }) {
     const renderDateDivider = (date) => (
         <div className="flex items-center justify-center my-4">
             <div className="bg-gray-10 rounded-full px-4 py-1">
@@ -29,37 +28,38 @@ export function ChatList({ messages }) {
                         )}
                         
                         <div className={`flex items-end gap-2 ${message.isMine ? 'flex-row-reverse' : 'flex-row'}`}>
-                            {message.isFile ? (
-                                <div className={`flex items-center gap-3 px-4 py-3 ${
-                                    message.isMine ? 'bg-primary-100 text-white rounded-lg' : 'bg-secondary-5 rounded-tl-none rounded-tr-lg rounded-br-lg rounded-bl-lg'
-                                }`}>
+                            {message.isFile && !message.isMine ? (
+                                // 상대방이 보낸 파일 - 다운로드 버튼 있음
+                                <div className="flex items-center gap-3 px-4 py-3 bg-white rounded-tl-none rounded-tr-lg rounded-br-lg rounded-bl-lg">
                                     <div className="flex-1">
-                                        <p className={`text-body-s font-medium ${message.isMine ? 'text-white' : 'text-secondary-80'}`}>
+                                        <p className="text-body-s text-secondary-80">
                                             {message.content}
                                         </p>
-                                        <p className={`text-caption-regular mt-0.5 ${message.isMine ? 'text-white/80' : 'text-secondary-50'}`}>
+                                        <p className="text-caption-regular mt-0.5 text-secondary-50">
                                             용량 {message.fileSize}
                                         </p>
                                     </div>
-                                    <button className={`p-1.5 rounded-full flex-shrink-0 ${
-                                        message.isMine ? 'hover:bg-white/20' : 'hover:bg-gray-10'
-                                    }`}>
-                                        <Image 
-                                            src={download} 
-                                            alt="download" 
-                                            className="w-5 h-5"
+                                    {DownloadButton && (
+                                        <DownloadButton 
+                                            fileName={message.content}
+                                            fileUrl={message.fileUrl || '/sample.pdf'}
                                         />
-                                    </button>
+                                    )}
                                 </div>
                             ) : (
-                                <div className={`px-4 py-2.5 ${
-                                    message.isMine ? 'bg-primary-100 text-white rounded-lg' : 'bg-secondary-5 text-secondary-80 rounded-tl-none rounded-tr-lg rounded-br-lg rounded-bl-lg'
+                                // 일반 텍스트 메시지
+                                <div className={`px-4 py-3 whitespace-pre-wrap ${
+                                    message.isMine 
+                                        ? 'bg-primary-100 text-white rounded-lg' 
+                                        : 'bg-white text-secondary-80 rounded-tl-none rounded-tr-lg rounded-br-lg rounded-bl-lg'
                                 }`}>
-                                    <p className="text-body-s whitespace-pre-wrap">{message.content}</p>
+                                    <p className="text-body-s">{message.content}</p>
                                 </div>
                             )}
                             
-                            <p className="text-caption-regular text-secondary-30 flex-shrink-0 pb-0.5">{message.timestamp}</p>
+                            <span className={`text-caption-regular text-secondary-50 flex-shrink-0 ${message.isMine ? 'mr-1' : 'ml-1'}`}>
+                                {message.timestamp}
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -67,17 +67,9 @@ export function ChatList({ messages }) {
         );
     };
 
-    if (messages.length === 0) {
-        return (
-            <div className="flex items-center justify-center h-full">
-                <p className="text-secondary-50 text-body-s">메시지 내역이 없습니다</p>
-            </div>
-        );
-    }
-
     return (
-        <>
+        <div className="flex flex-col">
             {messages.map((message, index) => renderMessage(message, index, messages))}
-        </>
+        </div>
     );
 }

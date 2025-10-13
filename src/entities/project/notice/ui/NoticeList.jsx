@@ -69,18 +69,7 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }) {
         };
     });
 
-    const getManagerHeight = () => {
-        return "auto";
-    };
-
-    const getTeamHeight = () => {
-        return "auto";
-    };
-
-    const getStudentHeight = () => {
-        if (!isTeamOpen && isStudentOpen) return "100%";
-        return "auto";
-    };
+    const openSectionsCount = [isManagerOpen, isTeamOpen, isStudentOpen].filter(Boolean).length;
     
     const handleItemClick = (userId, userType) => {
         // chatData에서 해당 사용자의 채팅방 ID 찾기
@@ -103,8 +92,11 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }) {
         <div className="bg-white h-full w-60 flex flex-col overflow-hidden">
             {/* 관리자 */}
             <div 
-                className="flex flex-col flex-shrink-0 transition-all duration-500 ease-in-out overflow-hidden"
-                style={{ height: getManagerHeight() }}
+                className="flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out overflow-hidden"
+                style={{ 
+                    flexGrow: isManagerOpen && openSectionsCount > 0 ? 1 : 0,
+                    flexBasis: isManagerOpen ? '0' : 'auto'
+                }}
             >
                 <div 
                     className="flex items-center gap-2 px-3 py-2 flex-shrink-0 cursor-pointer hover:bg-gray-10 transition-colors duration-200"
@@ -118,7 +110,7 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }) {
                     <p className="text-body-s text-secondary-50 font-semibold">관리자 ({displayManagers.length})</p>
                 </div>
                 {isManagerOpen && (
-                    <div className="max-h-[52px] overflow-y-auto scrollbar-thin">
+                    <div className="flex-1 overflow-y-auto scrollbar-thin">
                         {displayManagers.length > 0 ? (
                             displayManagers.map((manager) => {
                                 const chat = chatData.chats.find(c => c.userId === manager.name);
@@ -149,8 +141,11 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }) {
 
             {/* 팀 */}
             <div 
-                className="flex flex-col flex-shrink-0 transition-all duration-500 ease-in-out overflow-hidden"
-                style={{ height: getTeamHeight() }}
+                className="flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out overflow-hidden"
+                style={{ 
+                    flexGrow: isTeamOpen && openSectionsCount > 0 ? 1 : 0,
+                    flexBasis: isTeamOpen ? '0' : 'auto'
+                }}
             >
                 <div 
                     className="flex items-center gap-2 px-3 py-2 flex-shrink-0 cursor-pointer hover:bg-gray-10 transition-colors duration-200"
@@ -164,7 +159,7 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }) {
                     <p className="text-body-s text-secondary-50 font-semibold">팀 ({displayTeams.length})</p>
                 </div>
                 {isTeamOpen && (
-                    <div className="max-h-[104px] overflow-y-auto scrollbar-thin">
+                    <div className="flex-1 overflow-y-auto scrollbar-thin">
                         {displayTeams.length > 0 ? (
                             displayTeams.map((team) => {
                                 const chat = chatData.chats.find(c => c.userId === team.team);
@@ -196,8 +191,11 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }) {
 
             {/* 학생 */}
             <div 
-                className="flex flex-col flex-1 transition-all duration-500 ease-in-out overflow-hidden"
-                style={{ height: getStudentHeight() }}
+                className="flex flex-col transition-all duration-300 ease-in-out overflow-hidden"
+                style={{ 
+                    flexGrow: isStudentOpen && openSectionsCount > 0 ? 1 : 0,
+                    flexBasis: isStudentOpen ? '0' : 'auto'
+                }}
             >
                 <div 
                     className="flex items-center gap-2 px-3 py-2 flex-shrink-0 cursor-pointer hover:bg-gray-10 transition-colors duration-200"

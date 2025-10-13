@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageInput } from '@/features/project/notice';
+import { MessageInput, DownloadChat } from '@/features/project/notice';
 import { ChatList } from '@/entities/project/notice';
 import { chatData as initialChatData } from '@/shared/mock';
 
@@ -18,7 +18,6 @@ export function Chat({ selectedChatId }) {
             if (selectedChat) {
                 setMessages(selectedChat.messages || []);
             } else {
-                // chatData에 없는 임시 채팅방인 경우 빈 배열
                 setMessages([]);
             }
         } else {
@@ -51,7 +50,6 @@ export function Chat({ selectedChatId }) {
                         : chat
                 );
             } else {
-                // chatData에 없는 임시 채팅방인 경우 새로 추가
                 return [...prevChats, {
                     id: selectedChatId,
                     messages: [newMessage]
@@ -76,7 +74,10 @@ export function Chat({ selectedChatId }) {
             <div className="flex-1 overflow-y-auto py-4 scrollbar-thin bg-secondary-3">
                 {hasMessages ? (
                     <>
-                        <ChatList messages={messages} />
+                        <ChatList 
+                            messages={messages}
+                            DownloadButton={DownloadChat}
+                        />
                         <div ref={messagesEndRef} />
                     </>
                 ) : null}
