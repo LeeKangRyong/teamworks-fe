@@ -1,11 +1,15 @@
 "use client";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ListButtons } from "@/features/project/team";
-import { TeamManageLists, StudentManageLists } from "@/entities/project/team";
+import { 
+    TeamManageLists, 
+    StudentManageLists,
+    useTeams,
+    useTeamFilters,
+    validateData
+} from "@/entities/project/team";
 import { StatusSelect, Sort, SortUpDown, SearchName, Add } from "@/features/project/team";
 import { SearchEmptyState } from "@/widgets/Project/Team";
-import { studentsData, teamsData } from "@/shared/mock";
-import { processTeamData, validateData } from "@/shared/utils/teamsDataFormat";
 
 export function TeamWidget({ initialStatus }) {
     const [selectedList, setSelectedList] = useState("팀 리스트");
@@ -14,14 +18,32 @@ export function TeamWidget({ initialStatus }) {
     const [sortOrder, setSortOrder] = useState("desc");
     const [searchName, setSearchName] = useState("");
 
+    const { teams, students } = useTeams();
+
+    const processedData = useTeamFilters({
+        teams,
+        students,
+        listType: selectedList,
+        selectedStatus,
+        sortType,
+        sortOrder,
+        searchName
+    });
+
+    const currentData = processedData;
+    const hasData = validateData(currentData);
+    const isSearching = selectedList === "학생 리스트" && searchName.trim() !== "";
+    const originalData = selectedList === "팀 리스트" ? teams : students;
+    const hasOriginalData = validateData(originalData);
+
     useEffect(() => {
         if (initialStatus) {
             setSelectedStatus(initialStatus);
         }
     }, [initialStatus]);
 
-    const handleStatusChange = (selectedStatus) => {
-        setSelectedStatus(selectedStatus);
+    const handleStatusChange = (status) => {
+        setSelectedStatus(status);
     };
 
     const handleListChange = (listType) => {
@@ -40,26 +62,6 @@ export function TeamWidget({ initialStatus }) {
     const handleSearchChange = (searchTerm) => {
         setSearchName(searchTerm);
     };
-
-    const processedData = useMemo(() => {
-        const rawData = selectedList === "팀 리스트" ? teamsData : studentsData;
-        
-        return processTeamData({
-            rawData,
-            listType: selectedList,
-            selectedStatus,
-            sortType,
-            sortOrder,
-            searchName
-        });
-    }, [selectedList, selectedStatus, sortType, sortOrder, searchName]);
-
-    const currentData = processedData;
-    const hasData = validateData(currentData);
-    
-    const isSearching = selectedList === "학생 리스트" && searchName.trim() !== "";
-    const originalData = selectedList === "팀 리스트" ? teamsData : studentsData;
-    const hasOriginalData = validateData(originalData);
 
     const renderTeamListHeaders = () => (
         <div className="flex flex-row items-center py-2">
@@ -116,13 +118,14 @@ export function TeamWidget({ initialStatus }) {
         <main className="w-250 py-4 mb-10">
             <nav className="px-6 mb-8 -mt-2" aria-label="팀 관리 탭">
                 <ListButtons onListChange={handleListChange} />
-            </nav>            
+            </nav>
+            
             <section className="ml-6 px-8 w-240 -mt-2 border-1 border-gray-10 rounded-lg">
                 <div className="flex justify-between items-center">
                     <h1 className="text-secondary-80 text-body-m py-4 mt-2 font-semibold">
-                        {selectedList === "팀 리스트" ? 
-                            `팀 리스트 (총 ${currentData?.length || 0}개)` : 
-                            `학생 리스트 (총 ${currentData?.length || 0}명)`
+                        {selectedList === "팀 리스트" 
+                            ? `팀 리스트 (총 ${currentData?.length || 0}개)` 
+                            : `학생 리스트 (총 ${currentData?.length || 0}명)`
                         }
                     </h1>
                     <div className="flex flex-row gap-2 items-center">
@@ -148,8 +151,13 @@ export function TeamWidget({ initialStatus }) {
                         )}
                     </div>
                 </div>
+                
                 <article className="mx-auto">
-                    {hasData && (selectedList === "팀 리스트" ? renderTeamListHeaders() : renderStudentListHeaders())}
+                    {hasData && (
+                        selectedList === "팀 리스트" 
+                            ? renderTeamListHeaders() 
+                            : renderStudentListHeaders()
+                    )}
                     
                     <div className="h-104 overflow-y-auto scrollbar-thin">
                         {hasData ? (
@@ -161,27 +169,28 @@ export function TeamWidget({ initialStatus }) {
                                 {!hasOriginalData ? (
                                     <>
                                         <p className="text-body-m text-secondary-60 mb-2">
-                                            {selectedList === "팀 리스트" ? "현재 생성된 팀이 없습니다" : "등록된 학생이 없습니다"}
+                                            {selectedList === "팀 리스트" 
+                                                ? "현재 생성된 팀이 없습니다" 
+                                                : "등록된 학생이 없습니다"
+                                            }
                                         </p>
                                         <p className="text-body-m text-secondary-60 mb-4">
-                                            {selectedList === "팀 리스트" ? "새로운 팀을 추가해보세요" : "새로운 학생을 추가해보세요"}
+                                            {selectedList === "팀 리스트" 
+                                                ? "새로운 팀을 추가해보세요" 
+                                                : "새로운 학생을 추가해보세요"
+                                            }
                                         </p>
                                         <Add type={selectedList === "팀 리스트" ? "팀" : "학생"} />
                                     </>
                                 ) : isSearching ? (
-                                    <>
-                                        <p className="text-body-m text-secondary-60 mb-10">
-                                            '{searchName}'에 대한 검색 결과가 없습니다
-                                        </p>
-                                        <button
-                                            onClick={() => setSearchName("")}
-                                            className="px-4 py-2 bg-primary-50 text-white rounded-lg hover:bg-primary-60 transition-colors"
-                                        >
-                                            검색 초기화
-                                        </button>
-                                    </>
+                                    <SearchEmptyState searchTerm={searchName} />
                                 ) : (
-                                    <p className="text-body-m text-secondary-60 mb-2">이건 데이터 없는 거도 아니고 검색도 아니고...</p>
+                                    <p className="text-body-m text-secondary-60">
+                                        {selectedStatus === "all" 
+                                            ? "데이터가 없습니다" 
+                                            : "해당 상태의 데이터가 없습니다"
+                                        }
+                                    </p>
                                 )}
                             </div>
                         )}
