@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useToast } from "@/shared/hooks";
+import { useToast } from "@/shared/ui/Toast";
 import { InviteCode } from "@/entities/projects";
 import { CopyCheck } from "@/features/projects";
 

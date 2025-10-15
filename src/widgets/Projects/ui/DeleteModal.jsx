@@ -1,5 +1,5 @@
-import { Cancel } from "@/features/common";
 import { Delete } from "@/features/projects";
+import { Cancel } from "@/shared/ui/Button";
 
 export function DeleteModal({ projectTitle, onClose, onConfirm }) {
     const handleBackdropClick = (e) => {

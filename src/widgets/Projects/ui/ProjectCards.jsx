@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { ProjectCard } from "@/entities/projects"
 import { More, Add, MakeProject } from "@/features/projects";
 import { DeleteModal } from "@/widgets/Projects";
-import { useModal } from "@/shared/hooks/common/useModal";
+import { useModal } from "@/shared/hooks";
 import noProject from "@/assets/icons/no-project.png";
 
 export function ProjectCards({ projects, setProjects }) {

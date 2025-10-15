@@ -1,7 +1,7 @@
 import { More } from "@/features/project/dashboard";
 import { useModal } from "@/shared/hooks";
 import { AddNoticeModal } from "@/widgets/Project/Notice";
-import { AddButton } from "@/features/common";
+import { AddButton } from "@/shared/ui/Button";
 
 export function RecentNotice() {
     const { isOpen, openModal, closeModal } = useModal();

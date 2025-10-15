@@ -1,7 +1,7 @@
 "use client";
 import { useState, useMemo, useEffect } from "react";
 import { Box } from "@/entities/project/dashboard";
-import { AddButton } from "@/features/common";
+import { AddButton } from "@/shared/ui/Button";
 import { Sort } from "@/features/project/assignment";
 import { AssignmentStatusSelect } from "@/features/project/assignment";
 import { AssignmentList } from "@/entities/project/assignment";

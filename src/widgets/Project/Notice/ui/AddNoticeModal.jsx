@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Input, Cancel } from "@/features/common";
+import { Cancel } from "@/shared/ui/Button";
+import { Input } from "@/shared/ui/Input";
 import { SubmitButton, TextEditor } from "@/features/project/notice";
-import { useToast } from "@/shared/hooks";
+import { useToast } from "@/shared/ui/Toast";
 import Image from "next/image";
 import warning from "@/assets/icons/warning.png";
 

@@ -1,4 +1,4 @@
-import { CheckBox } from "@/shared/ui/common";
+import { CheckBox } from "@/shared/ui/Button";
 
 export function Participant({ participant, isSelected, onCheck }) {
     const handleClick = () => {

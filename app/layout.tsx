@@ -1,8 +1,7 @@
 "use client";
 import "@/app/globals.css";
 import "@/shared/lib/chartSetup";
-import { useToast } from "@/shared/hooks";
-import { Toast } from "@/shared/ui/common";
+import { Toast, useToast } from "@/shared/ui/Toast";
 
 export default function RootLayout({
   children,

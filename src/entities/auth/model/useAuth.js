@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { authApi } from '../api/authApi';
+import { authApi } from '@/entities/user';
 import { tokenStorage } from '@/shared/lib/tokenStorage';
 
 export const useAuth = () => {

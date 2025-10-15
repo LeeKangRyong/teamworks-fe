@@ -1,10 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { Cancel, Complete, Input } from "@/features/common";
+import { Cancel, Complete } from "@/shared/ui/Button";
+import { Input } from "@/shared/ui/Input";
 import { Search } from "@/features/project/team";
 import { AddMemberModal } from "./AddMemberModal";
-import { useToast } from "@/shared/hooks";
+import { useToast } from "@/shared/ui/Toast";
 import Image from "next/image";
 import warning from "@/assets/icons/warning.png"
 

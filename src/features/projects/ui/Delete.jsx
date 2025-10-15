@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useToast } from "@/shared/hooks";
-import { Toast } from "@/shared/ui/common";
+import { useToast } from "@/shared/ui/Toast";
 
 export function Delete({ onClick }) {
     const router = useRouter();

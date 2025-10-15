@@ -1,6 +1,6 @@
 "use client";
 import { useState, useCallback } from "react";
-import { Cancel, Complete } from "@/features/common";
+import { Cancel, Complete } from "@/shared/ui/Button";
 import { ParticipantLists } from "@/features/project/team";
 
 export function AddMemberModal({ onClose, onConfirm }) {

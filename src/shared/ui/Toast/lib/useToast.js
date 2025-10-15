@@ -1,4 +1,4 @@
-import { useToastStore } from '@/shared/stores/toastStore';
+import { useToastStore } from "@/shared/ui/Toast";
 
 export function useToast() {
     const { isVisible, message, showToast, hideToast } = useToastStore();

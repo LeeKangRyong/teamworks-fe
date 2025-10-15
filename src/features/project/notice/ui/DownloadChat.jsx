@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import download from "@/assets/icons/download.png";
-import { useToast } from "@/shared/hooks";
+import { useToast } from "@/shared/ui/Toast";
 
 export function DownloadChat({ fileName, fileUrl }) {
     const { showToast } = useToast();

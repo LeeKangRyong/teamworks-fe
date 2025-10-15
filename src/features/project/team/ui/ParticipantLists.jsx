@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { ParticipantList } from "@/entities/project/team";
-import { CheckBox } from "@/shared/ui/common";
+import { CheckBox } from "@/shared/ui/Button";
 import { studentsData } from "@/shared/mock";
 
 export function ParticipantLists({ onSelectionChange }) {
