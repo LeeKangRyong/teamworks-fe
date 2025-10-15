@@ -1,18 +1,19 @@
-import { TeamSummaryList } from "@/shared/ui/project/dashboard"
-import { teamsData } from "@/shared/mock";
-import { useState, useEffect } from "react";
+import { TeamSummaryList } from "@/shared/ui/project/dashboard";
+import { useDashboard, getWarningTeams } from "@/entities/project/dashboard";
+import { useState, useEffect, useMemo } from "react";
 
 export function TeamSummary({ children, num }) {
+    const { teams } = useDashboard();
     const [randomWarningTeams, setRandomWarningTeams] = useState([]);
 
+    const warningTeams = useMemo(() => {
+        return getWarningTeams(teams).filter(team => team.team.length <= 4);
+    }, [teams]);
+
     useEffect(() => {
-        const warningTeams = teamsData.filter(team => 
-            team.status === "무임승차" && team.team.length <= 4
-        );
-        
         const shuffled = [...warningTeams].sort(() => 0.5 - Math.random());
         setRandomWarningTeams(shuffled.slice(0, 3));
-    }, []);
+    }, [warningTeams]);
 
     return (
         <article className="border-1 border-gray-10 rounded-lg w-[50%] pb-5">
@@ -33,7 +34,7 @@ export function TeamSummary({ children, num }) {
                     </div>
                 </div>
                 <div className="px-3">
-                    {randomWarningTeams.map((team, index) => (
+                    {randomWarningTeams.map((team) => (
                         <TeamSummaryList 
                             key={team.team_id}
                             team={team.team} 

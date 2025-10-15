@@ -1,18 +1,19 @@
 import { ToDoSummaryList } from "@/shared/ui/project/dashboard"
-import { assignmentsData } from "@/shared/mock";
-import { useState, useEffect } from "react";
+import { useDashboard, getProgressAssignments } from "@/entities/project/dashboard";
+import { useState, useEffect, useMemo } from "react";
 
 export function ToDoSummary({ children, num }) {
+    const { assignments } = useDashboard();
     const [randomProgressAssignments, setRandomProgressAssignments] = useState([]);
 
+    const progressAssignments = useMemo(() => {
+        return getProgressAssignments(assignments);
+    }, [assignments]);
+
     useEffect(() => {
-        const progressAssignments = assignmentsData.filter(assignment => 
-            assignment.status === "진행중"
-        );
-        
         const shuffled = [...progressAssignments].sort(() => 0.5 - Math.random());
         setRandomProgressAssignments(shuffled.slice(0, 3));
-    }, []);
+    }, [progressAssignments]);
 
     return (
         <article className="border-1 border-gray-10 rounded-lg w-[50%] pb-5">
@@ -30,14 +31,13 @@ export function ToDoSummary({ children, num }) {
                     </div>
                 </div>
                 <div className="px-3">
-                    {randomProgressAssignments.map((assignment, index) => (
-                            <ToDoSummaryList 
-                                key={assignment.assignment_id}
-                                desc={assignment.title} 
-                                status={assignment.status} 
-                            />
-                        ))
-                    }
+                    {randomProgressAssignments.map((assignment) => (
+                        <ToDoSummaryList 
+                            key={assignment.assignment_id}
+                            desc={assignment.title} 
+                            status={assignment.status} 
+                        />
+                    ))}
                 </div>
             </div>
         </article>

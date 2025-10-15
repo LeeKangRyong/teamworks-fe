@@ -1,17 +1,31 @@
 "use client";
 import { useRouter, useParams } from "next/navigation";
-import { Box, TeamSummary, NextSubmit, ToDoSummary } from "@/entities/project/dashboard";
+import { 
+    Box, 
+    TeamSummary, 
+    NextSubmit, 
+    ToDoSummary,
+    useDashboard,
+    useDashboardStats
+} from "@/entities/project/dashboard";
 import { More } from "@/features/project/dashboard";
-import { teamsData, studentsData, assignmentsData, chartData } from "@/shared/mock";
 
 export function DashboardWidget() {
     const router = useRouter();
     const params = useParams();
     const projectId = params.id;
     
-    const warningTeams = teamsData.filter(team => team.status === "무임승차").length;
-    const progressAssignments = assignmentsData.filter(assign => assign.status === "진행중").length;
+    const { teams, assignments, chartData } = useDashboard();
+    
+    const { 
+        totalTeams, 
+        warningTeams, 
+        submitRate, 
+        unreadQuestions,
+        progressAssignments 
+    } = useDashboardStats(teams, assignments);
 
+    // Handlers
     const handleTotalTeamsClick = () => {
         router.push(`/projects/${projectId}/team`);
     };
@@ -32,7 +46,7 @@ export function DashboardWidget() {
         <main className="bg-white w-250 py-4 mb-10">
             <article className="flex flex-row gap-6 w-full min-w-full px-12">
                 <Box 
-                    num={teamsData.length} 
+                    num={totalTeams} 
                     desc="총 참여 팀" 
                     onClick={handleTotalTeamsClick}
                 />
@@ -42,19 +56,25 @@ export function DashboardWidget() {
                     onClick={handleWarningTeamsClick}
                 />
                 <Box 
-                    num="85%" 
+                    num={submitRate} 
                     desc="과제 제출률" 
                     onClick={handleAssignmentClick}
                 />
                 <Box 
-                    num="2" 
+                    num={unreadQuestions} 
                     desc="미확인 질문" 
                     onClick={handleQuestionsClick}
                 />
             </article>
             <div className="justify-between gap-4 flex flex-row mx-10 mt-5">
-                <TeamSummary children={<More onClick={handleWarningTeamsClick} />} num={warningTeams} />
-                <ToDoSummary children={<More onClick={handleAssignmentClick} />} num={progressAssignments} />
+                <TeamSummary 
+                    children={<More onClick={handleWarningTeamsClick} />} 
+                    num={warningTeams} 
+                />
+                <ToDoSummary 
+                    children={<More onClick={handleAssignmentClick} />} 
+                    num={progressAssignments} 
+                />
             </div>
             <div className="px-10 mt-3">
                 <NextSubmit chartData={chartData} />

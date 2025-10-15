@@ -1,7 +1,7 @@
+"use client";
 import { useState } from "react";
 import { Box } from "@/entities/project/dashboard";
-import { PercentageWidget } from "@/widgets/Project/Participation";
-import { Students } from "@/widgets/Project/Participation";
+import { PercentageWidget, Students } from "@/widgets/Project/Participation";
 import { StatusSelect } from "@/features/project/team";
 
 export function ParticipationWidget() {
