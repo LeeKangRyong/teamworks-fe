@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { AsideList } from "@/features/layout";
-import { useAsideStore } from "@/shared/stores/asideStore";
+import { AsideList } from "@/shared/ui/Layout";
+import { useAsideStore } from "@/widgets/Layout"
 import home from "@/assets/icons/home.png";
 import search from "@/assets/icons/search.png";
 import homeBlue from "@/assets/icons/home-blue.png";

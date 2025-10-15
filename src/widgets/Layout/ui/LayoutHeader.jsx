@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import logo from "@/assets/icons/logo.png";
-import { HeaderList } from "@/features/layout";
+import { HeaderList } from "@/shared/ui/Layout";
 
 export function LayoutHeader() {
     const router = useRouter();
