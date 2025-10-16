@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageInput, DownloadChat } from '@/features/project/notice';
-import { ChatList } from '@/entities/project/notice';
+import { DownloadChat } from '@/features/project/notice';
+import { ChatList, MessageInput } from '@/entities/project/notice';
 import { chatData as initialChatData } from '@/shared/mock';
 
 export function Chat({ selectedChatId }) {

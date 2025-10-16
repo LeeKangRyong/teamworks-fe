@@ -2,7 +2,7 @@
 import dynamic from "next/dynamic";
 
 const PDFViewer = dynamic(
-    () => import("@/features/project/assignment/ui/PDFViewer"),
+    () => import("@/entities/project/assignment/ui/PDFViewer"),
     { 
         ssr: false, 
         loading: () => (

@@ -2,8 +2,8 @@
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { submitsData } from "@/shared/mock";
-import { SubmitList } from "@/entities/project/assignment";
-import { Download, Mark } from "@/features/project/assignment";
+import { SubmitList, Mark } from "@/entities/project/assignment";
+import { Download } from "@/features/project/assignment";
 
 export function SubmitListWidget({ assignmentId }) {
     const router = useRouter();

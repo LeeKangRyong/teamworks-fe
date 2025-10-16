@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { MemoInput, Save } from "@/features/project/assignment";
+import { Save } from "@/features/project/assignment";
+import { MemoInput } from "@/entities/project/assignment";
 import { useToast } from '@/shared/ui/Toast';
 
 export function SubmitMemo({ initialMemo = "", onSave }) {
