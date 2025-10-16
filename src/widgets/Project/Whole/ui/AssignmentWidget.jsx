@@ -1,12 +1,10 @@
 "use client";
-import { useState, useMemo, useEffect } from "react";
-import { Box } from "@/entities/project/dashboard";
+import { useState, useEffect } from "react";
 import { AddButton } from "@/shared/ui/Button";
 import { Sort } from "@/features/project/assignment";
 import { AssignmentStatusSelect } from "@/features/project/assignment";
 import { AssignmentList } from "@/entities/project/assignment";
-import { assignmentsData } from "@/shared/mock";
-import { parseDate } from "@/shared/utils/teamsDataFormat";
+import { useAssignments } from "@/entities/project/assignment";
 
 const mapAssignmentStatusValue = (statusValue) => {
     const statusMap = {
@@ -18,50 +16,51 @@ const mapAssignmentStatusValue = (statusValue) => {
     return statusMap[statusValue] || statusValue;
 };
 
+const reverseMapStatus = (status) => {
+    const reverseMap = {
+        "전체": "all",
+        "채점완료": "complete",
+        "진행중": "progress",
+        "마감": "end"
+    };
+    return reverseMap[status] || "all";
+};
+
 export function AssignmentWidget({ initialStatus }) {
-    const [selectedStatus, setSelectedStatus] = useState("all");
-    const [sortDirection, setSortDirection] = useState("desc");
+    const [isMounted, setIsMounted] = useState(false);
+    
+    const { 
+        assignments, 
+        loading, 
+        statusFilter, 
+        setStatusFilter 
+    } = useAssignments();
 
     useEffect(() => {
-        if (initialStatus) {
-            setSelectedStatus(initialStatus);
+        setIsMounted(true);
+    }, []);
+
+    useEffect(() => {
+        if (initialStatus && isMounted) {
+            const mappedStatus = mapAssignmentStatusValue(initialStatus);
+            setStatusFilter(mappedStatus);
         }
-    }, [initialStatus]);
+    }, [initialStatus, isMounted, setStatusFilter]);
 
     const handleAdd = () => {
         console.log('add');
     };
 
     const handleStatusChange = (status) => {
-        console.log('change', status);
-        setSelectedStatus(status);
+        const mappedStatus = mapAssignmentStatusValue(status);
+        setStatusFilter(mappedStatus);
     };
 
     const handleSortDirectionChange = (direction) => {
         console.log('sort direction change', direction);
-        setSortDirection(direction);
+        // 정렬은 현재 useAssignments에서 sortByDeadline으로 고정
+        // 추후 필요시 hook에 sortDirection 추가
     };
-
-    // 필터링 및 정렬된 과제 데이터
-    const processedAssignments = useMemo(() => {
-        // 1. 상태 필터링
-        const mappedStatus = mapAssignmentStatusValue(selectedStatus);
-        let filtered = mappedStatus === "전체" 
-            ? [...assignmentsData] 
-            : assignmentsData.filter(assignment => assignment.status === mappedStatus);
-
-        // 2. 마감일 기준 정렬
-        filtered.sort((a, b) => {
-            const dateA = parseDate(a.deadline);
-            const dateB = parseDate(b.deadline);
-            const compareResult = dateA - dateB;
-            
-            // asc: 빠른 순, desc: 늦은 순
-            return sortDirection === "asc" ? compareResult : -compareResult;
-        });
-
-        return filtered;
-    }, [selectedStatus, sortDirection]);
 
     const renderAssignmentListHeaders = () => (
         <div className="flex flex-row items-center py-2 mt-1">
@@ -79,10 +78,14 @@ export function AssignmentWidget({ initialStatus }) {
             </div>
             <AssignmentStatusSelect 
                 onStatusChange={handleStatusChange} 
-                initialStatus={selectedStatus}
+                initialStatus={reverseMapStatus(statusFilter)}
             />
         </div>
     );
+
+    if (!isMounted || loading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <main className="bg-white w-250 py-4 mb-10">
@@ -100,7 +103,7 @@ export function AssignmentWidget({ initialStatus }) {
                 
                 <div className="mx-auto">
                     {renderAssignmentListHeaders()}                    
-                    <AssignmentList assignmentsData={processedAssignments} />
+                    <AssignmentList assignmentsData={assignments} />
                 </div>
             </article>
         </main>

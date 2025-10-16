@@ -1,21 +1,12 @@
 "use client"
-import { useState, useEffect } from "react";
-import { assignmentsData } from "@/shared/mock";
+import { useAssignmentDetail } from "@/entities/project/assignment";
 import { AssignmentTitle, SubmitListWidget } from "@/widgets/Project/Assignment";
 import { GoBack } from "@/features/project/participation";
 
 export function AssignmentDetailWidget({ assignmentId }) {
+    const { assignment, loading } = useAssignmentDetail(assignmentId);
 
-    const [assignmentData, setAssignmentData] = useState(null);
-
-    useEffect(() => {
-        const found = assignmentsData.find(
-            assignment => assignment.assignment_id === parseInt(assignmentId)
-        );
-        setAssignmentData(found);
-    }, [assignmentId]);
-
-    if (!assignmentData) {
+    if (loading || !assignment) {
         return <div>Loading...</div>;
     }
 
@@ -23,12 +14,12 @@ export function AssignmentDetailWidget({ assignmentId }) {
         <main className="bg-white w-250 py-4 mb-10 relative">
             <GoBack />
             <AssignmentTitle 
-                title={assignmentData.title}
+                title={assignment.title}
                 description="과제 설명입니다"
-                duration={assignmentData.deadline}
+                duration={assignment.deadline}
                 point="100점"
-                submit={assignmentData.submit}
-                mark={assignmentData.mark}
+                submit={assignment.submit}
+                mark={assignment.mark}
             />
             <SubmitListWidget assignmentId={assignmentId} />
         </main>

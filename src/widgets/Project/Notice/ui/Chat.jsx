@@ -1,61 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { DownloadChat } from '@/features/project/notice';
 import { ChatList, MessageInput } from '@/entities/project/notice';
-import { chatData as initialChatData } from '@/shared/mock';
+import { useChatMessages } from '@/entities/project/notice';
 
 export function Chat({ selectedChatId }) {
-    const [chats, setChats] = useState(initialChatData.chats);
-    const [messages, setMessages] = useState([]);
     const messagesEndRef = useRef(null);
+    
+    const { messages, loading, sendMessage } = useChatMessages(selectedChatId);
     
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
     useEffect(() => {
-        if (selectedChatId) {
-            const selectedChat = chats.find(chat => chat.id === selectedChatId);
-            if (selectedChat) {
-                setMessages(selectedChat.messages || []);
-            } else {
-                setMessages([]);
-            }
-        } else {
-            setMessages([]);
-        }
-    }, [selectedChatId, chats]);
-
-    useEffect(() => {
         scrollToBottom();
     }, [messages]);
 
     const handleSendMessage = (content) => {
-        const newMessage = {
-            id: `msg_${Date.now()}`,
-            sender: "교수",
-            content: content,
-            timestamp: new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', hour12: false }),
-            date: new Date().toLocaleDateString('ko-KR', { year: '2-digit', month: '2-digit', day: '2-digit' }).replace(/\. /g, '/').replace('.', ''),
-            isRead: false,
-            isMine: true
-        };
-
-        setChats(prevChats => {
-            const existingChat = prevChats.find(chat => chat.id === selectedChatId);
-            
-            if (existingChat) {
-                return prevChats.map(chat => 
-                    chat.id === selectedChatId 
-                        ? { ...chat, messages: [...(chat.messages || []), newMessage] }
-                        : chat
-                );
-            } else {
-                return [...prevChats, {
-                    id: selectedChatId,
-                    messages: [newMessage]
-                }];
-            }
-        });
+        sendMessage(content);
     };
 
     if (!selectedChatId) {
@@ -66,8 +28,15 @@ export function Chat({ selectedChatId }) {
         );
     }
 
-    const selectedChat = chats.find(chat => chat.id === selectedChatId);
-    const hasMessages = selectedChat && selectedChat.messages && selectedChat.messages.length > 0;
+    if (loading) {
+        return (
+            <article className="bg-white border-gray-10 border-l-1 flex items-center justify-center w-180 h-full">
+                <p className="text-secondary-50">Loading...</p>
+            </article>
+        );
+    }
+
+    const hasMessages = messages && messages.length > 0;
 
     return (
         <article className="bg-white border-gray-10 border-l-1 flex flex-col w-180 h-full">

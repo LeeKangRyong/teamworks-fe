@@ -1,20 +1,17 @@
 "use client";
-import { useState, useEffect } from "react";
-import { projectsData, submitsData } from "@/shared/mock";
+import { useState } from "react";
 import { LayoutHeader, LayoutAside } from "@/widgets/Layout";
 import { Options } from "@/features/project/layout";
 import { SubmitDetailWidget } from "@/widgets/Project/Whole";
+import { projectsData } from "@/shared/mock";
 
 export function SubmitDetail({ projectId, assignmentId, submitId }) {
     const [activeTab, setActiveTab] = useState("assignment");
     const [isAsideCollapsed, setIsAsideCollapsed] = useState(false);
     
+    // TODO: projectsData도 나중에 hook으로 변경 필요
     const projectData = projectsData.find(
         project => project.project_id === parseInt(projectId)
-    );
-
-    const submitData = submitsData.find(
-        submit => submit.submit_id === parseInt(submitId)
     );
 
     return (
@@ -32,7 +29,7 @@ export function SubmitDetail({ projectId, assignmentId, submitId }) {
                     <Options activeTab={activeTab} setActiveTab={setActiveTab} />
                     <div className="border-b-1 border-gray-20 w-full"/>
                     <div className="mt-8 bg-transparent">
-                        <SubmitDetailWidget data={submitData} />
+                        <SubmitDetailWidget submitId={submitId} />
                     </div>
                 </article>
             </div>

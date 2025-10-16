@@ -1,7 +1,7 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { NoticeStudentItem, NoticeTeamItem } from "@/shared/ui/project/notice";
-import { studentsData, teamsData, managersData, chatData } from "@/shared/mock";
+import { useChat } from "@/entities/project/notice";
 import arrow_right from "@/assets/icons/arrow-right.png";
 import arrow_down from "@/assets/icons/arrow-down.png";
 
@@ -10,70 +10,20 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }) {
     const [isTeamOpen, setIsTeamOpen] = useState(true);
     const [isStudentOpen, setIsStudentOpen] = useState(true);
     
-    // chatData에서 badge 정보 가져오기
-    const getChatBadge = (userId) => {
-        const chat = chatData.chats.find(chat => chat.userId === userId);
-        return chat?.badge || 0;
-    };
-
-    const filteredManagers = useMemo(() => {
-        if (!searchValue.trim()) {
-            return managersData;
-        }
-        return managersData.filter(manager => 
-            manager.name.toLowerCase().includes(searchValue.toLowerCase())
-        );
-    }, [searchValue]);
-
-    const filteredStudents = useMemo(() => {
-        if (!searchValue.trim()) {
-            return studentsData;
-        }
-        return studentsData.filter(student => 
-            student.name.toLowerCase().includes(searchValue.toLowerCase())
-        );
-    }, [searchValue]);
-
-    const filteredTeams = useMemo(() => {
-        if (!searchValue.trim()) {
-            return teamsData;
-        }
-        return teamsData.filter(team => 
-            team.team.toLowerCase().includes(searchValue.toLowerCase())
-        );
-    }, [searchValue]);
-
-    const displayManagers = filteredManagers.map(manager => ({
-        manager_id: manager.manager_id,
-        name: manager.name,
-        badge: 0
-    }));
-
-    const displayStudents = filteredStudents.map((student) => {
-        const chatBadge = getChatBadge(student.name);
-        return {
-            student_id: student.student_id,
-            name: student.name,
-            team: student.team,
-            badge: chatBadge
-        };
-    });
-
-    const displayTeams = filteredTeams.map((team) => {
-        const chatBadge = getChatBadge(team.team);
-        return {
-            team_id: team.team_id,
-            team: team.team,
-            memberCount: team.num,
-            badge: chatBadge
-        };
-    });
+    // Hook으로 데이터 가져오기
+    const {
+        chats,
+        managers: displayManagers,
+        students: displayStudents,
+        teams: displayTeams,
+        loading
+    } = useChat();
 
     const openSectionsCount = [isManagerOpen, isTeamOpen, isStudentOpen].filter(Boolean).length;
     
     const handleItemClick = (userId, userType) => {
         // chatData에서 해당 사용자의 채팅방 ID 찾기
-        let chat = chatData.chats.find(chat => chat.userId === userId && chat.userType === userType);
+        let chat = chats.find(chat => chat.userId === userId && chat.userType === userType);
         
         // chatData에 없는 경우 임시 채팅방 ID 생성
         if (!chat) {
@@ -87,6 +37,29 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }) {
             }
         }
     };
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    // 검색 필터링 적용
+    const filteredManagers = searchValue.trim() 
+        ? displayManagers.filter(manager => 
+            manager.name.toLowerCase().includes(searchValue.toLowerCase())
+          )
+        : displayManagers;
+
+    const filteredStudents = searchValue.trim()
+        ? displayStudents.filter(student => 
+            student.name.toLowerCase().includes(searchValue.toLowerCase())
+          )
+        : displayStudents;
+
+    const filteredTeams = searchValue.trim()
+        ? displayTeams.filter(team => 
+            team.team.toLowerCase().includes(searchValue.toLowerCase())
+          )
+        : displayTeams;
 
     return (
         <div className="bg-white h-full w-60 flex flex-col overflow-hidden">
@@ -107,13 +80,13 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }) {
                         alt="arrow" 
                         className="w-4 h-4 transition-transform duration-300"
                     />
-                    <p className="text-body-s text-secondary-50 font-semibold">관리자 ({displayManagers.length})</p>
+                    <p className="text-body-s text-secondary-50 font-semibold">관리자 ({filteredManagers.length})</p>
                 </div>
                 {isManagerOpen && (
                     <div className="flex-1 overflow-y-auto scrollbar-thin">
-                        {displayManagers.length > 0 ? (
-                            displayManagers.map((manager) => {
-                                const chat = chatData.chats.find(c => c.userId === manager.name);
+                        {filteredManagers.length > 0 ? (
+                            filteredManagers.map((manager) => {
+                                const chat = chats.find(c => c.userId === manager.name);
                                 const isSelected = chat?.id === selectedChatId;
                                 return (
                                     <div 
@@ -156,13 +129,13 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }) {
                         alt="arrow" 
                         className="w-4 h-4 transition-transform duration-300"
                     />
-                    <p className="text-body-s text-secondary-50 font-semibold">팀 ({displayTeams.length})</p>
+                    <p className="text-body-s text-secondary-50 font-semibold">팀 ({filteredTeams.length})</p>
                 </div>
                 {isTeamOpen && (
                     <div className="flex-1 overflow-y-auto scrollbar-thin">
-                        {displayTeams.length > 0 ? (
-                            displayTeams.map((team) => {
-                                const chat = chatData.chats.find(c => c.userId === team.team);
+                        {filteredTeams.length > 0 ? (
+                            filteredTeams.map((team) => {
+                                const chat = chats.find(c => c.userId === team.team);
                                 const isSelected = chat?.id === selectedChatId;
                                 return (
                                     <div 
@@ -206,13 +179,13 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }) {
                         alt="arrow" 
                         className="w-4 h-4 transition-transform duration-300"
                     />
-                    <p className="text-body-s text-secondary-50 font-semibold">학생 ({displayStudents.length})</p>
+                    <p className="text-body-s text-secondary-50 font-semibold">학생 ({filteredStudents.length})</p>
                 </div>
                 {isStudentOpen && (
                     <div className="flex-1 overflow-y-auto scrollbar-thin">
-                        {displayStudents.length > 0 ? (
-                            displayStudents.map((student) => {
-                                const chat = chatData.chats.find(c => c.userId === student.name);
+                        {filteredStudents.length > 0 ? (
+                            filteredStudents.map((student) => {
+                                const chat = chats.find(c => c.userId === student.name);
                                 const isSelected = chat?.id === selectedChatId;
                                 return (
                                     <div 
@@ -224,7 +197,6 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }) {
                                     >
                                         <NoticeStudentItem
                                             name={student.name}
-                                            team={student.team}
                                             badge={student.badge}
                                         />
                                     </div>
