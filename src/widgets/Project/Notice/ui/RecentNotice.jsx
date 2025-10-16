@@ -20,15 +20,15 @@ export function RecentNotice() {
 
     return (
         <>
-            <article className="w-240 border-gray-10 border-1 rounded-lg flex justify-between h-33 px-10 items-center">
-                <div className="flex flex-col gap-6">
+            <article className="w-full border-gray-10 border-1 rounded-lg flex justify-between h-33 px-6 lg:px-10 items-center">
+                <div className="flex flex-col gap-6 min-w-0">
                     <div className="flex flex-row gap-4">
                         <h3 className="text-secondary-80 text-body-l">최근 공지</h3>
                         <More onClick={handleNotice} />
                     </div>
-                    <p className="text-body-m text-secondary-70">1차 과제 관련 안내</p>
+                    <p className="text-body-m text-secondary-70 truncate">1차 과제 관련 안내</p>
                 </div>
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-6 flex-shrink-0 ml-4">
                     <AddButton onClick={handleModal} title="공지 작성 +" />
                     <p className="text-body-m text-secondary-40 text-right">25/08/21</p>
                 </div>

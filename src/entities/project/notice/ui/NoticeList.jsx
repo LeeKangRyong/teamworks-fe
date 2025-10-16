@@ -10,7 +10,6 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }) {
     const [isTeamOpen, setIsTeamOpen] = useState(true);
     const [isStudentOpen, setIsStudentOpen] = useState(true);
     
-    // Hook으로 데이터 가져오기
     const {
         chats,
         managers: displayManagers,
@@ -22,10 +21,8 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }) {
     const openSectionsCount = [isManagerOpen, isTeamOpen, isStudentOpen].filter(Boolean).length;
     
     const handleItemClick = (userId, userType) => {
-        // chatData에서 해당 사용자의 채팅방 ID 찾기
         let chat = chats.find(chat => chat.userId === userId && chat.userType === userType);
         
-        // chatData에 없는 경우 임시 채팅방 ID 생성
         if (!chat) {
             const tempChatId = `chat_temp_${userId}_${userType}`;
             if (onSelectChat) {
@@ -42,27 +39,26 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }) {
         return <div>Loading...</div>;
     }
 
-    // 검색 필터링 적용
     const filteredManagers = searchValue.trim() 
         ? displayManagers.filter(manager => 
             manager.name.toLowerCase().includes(searchValue.toLowerCase())
-          )
+        )
         : displayManagers;
 
     const filteredStudents = searchValue.trim()
         ? displayStudents.filter(student => 
             student.name.toLowerCase().includes(searchValue.toLowerCase())
-          )
+        )
         : displayStudents;
 
     const filteredTeams = searchValue.trim()
         ? displayTeams.filter(team => 
             team.team.toLowerCase().includes(searchValue.toLowerCase())
-          )
+        )
         : displayTeams;
 
     return (
-        <div className="bg-white h-full w-60 flex flex-col overflow-hidden">
+        <div className="bg-white h-full w-full flex flex-col overflow-hidden">
             {/* 관리자 */}
             <div 
                 className="flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out overflow-hidden"

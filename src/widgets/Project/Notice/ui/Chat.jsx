@@ -22,15 +22,15 @@ export function Chat({ selectedChatId }) {
 
     if (!selectedChatId) {
         return (
-            <article className="bg-secondary-3 border-gray-10 border-l-1 flex items-center justify-center w-180 h-full">
-                <p className="text-secondary-50">메시지를 보려면 채널을 선택하세요</p>
+            <article className="bg-secondary-3 border-gray-10 border-l-1 flex items-center justify-center flex-1 h-full">
+                <p className="text-secondary-50 text-body-s px-2">메시지를 보려면 채널을 선택하세요</p>
             </article>
         );
     }
 
     if (loading) {
         return (
-            <article className="bg-white border-gray-10 border-l-1 flex items-center justify-center w-180 h-full">
+            <article className="bg-white border-gray-10 border-l-1 flex items-center justify-center flex-1 h-full">
                 <p className="text-secondary-50">Loading...</p>
             </article>
         );
@@ -39,7 +39,7 @@ export function Chat({ selectedChatId }) {
     const hasMessages = messages && messages.length > 0;
 
     return (
-        <article className="bg-white border-gray-10 border-l-1 flex flex-col w-180 h-full">
+        <article className="bg-white border-gray-10 border-l-1 flex flex-col flex-1 h-full min-w-0">
             <div className="flex-1 overflow-y-auto py-4 scrollbar-thin bg-secondary-3">
                 {hasMessages ? (
                     <>
