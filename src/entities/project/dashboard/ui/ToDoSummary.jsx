@@ -16,7 +16,7 @@ export function ToDoSummary({ children, num }) {
     }, [progressAssignments]);
 
     return (
-        <article className="border-1 border-gray-10 rounded-lg w-[50%] pb-5">
+        <article className="border-1 border-gray-10 rounded-lg w-full lg:w-[50%] pb-5">
             <div className="flex justify-between -mx-1">
                 <h3 className="text-secondary-80 text-body-m p-5"><b>다음 할 일</b> (총 {num}개)</h3>
                 {children}

@@ -25,7 +25,6 @@ export function DashboardWidget() {
         progressAssignments 
     } = useDashboardStats(teams, assignments);
 
-    // Handlers
     const handleTotalTeamsClick = () => {
         router.push(`/projects/${projectId}/team`);
     };
@@ -43,8 +42,8 @@ export function DashboardWidget() {
     };
 
     return (
-        <main className="bg-white w-250 py-4 mb-10">
-            <article className="flex flex-row gap-6 w-full min-w-full px-12">
+        <main className="bg-white w-full max-w-[1000px] mx-auto py-4 mb-10 px-4 md:px-8 lg:px-12 overflow-hidden">
+            <article className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 w-full mb-6 max-w-full">
                 <Box 
                     num={totalTeams} 
                     desc="총 참여 팀" 
@@ -66,7 +65,8 @@ export function DashboardWidget() {
                     onClick={handleQuestionsClick}
                 />
             </article>
-            <div className="justify-between gap-4 flex flex-row mx-10 mt-5">
+            
+            <div className="flex flex-col lg:flex-row gap-4 mb-6 px-0 md:px-2 lg:px-0 max-w-full">
                 <TeamSummary 
                     children={<More onClick={handleWarningTeamsClick} />} 
                     num={warningTeams} 
@@ -76,9 +76,8 @@ export function DashboardWidget() {
                     num={progressAssignments} 
                 />
             </div>
-            <div className="px-10 mt-3">
-                <NextSubmit chartData={chartData} />
-            </div>
+            
+            <NextSubmit chartData={chartData} />
         </main>
     );
 }
