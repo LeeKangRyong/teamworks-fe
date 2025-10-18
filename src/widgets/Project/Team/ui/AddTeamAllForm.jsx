@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { Cancel, COmplete } from "@/shared/ui/Button";
+import { Cancel, Complete } from "@/shared/ui/Button";
 import { AddTeamInput, Search } from "@/features/project/team";
 import { AddMemberModal } from "./AddMemberModal";
 import { useToast } from "@/shared/ui/Toast";
@@ -38,7 +38,6 @@ export function AddTeamAllForm() {
         const isprojectMemberFilled = projectMember.trim() !== "";
         const hasSelectedMembers = selectedMembers.length > 0;
 
-        // 팀 -> 참여자
         if (!isprojectTeamFilled || !isprojectMemberFilled) {
             setShowNameWarning(true);
             setNameInputFocused(true);
@@ -76,9 +75,9 @@ export function AddTeamAllForm() {
 
     return (
         <>
-            <main className="w-140 bg-white rounded-md h-135 p-5 flex flex-col">
-                <div className="flex flex-row gap-10 mb-8">
-                    <div className="flex flex-col gap-2">
+            <main className="w-full max-w-140 bg-white rounded-md min-h-135 p-5 flex flex-col">
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-10 mb-8">
+                    <div className="flex flex-col gap-2 flex-1">
                         <p className="text-secondary-50 text-body-s">팀 수</p>
                         <AddTeamInput 
                             value={projectTeam} 
@@ -89,7 +88,7 @@ export function AddTeamAllForm() {
                             type="팀"
                         />
                     </div>
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 flex-1">
                         <p className="text-secondary-50 text-body-s">팀별 인원</p>
                         <AddTeamInput 
                             value={projectMember} 
@@ -102,13 +101,13 @@ export function AddTeamAllForm() {
                     </div>
                 </div>
                 <div className="h-1">
-                        {showNameWarning && (
-                            <div className="flex flex-row items-center gap-1 -mt-6">
-                                <Image src={warning} alt="warning" className="w-3 h-3" />
-                                <p className="text-warning-100 text-caption-regular">팀 정보를 입력해주세요</p>
-                            </div>
-                        )}
-                    </div>
+                    {showNameWarning && (
+                        <div className="flex flex-row items-center gap-1 -mt-6">
+                            <Image src={warning} alt="warning" className="w-3 h-3" />
+                            <p className="text-warning-100 text-caption-regular">팀 정보를 입력해주세요</p>
+                        </div>
+                    )}
+                </div>
                 <div className="flex flex-col gap-2 mb-8">
                     <p className="text-secondary-50 text-body-s">참여자</p>
                     <Search 

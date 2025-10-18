@@ -29,7 +29,7 @@ export function AddTeamForm() {
         const hasSelectedMembers = selectedMembers.length > 0;
         
         setShowNameWarning(nameInputFocused && !isProjectNameFilled);
-                
+        
         setIsFormValid(isProjectNameFilled && hasSelectedMembers);
     }, [projectName, selectedMembers, nameInputFocused]);
 
@@ -37,7 +37,6 @@ export function AddTeamForm() {
         const isProjectNameFilled = projectName.trim() !== "";
         const hasSelectedMembers = selectedMembers.length > 0;
 
-        // 팀명 → 참여자
         if (!isProjectNameFilled) {
             setShowNameWarning(true);
             setNameInputFocused(true);
@@ -75,7 +74,7 @@ export function AddTeamForm() {
 
     return (
         <>
-            <main className="w-140 bg-white rounded-md h-135 p-5 flex flex-col">
+            <main className="w-full max-w-140 bg-white rounded-md min-h-135 p-5 flex flex-col">
                 <div className="flex flex-col gap-2 mb-8">
                     <p className="text-secondary-50 text-body-s">팀명</p>
                     <Input 

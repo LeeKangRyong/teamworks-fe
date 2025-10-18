@@ -14,13 +14,15 @@ export function SubmitMemo({ initialMemo = "", onSave }) {
     };
 
     return (
-        <div className="flex-1 border-1 border-gray-10 rounded-lg h-110">
-            <h3 className="text-heading-m text-secondary-80 mt-8 ml-8 mb-4">메모</h3>
-            <div className="flex items-center justify-center">
-                <MemoInput value={memo} onChange={setMemo} />
-            </div>
-            <div className="flex justify-end mt-3">
-                <Save onClick={handleSave} />
+        <div className="w-full border-1 border-gray-10 rounded-lg h-110 flex flex-col">
+            <h3 className="text-heading-m text-secondary-80 mt-8 ml-4 sm:ml-8 mb-4">메모</h3>
+            <div className="flex-1 px-4 sm:px-8">
+                <div className="w-full h-full flex flex-col items-center">
+                    <MemoInput value={memo} onChange={setMemo} />
+                    <div className="w-full flex mt-3 pb-4 justify-end">
+                        <Save onClick={handleSave} />
+                    </div>
+                </div>
             </div>
         </div>
     );

@@ -65,7 +65,7 @@ export function MessageDistribution({ chartData }) {
     };
 
     return (
-        <article className="w-118 border-gray-10 border-1 rounded-lg px-3 py-4 items-center h-115">
+        <article className="w-full border-gray-10 border-1 rounded-lg px-3 py-4 items-center h-115">
             <h3 className="text-secondary-80 text-heading-m pt-4 pl-3">메시지 유형 분포 그래프</h3>
             <div className="flex justify-center mt-5">
                 <div className="rounded-lg h-90 w-100 p-4">

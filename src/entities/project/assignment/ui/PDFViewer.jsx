@@ -43,21 +43,25 @@ export function PDFViewer({ fileUrl }) {
     return (
         <>
             <div 
-                className="bg-secondary-3 rounded w-full h-80 overflow-auto scrollbar-thin cursor-pointer hover:bg-secondary-5 transition-colors border-1 border-gray-5"
+                className="bg-secondary-3 rounded w-full h-80 cursor-pointer hover:bg-secondary-5 transition-colors border-1 border-gray-5 relative flex items-center justify-center"
                 onClick={toggleFullView}
             >
-                <Document file={fileUrl} onLoadSuccess={onDocumentLoadSuccess}>
-                    {Array.from(new Array(numPages || 1), (el, index) => (
-                        <Page 
-                            key={`page_${index + 1}`} 
-                            pageNumber={index + 1} 
-                            width={360} 
-                            renderTextLayer={false} 
-                            renderAnnotationLayer={false} 
-                            className="mb-2" 
-                        />
-                    ))}
-                </Document>
+                <div className="absolute inset-0 overflow-auto scrollbar-thin">
+                    <div className="min-h-full flex items-start justify-center py-2">
+                        <Document file={fileUrl} onLoadSuccess={onDocumentLoadSuccess}>
+                            {Array.from(new Array(numPages || 1), (el, index) => (
+                                <Page 
+                                    key={`page_${index + 1}`} 
+                                    pageNumber={index + 1} 
+                                    width={360} 
+                                    renderTextLayer={false} 
+                                    renderAnnotationLayer={false} 
+                                    className="mb-2" 
+                                />
+                            ))}
+                        </Document>
+                    </div>
+                </div>
             </div>
 
             {isFullView && (
@@ -86,7 +90,14 @@ export function PDFViewer({ fileUrl }) {
                         <div className="flex flex-col items-center">
                             <Document file={fileUrl} onLoadSuccess={onDocumentLoadSuccess}>
                                 {Array.from(new Array(numPages), (el, index) => (
-                                    <Page key={`page_${index + 1}`} pageNumber={index + 1} width={window.innerWidth * 0.7} renderTextLayer={false} renderAnnotationLayer={false} className="mb-4" />
+                                    <Page 
+                                        key={`page_${index + 1}`} 
+                                        pageNumber={index + 1} 
+                                        width={Math.min(window.innerWidth * 0.7, 800)} 
+                                        renderTextLayer={false} 
+                                        renderAnnotationLayer={false} 
+                                        className="mb-4" 
+                                    />
                                 ))}
                             </Document>
                         </div>

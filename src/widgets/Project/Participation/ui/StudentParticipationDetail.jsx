@@ -19,20 +19,26 @@ export function StudentParticipationDetail({ studentId }) {
     }
 
     return (
-        <main className="bg-white w-250 py-4 mb-10 relative">
-            <div className="px-6">
+        <main className="bg-white w-full max-w-250 py-4 mb-10 relative mx-auto">
+            <div className="px-4 sm:px-6">
                 <div className="space-y-2">
                     <GoBack />
-                    <div className="flex flex-row gap-4 mt-2">
-                        <div className="flex flex-col gap-2">
-                            <Profile 
-                                name={studentData.name} 
-                                team={studentData.team} 
-                                status={studentData.status} 
-                            />
-                            <MessageDistribution />
+                    <div className="flex flex-col lg:flex-row gap-4 mt-2 items-center lg:items-start justify-center">
+                        <div className="flex flex-col gap-2 w-full lg:w-112 lg:flex-shrink-0">
+                            <div className="w-full">
+                                <Profile 
+                                    name={studentData.name} 
+                                    team={studentData.team} 
+                                    status={studentData.status} 
+                                />
+                            </div>
+                            <div className="w-full">
+                                <MessageDistribution />
+                            </div>
                         </div>
-                        <Timeline />
+                        <div className="w-full lg:w-112 lg:flex-shrink-0">
+                            <Timeline />
+                        </div>
                     </div>
                 </div>                
             </div>

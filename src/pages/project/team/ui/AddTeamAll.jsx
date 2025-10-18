@@ -1,27 +1,28 @@
 "use client";
 import { useState, useEffect } from "react";
-import { LayoutHeader, LayoutAside } from "@/widgets/Layout";
+import { LayoutHeader, LayoutAside, useAsideStore } from "@/widgets/Layout";
 import { AddTeamAllForm } from "@/widgets/Project/Team";
 
 export function AddTeamAll({ id }) {
-    const [isAsideCollapsed, setIsAsideCollapsed] = useState(false);
-    const [isMounted, setIsMounted] = useState(false);
-
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
+    const { isCollapsed } = useAsideStore();
 
     return (
-        <div className="bg-secondary-5 flex justify-center w-full min-h-screen relative">
+        <div className="bg-secondary-5 w-full min-h-screen">
             <LayoutHeader />
-            <LayoutAside 
-                isCollapsed={isMounted ? isAsideCollapsed : false} 
-                onToggle={() => setIsAsideCollapsed(!isAsideCollapsed)} 
-            />
+            <LayoutAside />
             
-            <div className="mt-20 ml-[208px]">
-                <h1 className="text-heading-m mt-7 mb-5 font-bold">팀 생성</h1>
-                <AddTeamAllForm />
+            <div 
+                className="transition-all duration-300"
+                style={{
+                    paddingLeft: isCollapsed ? '48px' : '200px'
+                }}
+            >
+                <div className="flex justify-center mt-20">
+                    <div className="w-full max-w-[1040px] px-4 lg:px-4 flex flex-col items-center">
+                        <h1 className="text-heading-m mt-7 mb-5 font-bold">팀 생성</h1>
+                        <AddTeamAllForm />
+                    </div>
+                </div>
             </div>
         </div>
     );
