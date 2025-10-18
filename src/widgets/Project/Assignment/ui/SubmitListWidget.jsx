@@ -34,7 +34,7 @@ export function SubmitListWidget({ assignmentId }) {
     );
 
     return (
-        <article className="mt-8 -mb-8 ml-6 px-8 w-240 border-1 border-gray-10 rounded-lg">
+        <article className="mt-8 px-4 sm:px-8 w-full border-1 border-gray-10 rounded-lg">
             <div className="py-6">
                 <h3 className="text-heading-m text-secondary-80 mb-4">제출물 리스트</h3>
                 <div className="mt-2">

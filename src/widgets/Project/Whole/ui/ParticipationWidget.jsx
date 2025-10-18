@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { Box } from "@/entities/project/dashboard";
 import { PercentageWidget, Students } from "@/widgets/Project/Participation";
 import { StatusSelect } from "@/features/project/team";
 
@@ -12,7 +11,7 @@ export function ParticipationWidget() {
     };
 
     const renderStudentListHeaders = () => (
-        <div className="flex flex-row items-center py-2 px-8 mb-3 mt-4">
+        <div className="flex flex-row items-center py-2 px-8 mb-3 mt-4 min-w-[800px]">
             <div className="w-28 flex-shrink-0">
                 <p className="text-body-s text-secondary-50 text-left">이름</p>
             </div>
@@ -33,15 +32,20 @@ export function ParticipationWidget() {
     );
 
     return (
-        <main className="bg-white w-250 py-4.5 mb-10">
-            <div className="justify-between gap-10 flex flex-row mx-5 mb-8 h-60">
+        <main className="w-full max-w-[1000px] mx-auto py-4 mb-10 px-4">
+            <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 mb-8">
                 <PercentageWidget />
                 <PercentageWidget />
             </div>
-            <div className="ml-6 w-240 border-1 border-gray-10 rounded-lg">
-                {renderStudentListHeaders()}
-                <Students selectedStatus={selectedStatus} />
-            </div>            
+            
+            <div className="border-1 border-gray-10 rounded-lg overflow-hidden">
+                <div className="overflow-x-auto scrollbar-thin">
+                    <div className="min-w-fit">
+                        {renderStudentListHeaders()}
+                        <Students selectedStatus={selectedStatus} />
+                    </div>
+                </div>
+            </div>
         </main>
     );
 }

@@ -63,7 +63,7 @@ export function AssignmentWidget({ initialStatus }) {
     };
 
     const renderAssignmentListHeaders = () => (
-        <div className="flex flex-row items-center py-2 mt-1">
+        <div className="flex flex-row items-center py-2 mt-1 min-w-[800px]">
             <div className="w-100 flex-shrink-0">
                 <p className="text-body-s text-secondary-50 text-left">과제명</p>
             </div>
@@ -88,8 +88,8 @@ export function AssignmentWidget({ initialStatus }) {
     }
 
     return (
-        <main className="bg-white w-250 py-4 mb-10">
-            <article className="ml-6 px-8 w-240 h-145 border-1 border-gray-10 rounded-lg">
+        <main className="w-full max-w-[1000px] mx-auto py-4 mb-10 px-4">
+            <article className="px-8 border-1 border-gray-10 rounded-lg">
                 <div className="flex justify-between pt-5">
                     <h3 className="text-body-l text-secondary-80 mt-2">과제 리스트</h3>
                     <div className="flex flex-row gap-3">
@@ -101,9 +101,11 @@ export function AssignmentWidget({ initialStatus }) {
                     </div>
                 </div>
                 
-                <div className="mx-auto">
-                    {renderAssignmentListHeaders()}                    
-                    <AssignmentList assignmentsData={assignments} />
+                <div className="overflow-x-auto scrollbar-thin">
+                    <div className="min-w-fit">
+                        {renderAssignmentListHeaders()}                    
+                        <AssignmentList assignmentsData={assignments} />
+                    </div>
                 </div>
             </article>
         </main>

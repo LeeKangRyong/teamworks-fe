@@ -46,7 +46,7 @@ export function AddNoticeModal({ onClose }) {
     };
 
     return (
-        <main className="bg-white rounded-lg w-200 flex-col justify-center h-137">
+        <main className="bg-white rounded-lg w-200 max-w-[calc(100vw-2rem)] flex-col justify-center h-137">
             <h3 className="text-body-l text-secondary-90 pl-10 pt-6">공지 작성</h3>
             <div className="flex flex-col px-10 mt-2">
                 <div className="relative">

@@ -15,7 +15,7 @@ export function Percentage({ percentage = 75, label = "전체 기간", color = "
 
     const options = {
         responsive: true,
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         plugins: {
             legend: {
                 display: false,
@@ -32,16 +32,18 @@ export function Percentage({ percentage = 75, label = "전체 기간", color = "
     };
 
     return (
-        <div className="relative w-32 h-32 flex flex-col items-center">
-            <div className="relative w-32 h-32">
+        <div className="flex flex-col items-center w-24 sm:w-28 md:w-32">
+            <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32">
                 <Doughnut data={chartData} options={options} />
                 <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-heading-m text-primary-80">
+                    <span className="text-body-l sm:text-heading-m text-primary-80">
                         {percentage}%
                     </span>
                 </div>
             </div>
-            <span className="text-body-s text-secondary-50 mt-1">{label}</span>
+            <span className="text-caption-regular sm:text-body-s text-secondary-50 mt-1">
+                {label}
+            </span>
         </div>
     );
 }
