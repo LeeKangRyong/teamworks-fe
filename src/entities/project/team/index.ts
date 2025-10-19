@@ -7,4 +7,5 @@ export { useTeams } from "./model/useTeams"
 
 export { ParticipantList } from "./ui/ParticipantList"
 export { StudentManageLists } from "./ui/StudentManageLists"
+export { TeamDetailManageLists } from "./ui/TeamDetailManageLists"
 export { TeamManageLists } from "./ui/TeamManageLists"
