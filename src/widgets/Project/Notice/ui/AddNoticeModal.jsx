@@ -1,3 +1,4 @@
+"use client"
 import { useState, useEffect } from "react";
 import { Cancel } from "@/shared/ui/Button";
 import { Input } from "@/shared/ui/Input";

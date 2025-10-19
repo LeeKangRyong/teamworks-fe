@@ -1,3 +1,4 @@
+"use client"
 import { useState, useEffect, useMemo } from "react";
 import { noticeApi, searchChats, mapChatsToDisplay, filterChatsByType } from "@/entities/project/notice";
 

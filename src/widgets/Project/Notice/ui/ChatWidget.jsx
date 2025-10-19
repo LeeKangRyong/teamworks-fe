@@ -1,3 +1,4 @@
+"use client"
 import { useState, useRef, useEffect } from "react";
 import { SearchNotice } from "@/features/project/notice";
 import { NoticeList } from "@/entities/project/notice";

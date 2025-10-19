@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useRef } from 'react';
 import { DownloadChat } from '@/features/project/notice';
 import { ChatList, MessageInput } from '@/entities/project/notice';

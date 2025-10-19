@@ -1,3 +1,4 @@
+"use client"
 import { useState, useEffect } from "react";
 import { noticeApi, createNewMessage } from "@/entities/project/notice";
 

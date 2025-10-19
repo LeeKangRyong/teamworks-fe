@@ -1,4 +1,5 @@
 export { ListButton } from "./ui/ListButton"
 export { Participant } from "./ui/Participant"
 export { StudentManageList } from "./ui/StudentManageList"
+export { TeamDetailManageList } from "./ui/TeamDetailManageList"
 export { TeamManageList } from "./ui/TeamManageList"

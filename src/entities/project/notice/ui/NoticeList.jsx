@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import Image from "next/image";
 import { NoticeStudentItem, NoticeTeamItem } from "@/shared/ui/project/notice";
