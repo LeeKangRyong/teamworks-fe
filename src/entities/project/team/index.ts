@@ -5,6 +5,7 @@ export { processTeamData, validateData, filterByStatus, sortTeamsData, sortStude
 export { useTeamFilters } from "./model/useTeamFilters"
 export { useTeams } from "./model/useTeams"
 
+export { AITeamAnalysis } from "./ui/AITeamAnalysis"
 export { ParticipantList } from "./ui/ParticipantList"
 export { StudentManageLists } from "./ui/StudentManageLists"
 export { TeamDetailManageLists } from "./ui/TeamDetailManageLists"

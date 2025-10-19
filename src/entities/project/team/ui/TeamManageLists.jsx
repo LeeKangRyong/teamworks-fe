@@ -1,7 +1,17 @@
+"use client";
+import { useRouter, useParams } from "next/navigation";
 import { TeamManageList } from "@/shared/ui/project/team";
 import { AddTeam, SelectStudents } from "@/features/project/team";
 
 export function TeamManageLists({ teamsData }) {
+    const router = useRouter();
+    const params = useParams();
+    const projectId = params.id;
+
+    const handleTeamClick = (teamId) => {
+        router.push(`/projects/${projectId}/team/${teamId}`);
+    };
+
     return (
         <article className="min-h-80">
             {teamsData && teamsData.length > 0 ? (
@@ -13,6 +23,7 @@ export function TeamManageLists({ teamsData }) {
                         recent={team.recent}
                         status={team.status}
                         desc={team.desc}
+                        onClick={() => handleTeamClick(team.team_id)}
                     />
                 ))
             ) : (
