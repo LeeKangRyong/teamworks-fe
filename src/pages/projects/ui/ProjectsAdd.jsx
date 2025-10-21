@@ -18,9 +18,11 @@ export function ProjectsAdd() {
                 }}
             >
                 <div className="flex justify-center mt-20">
-                    <div className="w-full max-w-[1040px] px-4 lg:px-4 flex flex-col items-center">
-                        <h1 className="text-heading-m mt-7 mb-5 font-bold">프로젝트 생성</h1>
-                        <ProjectForm type="add" />
+                    <div className="w-full max-w-[1040px] px-4 lg:px-4">
+                        <h1 className="text-heading-m mt-7 mb-5 text-center mr-90">프로젝트 생성</h1>
+                        <div className="flex flex-col items-center">
+                            <ProjectForm type="add" />
+                        </div>
                     </div>
                 </div>
             </div>
