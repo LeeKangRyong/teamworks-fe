@@ -27,10 +27,34 @@ export function ProjectForm({ type, projectId }) {
     const router = useRouter();
     const { showToast } = useToast();
     
-    // Model Hooks 사용
     const { createProject, isCreating } = useProjectCreate();
     const { updateProject, isUpdating } = useProjectUpdate();
     const { project, isLoading: isLoadingProject } = useProjectDetail(type === "update" ? projectId : null);
+
+    // Update
+    useEffect(() => {
+        if (type === "update" && project) {
+            console.log("프로젝트 데이터 로드:", project);
+            
+            setProjectName(project.name || "");
+            setProjectDescription(project.description || "");
+            setMaxTeamSize(project.maxTeamSize || project.max_team_size || 4);
+            setMaxParticipants(project.maxParticipants || project.max_participants || 100);
+            
+            // 날짜 형식 변환: YYYY-MM-DD 또는 ISO → YYYY/MM/DD
+            if (project.startDate || project.start_date) {
+                const rawStartDate = project.startDate || project.start_date;
+                const dateOnly = rawStartDate.split('T')[0];
+                setStartDate(dateOnly.replace(/-/g, '/'));
+            }
+            
+            if (project.endDate || project.end_date) {
+                const rawEndDate = project.endDate || project.end_date;
+                const dateOnly = rawEndDate.split('T')[0];
+                setEndDate(dateOnly.replace(/-/g, '/'));
+            }
+        }
+    }, [project, type]);
 
     useEffect(() => {
         const isProjectNameFilled = projectName.trim() !== "";
@@ -81,7 +105,7 @@ export function ProjectForm({ type, projectId }) {
 
             if (type === "update") {
                 await updateProject(projectId, projectData);
-                router.push('/projects');        
+                router.push('/projects');
                 setTimeout(() => {
                     showToast("프로젝트가 수정되었습니다");
                 }, 100);

@@ -40,7 +40,7 @@ export function Main() {
             </div>
 
             <button className="absolute top-40 left-1/2 -translate-x-1/2 bg-warning-100 w-35 px-3 py-2 items-center rounded" onClick={handleLogin}>
-                <span className="text-body-m text-gray-0 text-center">테스트하기</span>
+                <span className="text-body-m text-gray-0 text-center">로그인</span>
             </button>
         </div>
     );

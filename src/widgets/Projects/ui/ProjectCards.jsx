@@ -41,6 +41,7 @@ export function ProjectCards({ projects, setProjects }) {
                             onClick={() => handleDetail(project.project_id)}
                         >
                             <More 
+                                projectId={project.project_id}
                                 onDeleteClick={() => handleDeleteClick(project)}
                             />
                         </ProjectCard>

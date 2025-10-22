@@ -55,7 +55,7 @@ export const projectApi = {
                         // JSON 데이터를 API 응답 형식으로 변환
                         resolve({
                             id: project.project_id,
-                            name: project.title,
+                            name: project.name,
                             description: project.description || "프로젝트 설명",
                             type: project.type || "TEAM_PROJECT",
                             status: project.status || "ACTIVE",
@@ -148,7 +148,6 @@ export const projectApi = {
                     const newProject = {
                         id: Date.now(),
                         project_id: Date.now(),
-                        title: projectData.name,
                         name: projectData.name,
                         description: projectData.description,
                         type: "TEAM_PROJECT",

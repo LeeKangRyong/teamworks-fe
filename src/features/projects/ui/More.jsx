@@ -1,12 +1,12 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState, useRef, useEffect, use } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import more from "@/assets/icons/more.png";
 import edit from "@/assets/icons/edit.png";
 import deleteIcon from "@/assets/icons/delete.png";
 
-export function More({ onDeleteClick }) {
+export function More({ projectId, onDeleteClick }) {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
     const router = useRouter();
@@ -31,9 +31,9 @@ export function More({ onDeleteClick }) {
 
     const handleEdit = (e) => {
         e.stopPropagation();
-        console.log("수정 클릭");
-        router.push("/projects/update");
-        // setIsOpen(false);
+        console.log("수정 클릭 - projectId:", projectId);
+        router.push(`/projects/update/${projectId}`);
+        setIsOpen(false);
     };
 
     const handleDelete = (e) => {
