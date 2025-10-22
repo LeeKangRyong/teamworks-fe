@@ -27,15 +27,10 @@ export const useAuth = () => {
         try {
             const data = await authApi.login(credentials);
             const { user, accessToken, refreshToken } = data;
-
-            console.log('[useAuth] Login successful, saving tokens...');
             
-            // user 정보를 함께 저장
             tokenStorage.setTokens(accessToken, refreshToken, user);            
             setUser(user);
-            
-            console.log('[useAuth] Tokens saved, user set');
-            
+                        
             return data;
         } catch (e) {
             const message = e.message || 'Login failed.';

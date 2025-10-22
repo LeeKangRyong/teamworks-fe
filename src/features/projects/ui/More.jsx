@@ -6,7 +6,7 @@ import more from "@/assets/icons/more.png";
 import edit from "@/assets/icons/edit.png";
 import deleteIcon from "@/assets/icons/delete.png";
 
-export function More({ projectId, onDeleteClick }) {
+export function More({ projectId, onDeleteClick, role }) {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
     const router = useRouter();
@@ -55,13 +55,15 @@ export function More({ projectId, onDeleteClick }) {
             {isOpen && (
                 <div className="absolute top-full right-0 w-28 z-50">
                     <div>
-                        <button
-                            onClick={handleEdit}
-                            className="w-full px-3 py-2 text-left bg-secondary-3 hover:bg-secondary-10 transition-colors duration-150 flex flex-row items-center gap-2 group first:rounded-t-lg"
-                        >
-                            <Image src={edit} alt="edit" className="w-4 h-4" />
-                            <span className="text-secondary-60 text-body-s">수정</span>
-                        </button>
+                        {role === 'MANAGER' && (
+                            <button
+                                onClick={handleEdit}
+                                className="w-full px-3 py-2 text-left bg-secondary-3 hover:bg-secondary-10 transition-colors duration-150 flex flex-row items-center gap-2 group first:rounded-t-lg"
+                            >
+                                <Image src={edit} alt="edit" className="w-4 h-4" />
+                                <span className="text-secondary-60 text-body-s">수정</span>
+                            </button>
+                        )}
                         <button
                             onClick={handleDelete}
                             className="w-full px-3 py-2 text-left bg-secondary-3 hover:bg-secondary-10 transition-colors duration-150 flex flex-row items-center gap-2 group last:rounded-b-lg"

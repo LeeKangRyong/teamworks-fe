@@ -3,11 +3,15 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import add from "@/assets/icons/add.png";
 
-export function Add() {
+export function Add({ role }) {
     const router = useRouter();
     
-    const handleAdd= () => {
-        router.push("/projects/add");
+    const handleAdd = () => {
+        if (role === 'MANAGER') {
+            router.push("/projects/add");
+        } else {
+            router.push("/projects/participate");
+        }
     };
 
     return (

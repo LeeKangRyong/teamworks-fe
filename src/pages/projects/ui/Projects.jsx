@@ -3,12 +3,14 @@ import { LayoutHeader, LayoutAside, useAsideStore } from "@/widgets/Layout";
 import { ProjectCards } from "@/widgets/Projects";
 import { Add } from "@/features/projects";
 import { useProjects } from "@/entities/projects";
+import { useAuth } from "@/entities/auth";
 
 export function Projects() {
+    const { user, isLoading: isAuthLoading } = useAuth();
     const { isCollapsed } = useAsideStore();
-    const { projects, setProjects, isLoading, error } = useProjects();
+    const { projects, setProjects, isLoading: isProjectsLoading, error } = useProjects();
 
-    if (isLoading) {
+    if (isAuthLoading || isProjectsLoading) {
         return (
             <div className="bg-secondary-5 w-full min-h-screen">
                 <LayoutHeader />
@@ -62,7 +64,7 @@ export function Projects() {
                     </div>
                 </div>
             </div>
-            {projects.length > 0 ? <Add /> : ""}
+            {projects.length > 0 && user?.role && <Add role={user.role} />}
         </div>
     );
 }

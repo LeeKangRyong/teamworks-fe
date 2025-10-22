@@ -1,41 +1,52 @@
-import { USE_MOCK } from '@/shared/mock';
-import { usersData } from '@/shared/mock';
-import { apiClient } from '@/shared/api/apiClient';
-import { ENDPOINTS } from '@/shared/config/endpoints';
+import { USE_MOCK, usersData } from '@/shared/mock';
+import { apiClient } from '@/shared/api/client';
+import { ENDPOINTS } from '@/shared/api/endpoints';
 
 export const authApi = {
-    login: async (email, password) => {
+    login: async (credentials) => {
         if (USE_MOCK) {
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
                     const user = usersData.find(
-                        u => u.email === email && u.password === password
+                        u => u.email === credentials.email && u.password === credentials.password
                     );
 
                     if (!user) {
-                        reject({ message: '이메일 또는 비밀번호가 잘못되었습니다.' });
+                        reject({
+                            message: '이메일 또는 비밀번호가 올바르지 않습니다.',
+                            status: 401
+                        });
                         return;
                     }
 
                     resolve({
-                        data: {
+                        user: {
                             id: user.user_id,
                             email: user.email,
                             name: user.name,
                             role: user.role
-                        }
+                        },
+                        accessToken: `mock_access_token_${user.user_id}`,
+                        refreshToken: `mock_refresh_token_${user.user_id}`
                     });
                 }, 500);
             });
         }
-        
-        // 실제 API 호출
+
         try {
-            const response = await apiClient.post(ENDPOINTS.AUTH.LOGIN, {
-                email,
-                password
-            });
-            return response;
+            const res = await apiClient.post(ENDPOINTS.AUTH.LOGIN, credentials);
+            const user = res.data.user;
+            
+            return {
+                user: {
+                    id: user.user_id,
+                    email: user.email,
+                    name: user.name,
+                    role: user.role
+                },
+                accessToken: res.data.accessToken || `fake_access_token_${user.user_id}`,
+                refreshToken: res.data.refreshToken || `fake_refresh_token_${user.user_id}`
+            };
         } catch (error) {
             throw {
                 message: error.response?.data?.message || 'Login failed',

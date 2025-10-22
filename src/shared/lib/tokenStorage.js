@@ -15,7 +15,6 @@ export const tokenStorage = {
             if (user) {
                 cookies.set('user', JSON.stringify(user), 7);
             }
-            console.log('[TokenStorage] Tokens saved successfully');
         } catch (error) {
             console.error('[TokenStorage] Failed to save tokens:', error);
         }
@@ -39,7 +38,6 @@ export const tokenStorage = {
             return JSON.parse(userStr);
         } catch (error) {
             console.error('[TokenStorage] Failed to parse user data:', error);
-            // 손상된 쿠키 제거
             cookies.remove('user');
             return null;
         }

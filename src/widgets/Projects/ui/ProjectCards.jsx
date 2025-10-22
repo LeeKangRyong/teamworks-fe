@@ -2,14 +2,16 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ProjectCard } from "@/entities/projects"
-import { More, Add, MakeProject } from "@/features/projects";
+import { More, MakeProject } from "@/features/projects";
 import { DeleteModal } from "@/widgets/Projects";
 import { useModal } from "@/shared/hooks";
+import { useAuth } from "@/entities/auth";
 import noProject from "@/assets/icons/no-project.png";
 
 export function ProjectCards({ projects, setProjects }) {
     const { isOpen: isDeleteModalOpen, modalData: deleteProjectData, openModal: openDeleteModal, closeModal: closeDeleteModal } = useModal();
     const router = useRouter();
+    const { user, isLoading: isAuthLoading } = useAuth();
 
     const handleDetail = (projectId) => {
         router.push(`/projects/${projectId}/dashboard`);
@@ -43,6 +45,7 @@ export function ProjectCards({ projects, setProjects }) {
                             <More 
                                 projectId={project.project_id}
                                 onDeleteClick={() => handleDeleteClick(project)}
+                                role={user?.role}
                             />
                         </ProjectCard>
                     ))
