@@ -5,7 +5,12 @@ export const cookies = {
         const expires = new Date();
         expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
         
-        document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/; SameSite=Strict`;
+        const isSecure = window.location.protocol === 'https:';
+        const secureAttr = isSecure ? '; Secure' : '';
+        
+        document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/; SameSite=Lax${secureAttr}`;
+        
+        console.log(`[Cookie] Set ${name} (secure: ${isSecure})`);
     },
 
     get: (name: string): string | null => {
@@ -18,6 +23,11 @@ export const cookies = {
     remove: (name: string) => {
         if (typeof window === 'undefined') return;
         
-        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        const isSecure = window.location.protocol === 'https:';
+        const secureAttr = isSecure ? '; Secure' : '';
+        
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax${secureAttr}`;
+        
+        console.log(`[Cookie] Removed ${name}`);
     }
 };
