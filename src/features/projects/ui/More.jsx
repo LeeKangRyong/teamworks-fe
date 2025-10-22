@@ -31,14 +31,12 @@ export function More({ projectId, onDeleteClick }) {
 
     const handleEdit = (e) => {
         e.stopPropagation();
-        console.log("수정 클릭 - projectId:", projectId);
         router.push(`/projects/update/${projectId}`);
         setIsOpen(false);
     };
 
     const handleDelete = (e) => {
         e.stopPropagation();
-        console.log("삭제 클릭");
         if (onDeleteClick) {
             onDeleteClick();
         }
