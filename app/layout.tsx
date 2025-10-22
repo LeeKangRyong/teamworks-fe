@@ -18,10 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body 
-        className="antialiased" 
-        style={{ fontFamily: "var(--font-noto-sans-kr), system-ui, sans-serif" }}
-      >
+      <body className="antialiased">
         <ToastProvider>
           <div className="navbar" />
           {children}
