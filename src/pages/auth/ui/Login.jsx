@@ -1,7 +1,7 @@
-// src/pages/auth/ui/Login.jsx
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '@/entities/auth';
+import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import logo from "@/assets/icons/logo.png";
 import thumbnail from "@/assets/icons/thumbnail.png";
@@ -9,16 +9,39 @@ import thumbnail from "@/assets/icons/thumbnail.png";
 export function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [mounted, setMounted] = useState(false);
     const { login, isLoading, error } = useAuth();
+    const router = useRouter();
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log('[Login] Attempting login...');
+        
         try {
             await login({ email, password });
+            console.log('[Login] Login successful, redirecting...');
+            
+            // 명시적으로 리다이렉트
+            setTimeout(() => {
+                router.push('/projects');
+            }, 100);
         } catch (err) {
-            console.error('Login error:', err);
+            console.error('[Login] Login error:', err);
         }
     };
+
+    // 클라이언트에서만 렌더링
+    if (!mounted) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <p className="text-body-m text-gray-50">로딩 중...</p>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen flex flex-col">

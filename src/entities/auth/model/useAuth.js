@@ -12,7 +12,10 @@ export const useAuth = () => {
     useEffect(() => {
         if (typeof window !== 'undefined' && tokenStorage.hasValidToken()) {
             const storedUser = tokenStorage.getUser();
-            setUser(storedUser || { isLogin: true });
+            if (storedUser) {
+                console.log('[useAuth] User restored from storage:', storedUser);
+                setUser(storedUser);
+            }
         }
     }, []);
 
@@ -23,24 +26,28 @@ export const useAuth = () => {
         setError(null);
 
         try {
+            console.log('[useAuth] Logging in...');
             const data = await authApi.login(credentials);
             const { user, accessToken, refreshToken } = data;
 
+            console.log('[useAuth] Login successful, saving tokens...');
+            
             // user 정보를 함께 저장
             tokenStorage.setTokens(accessToken, refreshToken, user);            
             setUser(user);
             
-            router.push('/projects');
+            console.log('[useAuth] Tokens saved, user set');
             
             return data;
         } catch (e) {
             const message = e.message || 'Login failed.';
+            console.error('[useAuth] Login error:', message);
             setError(message);
             throw e;
         } finally {
             setIsLoading(false);
         }
-    }, [router]);
+    }, []);
 
     const logout = useCallback(async () => {
         setIsLoading(true);

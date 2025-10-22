@@ -4,15 +4,20 @@ export const tokenStorage = {
     setTokens: (accessToken, refreshToken, user = null) => {
         if (typeof window === 'undefined') return;
         
-        // Cookie에 저장 -> 60분
-        cookies.set('accessToken', accessToken, 60 / (24 * 60));
-        if (refreshToken) {
-            cookies.set('refreshToken', refreshToken, 7);
-        }
-        
-        // user 정보도 Cookie에 저장 (7일)
-        if (user) {
-            cookies.set('user', JSON.stringify(user), 7);
+        try {
+            // Cookie에 저장 -> 60분
+            cookies.set('accessToken', accessToken, 60 / (24 * 60));
+            if (refreshToken) {
+                cookies.set('refreshToken', refreshToken, 7);
+            }
+            
+            // user 정보도 Cookie에 저장 (7일)
+            if (user) {
+                cookies.set('user', JSON.stringify(user), 7);
+            }
+            console.log('[TokenStorage] Tokens saved successfully');
+        } catch (error) {
+            console.error('[TokenStorage] Failed to save tokens:', error);
         }
     },
 
@@ -28,16 +33,29 @@ export const tokenStorage = {
     
     getUser: () => {
         if (typeof window === 'undefined') return null;
-        const userStr = cookies.get('user');
-        return userStr ? JSON.parse(userStr) : null;
+        try {
+            const userStr = cookies.get('user');
+            if (!userStr) return null;
+            return JSON.parse(userStr);
+        } catch (error) {
+            console.error('[TokenStorage] Failed to parse user data:', error);
+            // 손상된 쿠키 제거
+            cookies.remove('user');
+            return null;
+        }
     },
 
     clearTokens: () => {
         if (typeof window === 'undefined') return;
         
-        cookies.remove('accessToken');
-        cookies.remove('refreshToken');
-        cookies.remove('user');
+        try {
+            cookies.remove('accessToken');
+            cookies.remove('refreshToken');
+            cookies.remove('user');
+            console.log('[TokenStorage] Tokens cleared');
+        } catch (error) {
+            console.error('[TokenStorage] Failed to clear tokens:', error);
+        }
     },
 
     hasValidToken: () => {

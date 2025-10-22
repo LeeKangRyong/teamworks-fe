@@ -1,17 +1,20 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // config options here
-
-  /* 도우미 위치 조정
-  devIndicators: {
-    position: 'bottom-right',
+  reactStrictMode: true,
+  
+  // Netlify에서 이미지 최적화 비활성화
+  images: {
+    unoptimized: true,
   },
-  */
 
-  /* 도우미 개발에서도 비활성화 (production 시 자동으로 사라짐) 
-    devIndicators: false,
-  */
+  // 에셋 경로 설정
+  assetPrefix: process.env.NODE_ENV === 'production' ? '' : undefined,
+
+  // 실험적 기능 비활성화 (안정성 향상)
+  experimental: {
+    optimizeCss: false,
+  },
 };
 
 export default nextConfig;
