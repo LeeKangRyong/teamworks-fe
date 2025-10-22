@@ -14,5 +14,6 @@ export const ENDPOINTS = {
         UPDATE: (projectId) => `/api/projects/${projectId}`,
         DELETE: (projectId) => `/api/projects/${projectId}`,
         PARTICIPANTS: (projectId) => `/api/projects/${projectId}/participants`,
-        PARTICIPATING: '/api/projects/participating'    }
+        PARTICIPATING: '/api/projects/participating'   
+    }
 };

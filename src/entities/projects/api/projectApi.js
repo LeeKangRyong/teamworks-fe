@@ -1,6 +1,7 @@
 import { apiClient } from '@/shared/api/client';
 import { ENDPOINTS } from '@/shared/api/endpoints';
-import { USE_MOCK, projectsData } from '@/shared/mock';
+import { USE_MOCK } from '@/shared/mock';
+import projectsData from '@/shared/mock/project/projectsData.json';
 import { tokenStorage } from '@/shared/lib/tokenStorage';
 
 export const projectApi = {
@@ -13,15 +14,14 @@ export const projectApi = {
         if (USE_MOCK) {
             return new Promise((resolve) => {
                 setTimeout(() => {
-                    // Mock: 모든 프로젝트 반환
+                    // Mock: JSON 파일에서 모든 프로젝트 반환
                     resolve(projectsData);
                 }, 300);
             });
         }
 
         try {
-            const token = tokenStorage.getAccessToken();
-            const user = tokenStorage.getUser(); // user 정보에서 user_id 가져오기
+            const user = tokenStorage.getUser();
             
             const response = await apiClient.get(ENDPOINTS.PROJECTS.MY, {
                 headers: {
@@ -52,23 +52,24 @@ export const projectApi = {
                     );
 
                     if (project) {
+                        // JSON 데이터를 API 응답 형식으로 변환
                         resolve({
                             id: project.project_id,
                             name: project.title,
-                            description: "프로젝트 설명",
-                            type: "TEAM_PROJECT",
-                            status: "ACTIVE",
-                            startDate: "2024-09-01T09:00:00",
-                            endDate: "2024-12-15T18:00:00",
-                            inviteCode: "ABC12345",
-                            maxTeamSize: 4,
-                            maxParticipants: 100,
-                            participantCount: parseInt(project.members),
-                            teamCount: 6,
-                            daysRemaining: 120,
-                            isActive: true,
-                            createdAt: "2024-08-20T10:00:00",
-                            updatedAt: "2024-08-20T10:00:00"
+                            description: project.description || "프로젝트 설명",
+                            type: project.type || "TEAM_PROJECT",
+                            status: project.status || "ACTIVE",
+                            startDate: project.startDate || "2024-09-01T09:00:00",
+                            endDate: project.endDate || "2024-12-15T18:00:00",
+                            inviteCode: project.inviteCode || "ABC12345",
+                            maxTeamSize: project.maxTeamSize || 4,
+                            maxParticipants: project.maxParticipants || 100,
+                            participantCount: project.participantCount || parseInt(project.members),
+                            teamCount: project.teamCount || 6,
+                            daysRemaining: project.daysRemaining || 120,
+                            isActive: project.isActive !== undefined ? project.isActive : true,
+                            createdAt: project.createdAt || "2024-08-20T10:00:00",
+                            updatedAt: project.updatedAt || "2024-08-20T10:00:00"
                         });
                     } else {
                         reject({
@@ -109,6 +110,7 @@ export const projectApi = {
         if (USE_MOCK) {
             return new Promise((resolve) => {
                 setTimeout(() => {
+                    // Mock: JSON 파일에서 모든 프로젝트 반환
                     resolve(projectsData);
                 }, 300);
             });
@@ -142,12 +144,33 @@ export const projectApi = {
         if (USE_MOCK) {
             return new Promise((resolve) => {
                 setTimeout(() => {
-                    resolve({
+                    // Mock: 새 프로젝트 생성 시뮬레이션
+                    const newProject = {
                         id: Date.now(),
-                        ...projectData,
+                        project_id: Date.now(),
+                        title: projectData.name,
+                        name: projectData.name,
+                        description: projectData.description,
+                        type: "TEAM_PROJECT",
                         status: "ACTIVE",
-                        createdAt: new Date().toISOString()
-                    });
+                        startDate: projectData.startDate,
+                        endDate: projectData.endDate,
+                        duration: `${projectData.startDate.split('T')[0]} - ${projectData.endDate.split('T')[0]}`,
+                        inviteCode: Math.random().toString(36).substring(2, 10).toUpperCase(),
+                        maxTeamSize: projectData.maxTeamSize,
+                        maxParticipants: projectData.maxParticipants,
+                        members: "0",
+                        participantCount: 0,
+                        teamCount: 0,
+                        daysRemaining: Math.floor((new Date(projectData.endDate) - new Date()) / (1000 * 60 * 60 * 24)),
+                        isActive: true,
+                        createdAt: new Date().toISOString(),
+                        updatedAt: new Date().toISOString()
+                    };
+                    
+                    // 실제로는 JSON 파일에 추가되지 않음 (Mock이므로)
+                    // 실제 API 연동 시에는 서버에서 처리
+                    resolve(newProject);
                 }, 300);
             });
         }
@@ -181,9 +204,15 @@ export const projectApi = {
         if (USE_MOCK) {
             return new Promise((resolve) => {
                 setTimeout(() => {
+                    // Mock: 프로젝트 수정 시뮬레이션
                     resolve({
                         id: projectId,
-                        ...projectData,
+                        name: projectData.name,
+                        description: projectData.description,
+                        startDate: projectData.startDate,
+                        endDate: projectData.endDate,
+                        maxTeamSize: projectData.maxTeamSize,
+                        maxParticipants: projectData.maxParticipants,
                         updatedAt: new Date().toISOString()
                     });
                 }, 300);
@@ -219,7 +248,11 @@ export const projectApi = {
         if (USE_MOCK) {
             return new Promise((resolve) => {
                 setTimeout(() => {
-                    resolve({ success: true });
+                    // Mock: 프로젝트 삭제 시뮬레이션
+                    resolve({ 
+                        success: true,
+                        message: "프로젝트가 성공적으로 삭제되었습니다" 
+                    });
                 }, 300);
             });
         }

@@ -18,7 +18,7 @@ export function ProjectCards({ projects, setProjects }) {
     const handleDeleteClick = (project) => {
         openDeleteModal({
             id: project.id,
-            title: project.title
+            name: project.name
         });
     };
 
@@ -34,9 +34,10 @@ export function ProjectCards({ projects, setProjects }) {
                     projects.map((project) => (
                         <ProjectCard 
                             key={project.project_id}
-                            title={project.title} 
-                            duration={project.duration} 
-                            members={project.members}
+                            name={project.name} 
+                            startDate={project.startDate}
+                            endDate={project.endDate}
+                            participantCount={project.participantCount}
                             onClick={() => handleDetail(project.project_id)}
                         >
                             <More 
@@ -56,7 +57,7 @@ export function ProjectCards({ projects, setProjects }) {
 
             {isDeleteModalOpen && deleteProjectData && (
                 <DeleteModal
-                    projectTitle={deleteProjectData.title}
+                    projectName={deleteProjectData.name}
                     onClose={closeDeleteModal}
                     onConfirm={handleConfirmDelete}
                 />

@@ -1,9 +1,31 @@
+"use client";
 import { Delete } from "@/features/projects";
 import { Cancel } from "@/shared/ui/Button";
+import { useProjectDelete } from "@/entities/projects";
+import { useToast } from "@/shared/ui/Toast";
 
-export function DeleteModal({ projectTitle, onClose, onConfirm }) {
+export function DeleteModal({ projectId, projectName, onClose, onConfirm }) {
+    const { showToast } = useToast();
+    
+    // Model Hook 사용
+    const { deleteProject, isDeleting } = useProjectDelete();
+
     const handleBackdropClick = (e) => {
-        e.stopPropagation(); // 모달 밖 배경 클릭 시 모달 안꺼지게
+        e.stopPropagation();
+    };
+
+    const handleDelete = async () => {
+        if (isDeleting) return;
+        
+        try {
+            // Model Hook 사용
+            await deleteProject(projectId);
+            showToast("프로젝트가 삭제되었습니다");
+            onConfirm?.(projectId);
+            onClose?.();
+        } catch (error) {
+            showToast(error.message || "프로젝트 삭제에 실패했습니다");
+        }
     };
 
     return (
@@ -17,7 +39,7 @@ export function DeleteModal({ projectTitle, onClose, onConfirm }) {
                 onClick={(e) => e.stopPropagation()}
             >
                 <h3 className="text-secondary-90 text-body-l font-bold text-center mt-6 mb-4">
-                    "{projectTitle}"
+                    "{projectName}"
                 </h3>
                 <div className="mb-6">
                     <p className="text-secondary-80 text-body-m text-center mb-1">
@@ -28,8 +50,8 @@ export function DeleteModal({ projectTitle, onClose, onConfirm }) {
                     </p>
                 </div>
                 <div className="flex gap-1 justify-end">
-                    <Cancel onClick={onClose} />
-                    <Delete onClick={onConfirm} />
+                    <Cancel onClick={onClose} disabled={isDeleting} />
+                    <Delete onClick={handleDelete} disabled={isDeleting} />
                 </div>
             </div>
         </div>

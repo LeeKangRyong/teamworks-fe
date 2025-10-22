@@ -1,9 +1,11 @@
 import Image from "next/image";
 import calendar from "@/assets/icons/calendar.png";
 import person from "@/assets/icons/person.png";
+import { timeFormat } from "../lib/timeFormat";
 
-export function ProjectCard({ title, duration, members, children, onClick }) {
+export function ProjectCard({ name, startDate, endDate, participantCount, children, onClick }) {
     return (
+
         <article 
             className="rounded-lg shadow-lg bg-white h-fit cursor-pointer" 
             onClick={onClick}
@@ -11,20 +13,20 @@ export function ProjectCard({ title, duration, members, children, onClick }) {
             <figure className="bg-support-yellow-100 h-40 rounded-t-lg"/>
             <div className="p-4">
                 <div className="flex flex-row justify-between items-start mb-2">
-                    <p className="text-body-l">{title}</p>
+                    <p className="text-body-l">{name}</p>
                     {children}
                 </div>
                 <div>
                     <div className="flex flex-row gap-0.5 items-center mb-1">
                         <Image src={calendar} alt="calendar" className="h-4 w-4" />
-                        <p className="text-caption-regular text-secondary-70">{duration}</p>
+                        <p className="text-caption-regular text-secondary-70">{timeFormat.getDate(startDate)}</p>
                         <p className="text-caption-regular text-secondary-70">-</p>
                         <Image src={calendar} alt="calendar" className="h-4 w-4" />
-                        <p className="text-caption-regular text-secondary-70">{duration}</p>
+                        <p className="text-caption-regular text-secondary-70">{timeFormat.getDate(endDate)}</p>
                     </div>
                     <div className="flex fle-row gap-0.5 items-center">
                         <Image src={person} alt="person" className="h-4 w-4"/>
-                        <p className="text-caption-regular text-secondary-70">{members}명 참여 중</p>
+                        <p className="text-caption-regular text-secondary-70">{participantCount}명 참여 중</p>
                     </div>
                 </div>
             </div>
