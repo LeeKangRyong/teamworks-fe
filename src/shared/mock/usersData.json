@@ -4,13 +4,13 @@
         "email": "admin@teamworks.com",
         "password": "admin1234",
         "name": "관리자",
-        "role": "admin"
+        "role": "MANAGER"
     },
     {
         "user_id": 2,
         "email": "user@teamworks.com",
         "password": "user1234",
         "name": "일반사용자",
-        "role": "user"
+        "role": "PARTICIPANT"
     }
 ]

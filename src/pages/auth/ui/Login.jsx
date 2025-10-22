@@ -19,13 +19,10 @@ export function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('[Login] Attempting login...');
         
         try {
             await login({ email, password });
-            console.log('[Login] Login successful, redirecting...');
             
-            // 명시적으로 리다이렉트
             setTimeout(() => {
                 router.push('/projects');
             }, 100);
@@ -34,7 +31,6 @@ export function Login() {
         }
     };
 
-    // 클라이언트에서만 렌더링
     if (!mounted) {
         return (
             <div className="min-h-screen flex items-center justify-center">

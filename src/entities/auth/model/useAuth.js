@@ -13,7 +13,6 @@ export const useAuth = () => {
         if (typeof window !== 'undefined' && tokenStorage.hasValidToken()) {
             const storedUser = tokenStorage.getUser();
             if (storedUser) {
-                console.log('[useAuth] User restored from storage:', storedUser);
                 setUser(storedUser);
             }
         }
@@ -26,7 +25,6 @@ export const useAuth = () => {
         setError(null);
 
         try {
-            console.log('[useAuth] Logging in...');
             const data = await authApi.login(credentials);
             const { user, accessToken, refreshToken } = data;
 

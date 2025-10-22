@@ -1,51 +1,36 @@
-import { apiClient } from '@/shared/api/client';
-import { ENDPOINTS } from '@/shared/api/endpoints';
-import { USE_MOCK, usersData } from '@/shared/mock';
-
 export const authApi = {
-    login: async (credentials) => {
-
+    login: async (email, password) => {
         if (USE_MOCK) {
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
                     const user = usersData.find(
-                        u => u.email === credentials.email && u.password === credentials.password
+                        u => u.email === email && u.password === password
                     );
 
-                    if (user) {
-                        resolve({
-                            user: {
-                                user_id: user.id,
-                                email: user.email,
-                                name: user.name,
-                                role: user.role
-                            },
-                            accessToken: `mock_access_token_${user.user_id}`,
-                            refreshToken: `mock_refresh_token_${user.user_id}`
-                        });
-                    } else {
-                        reject({
-                            message: '이메일 또는 비밀번호가 올바르지 않습니다.',
-                            status: 401
-                        });
+                    if (!user) {
+                        reject({ message: '이메일 또는 비밀번호가 잘못되었습니다.' });
+                        return;
                     }
+
+                    resolve({
+                        data: {
+                            id: user.user_id,
+                            email: user.email,
+                            name: user.name,
+                            role: user.role
+                        }
+                    });
                 }, 500);
             });
         }
-
+        
+        // 실제 API 호출
         try {
-            const res = await apiClient.post(ENDPOINTS.AUTH.LOGIN, credentials);
-            const user = res.data.user;
-
-            const fakeAccessToken = `fake_access_token_${user.user_id}`;
-            const fakeRefreshToken = `fake_refresh_token_${user.user_id}`;
-
-            return {
-                user: user,
-                accessToken: fakeAccessToken,
-                refreshToken: fakeRefreshToken
-            };
-
+            const response = await apiClient.post(ENDPOINTS.AUTH.LOGIN, {
+                email,
+                password
+            });
+            return response;
         } catch (error) {
             throw {
                 message: error.response?.data?.message || 'Login failed',
@@ -55,6 +40,14 @@ export const authApi = {
     },
 
     logout: async () => {
+        if (USE_MOCK) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({ message: '로그아웃 성공' });
+                }, 300);
+            });
+        }
+
         try {
             const res = await apiClient.post(ENDPOINTS.AUTH.LOGOUT);
             return res.data;
@@ -67,6 +60,17 @@ export const authApi = {
     },
 
     refreshToken: async (refreshToken) => {
+        if (USE_MOCK) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        accessToken: `mock_new_access_token_${Date.now()}`,
+                        refreshToken: refreshToken
+                    });
+                }, 300);
+            });
+        }
+
         try {
             const res = await apiClient.post(ENDPOINTS.AUTH.REFRESH, { refreshToken });
             return res.data;
