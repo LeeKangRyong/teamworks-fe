@@ -87,8 +87,8 @@ export const projectApi = {
                 ENDPOINTS.PROJECTS.DETAIL(projectId),
                 {
                     headers: {
-                        'X-Manager-ID': user?.user_id || '',
-                        'X-User-ID': user?.user_id || ''
+                        'X-Manager-ID': user?.id || '',
+                        'X-User-ID': user?.id || ''
                     }
                 }
             );
@@ -122,7 +122,7 @@ export const projectApi = {
                 ENDPOINTS.PROJECTS.PARTICIPATING,
                 {
                     headers: {
-                        'X-User-ID': user?.user_id || ''
+                        'X-User-ID': user?.id || ''
                     }
                 }
             );
@@ -182,7 +182,7 @@ export const projectApi = {
                 projectData,
                 {
                     headers: {
-                        'X-Manager-ID': user?.user_id || ''
+                        'X-Manager-ID': user?.id || ''
                     }
                 }
             );
@@ -226,7 +226,7 @@ export const projectApi = {
                 projectData,
                 {
                     headers: {
-                        'X-Manager-ID': user?.user_id || ''
+                        'X-Manager-ID': user?.id || ''
                     }
                 }
             );
@@ -263,7 +263,7 @@ export const projectApi = {
                 ENDPOINTS.PROJECTS.DELETE(projectId),
                 {
                     headers: {
-                        'X-Manager-ID': user?.user_id || ''
+                        'X-Manager-ID': user?.id || ''
                     }
                 }
             );

@@ -4,8 +4,8 @@ export const tokenStorage = {
     setTokens: (accessToken, refreshToken, user = null) => {
         if (typeof window === 'undefined') return;
         
-        // Cookie에 저장 -> 15분
-        cookies.set('accessToken', accessToken, 15 / (24 * 60));
+        // Cookie에 저장 -> 60분
+        cookies.set('accessToken', accessToken, 60 / (24 * 60));
         if (refreshToken) {
             cookies.set('refreshToken', refreshToken, 7);
         }

@@ -1,3 +1,4 @@
+// 일단 관리자만 연결
 export const ENDPOINTS = {
     AUTH: {
         LOGIN: '/api/auth/login',
@@ -13,7 +14,9 @@ export const ENDPOINTS = {
         CREATE: '/api/projects',
         UPDATE: (projectId) => `/api/projects/${projectId}`,
         DELETE: (projectId) => `/api/projects/${projectId}`,
-        PARTICIPANTS: (projectId) => `/api/projects/${projectId}/participants`,
-        PARTICIPATING: '/api/projects/participating'   
+        PARTICIPANTS: (projectId) => `/api/projects/${projectId}/participants`
+    },
+    PROJECT: {
+        
     }
 };

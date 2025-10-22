@@ -15,7 +15,7 @@ export const authApi = {
                     if (user) {
                         resolve({
                             user: {
-                                user_id: user.user_id,
+                                user_id: user.id,
                                 email: user.email,
                                 name: user.name,
                                 role: user.role
@@ -35,7 +35,17 @@ export const authApi = {
 
         try {
             const res = await apiClient.post(ENDPOINTS.AUTH.LOGIN, credentials);
-            return res.data;
+            const user = res.data.user;
+
+            const fakeAccessToken = `fake_access_token_${user.user_id}`;
+            const fakeRefreshToken = `fake_refresh_token_${user.user_id}`;
+
+            return {
+                user: user,
+                accessToken: fakeAccessToken,
+                refreshToken: fakeRefreshToken
+            };
+
         } catch (error) {
             throw {
                 message: error.response?.data?.message || 'Login failed',
