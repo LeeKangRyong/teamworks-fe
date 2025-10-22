@@ -2,6 +2,7 @@ import { USE_MOCK } from '@/shared/mock';
 import { usersData } from '@/shared/mock';
 import { apiClient } from '@/shared/api/apiClient';
 import { ENDPOINTS } from '@/shared/config/endpoints';
+
 export const authApi = {
     login: async (email, password) => {
         if (USE_MOCK) {

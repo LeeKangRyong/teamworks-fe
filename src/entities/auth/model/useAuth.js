@@ -16,7 +16,7 @@ export const useAuth = () => {
                 setUser(storedUser);
             }
         }
-    }, []);
+    }, []); 
 
     const clearError = useCallback(() => setError(null), []);
 
