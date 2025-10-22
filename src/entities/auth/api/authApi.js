@@ -4,6 +4,7 @@ import { ENDPOINTS } from '@/shared/api/endpoints';
 
 export const authApi = {
     login: async (credentials) => {
+        console.log('USE_MOCK:', USE_MOCK);
         if (USE_MOCK) {
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
