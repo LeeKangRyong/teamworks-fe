@@ -1,3 +1,4 @@
+// src/shared/api/client.js
 import axios from 'axios';
 import { tokenStorage } from '@/shared/lib/tokenStorage';
 
@@ -6,7 +7,6 @@ const apiClient = axios.create({
     timeout: 10000,
 });
 
-// 요청 인터셉터 - 토큰 자동 첨부
 apiClient.interceptors.request.use((config) => {
     if (typeof window !== 'undefined') {
         const token = tokenStorage.getAccessToken();
@@ -17,7 +17,6 @@ apiClient.interceptors.request.use((config) => {
     return config;
 });
 
-// 응답 인터셉터 - 토큰 만료 처리
 apiClient.interceptors.response.use(
     (response) => response,
     async (e) => {
@@ -42,10 +41,10 @@ apiClient.interceptors.response.use(
                 } catch (e) {
                     console.log(e);
                     tokenStorage.clearTokens();
-                    window.location.href = '/auth/login';
+                    window.location.href = '/login';
                 }
             } else {
-                window.location.href = '/auth/login';
+                window.location.href = '/login';
             }
         }
         

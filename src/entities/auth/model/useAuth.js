@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { authApi } from '@/entities/user';
+import { authApi } from '@/entities/auth';
 import { tokenStorage } from '@/shared/lib/tokenStorage';
 
 export const useAuth = () => {
@@ -9,7 +9,6 @@ export const useAuth = () => {
     const [error, setError] = useState(null);
     const router = useRouter();
 
-    // 새로고침 시 토큰 검증
     useEffect(() => {
         if (typeof window !== 'undefined' && tokenStorage.hasValidToken()) {
             setUser({ isLogin: true });
@@ -29,11 +28,12 @@ export const useAuth = () => {
             tokenStorage.setTokens(accessToken, refreshToken);            
             setUser(user);
             
-            if (user.role === 'admin') {
-                router.push('/admin');
-            } else {
-                router.push('/');
-            }
+            // if (user.role === 'admin') {
+            //     router.push('/admin');
+            // } else {
+            //     router.push('/projects');
+            // }
+            router.push('/projects');
             
             return data;
         } catch (e) {
@@ -57,7 +57,7 @@ export const useAuth = () => {
             setUser(null);
             setIsLoading(false);
             
-            router.push('/auth/login');
+            router.push('/');
         }
     }, [router]);
 

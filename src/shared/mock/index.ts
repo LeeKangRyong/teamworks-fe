@@ -7,3 +7,6 @@ export { default as studentsData } from "./project/studentsData.json"
 export { default as submitsData } from "./project/submitsData.json"
 export { default as teamsData } from "./project/teamsData.json"
 export { default as timelineData } from "./project/timelineData.json"
+
+export { USE_MOCK } from "./useMock";
+export { default as usersData } from "./usersData.json"
