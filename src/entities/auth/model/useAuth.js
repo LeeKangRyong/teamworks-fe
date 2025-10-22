@@ -11,7 +11,8 @@ export const useAuth = () => {
 
     useEffect(() => {
         if (typeof window !== 'undefined' && tokenStorage.hasValidToken()) {
-            setUser({ isLogin: true });
+            const storedUser = tokenStorage.getUser();
+            setUser(storedUser || { isLogin: true });
         }
     }, []);
 
@@ -25,14 +26,10 @@ export const useAuth = () => {
             const data = await authApi.login(credentials);
             const { user, accessToken, refreshToken } = data;
 
-            tokenStorage.setTokens(accessToken, refreshToken);            
+            // user 정보를 함께 저장
+            tokenStorage.setTokens(accessToken, refreshToken, user);            
             setUser(user);
             
-            // if (user.role === 'admin') {
-            //     router.push('/admin');
-            // } else {
-            //     router.push('/projects');
-            // }
             router.push('/projects');
             
             return data;

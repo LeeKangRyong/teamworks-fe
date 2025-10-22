@@ -1,17 +1,46 @@
 "use client";
-import { useState } from "react";
 import { LayoutHeader, LayoutAside, useAsideStore } from "@/widgets/Layout";
 import { ProjectCards } from "@/widgets/Projects";
 import { Add } from "@/features/projects";
-import { projectsData } from "@/shared/mock";
-
-// Test 용
-// const projectsData = [];
-//
+import { useProjects } from "@/entities/projects";
 
 export function Projects() {
     const { isCollapsed } = useAsideStore();
-    const [projects, setProjects] = useState(projectsData);
+    const { projects, setProjects, isLoading, error } = useProjects();
+
+    if (isLoading) {
+        return (
+            <div className="bg-secondary-5 w-full min-h-screen">
+                <LayoutHeader />
+                <LayoutAside />
+                <div 
+                    className="transition-all duration-300 flex justify-center items-center min-h-screen"
+                    style={{
+                        paddingLeft: isCollapsed ? '48px' : '200px'
+                    }}
+                >
+                    <p className="text-body-m text-secondary-60">로딩 중...</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="bg-secondary-5 w-full min-h-screen">
+                <LayoutHeader />
+                <LayoutAside />
+                <div 
+                    className="transition-all duration-300 flex justify-center items-center min-h-screen"
+                    style={{
+                        paddingLeft: isCollapsed ? '48px' : '200px'
+                    }}
+                >
+                    <p className="text-body-m text-error-50">에러: {error}</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="bg-secondary-5 w-full min-h-screen">

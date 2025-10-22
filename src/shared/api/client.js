@@ -1,4 +1,3 @@
-// src/shared/api/client.js
 import axios from 'axios';
 import { tokenStorage } from '@/shared/lib/tokenStorage';
 
