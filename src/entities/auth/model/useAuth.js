@@ -74,22 +74,45 @@ export const useAuth = () => {
     }, []);
 
     const logout = useCallback(async () => {
+        console.log('[useAuth] 🚪 Starting logout...');
         setIsLoading(true);
         
         try {
-            console.log('[useAuth] Logout attempt...');
-            await authApi.logout();
-        } catch (error) {
-            console.warn('[useAuth] Logout API failed (continuing anyway):', error);
-        } finally {
-            console.log('[useAuth] Clearing tokens and user');
-            tokenStorage.clearTokens();
+            // 1. API 호출 (실패해도 계속)
+            try {
+                await authApi.logout();
+                console.log('[useAuth] API logout success');
+            } catch (error) {
+                console.warn('[useAuth] API logout failed (continuing):', error);
+            }
+            
+            // 2. 상태 클리어
+            console.log('[useAuth] Clearing state...');
             setUser(null);
+            setError(null);
+            
+            // 3. 토큰 클리어
+            console.log('[useAuth] Clearing tokens...');
+            tokenStorage.clearTokens();
+            
+            // 4. 완료 대기
+            await new Promise(resolve => setTimeout(resolve, 200));
+            
+            console.log('[useAuth] ✅ Logout completed');
+            
+        } catch (error) {
+            console.error('[useAuth] ❌ Logout error:', error);
+        } finally {
             setIsLoading(false);
             
-            router.push('/');
+            // 5. 강제 리다이렉트 (페이지 새로고침과 함께)
+            console.log('[useAuth] Redirecting to home...');
+            
+            // window.location.href를 사용하면 페이지를 완전히 새로고침
+            // 이렇게 하면 모든 상태가 확실히 초기화됨
+            window.location.href = '/';
         }
-    }, [router]);
+    }, []);
 
     const checkAuth = useCallback(() => {
         const hasToken = tokenStorage.hasValidToken();
