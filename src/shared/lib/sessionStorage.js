@@ -5,19 +5,12 @@ export const tokenStorage = {
         try {
             console.log('[TokenStorage] Saving tokens and user to sessionStorage:', { user });
             
-            // sessionStorage에 저장
             sessionStorage.setItem('accessToken', accessToken);
             
-            // 🔥 쿠키에도 accessToken 저장 (middleware가 확인할 수 있도록)
-            // 세션 쿠키로 설정 (브라우저 닫으면 삭제)
-            document.cookie = `accessToken=${accessToken}; path=/`;
-            
-            // refreshToken은 localStorage에 저장 (자동 로그인용)
             if (refreshToken) {
                 localStorage.setItem('refreshToken', refreshToken);
             }
             
-            // user 정보는 sessionStorage에
             if (user) {
                 sessionStorage.setItem('user', JSON.stringify(user));
                 console.log('[TokenStorage] User saved to sessionStorage');
@@ -54,14 +47,9 @@ export const tokenStorage = {
         if (typeof window === 'undefined') return;
         
         try {
-            // sessionStorage 제거
             sessionStorage.removeItem('accessToken');
             sessionStorage.removeItem('user');
             localStorage.removeItem('refreshToken');
-            
-            // 🔥 쿠키도 제거
-            document.cookie = 'accessToken=; path=/; max-age=0';
-            
             console.log('[TokenStorage] Tokens cleared');
         } catch (error) {
             console.error('[TokenStorage] Failed to clear tokens:', error);

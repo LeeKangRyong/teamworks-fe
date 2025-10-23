@@ -1,4 +1,3 @@
-// src/pages/projects/ui/Projects.jsx
 "use client";
 import { useEffect } from "react";
 import { LayoutHeader, LayoutAside, useAsideStore } from "@/widgets/Layout";
@@ -13,15 +12,11 @@ export function Projects() {
     const { isCollapsed } = useAsideStore();
     const { projects, setProjects, isLoading: isProjectsLoading, error } = useProjects();
 
-    // 디버깅 로그 추가
     useEffect(() => {
-        console.log('[Projects] Component mounted/updated');
-        console.log('[Projects] User from useAuth:', user);
+        console.log('[Projects] User:', user);
         console.log('[Projects] User role:', user?.role);
-        console.log('[Projects] Cookie user:', tokenStorage.getUser());
-        console.log('[Projects] Projects length:', projects.length);
-        console.log('[Projects] Should show Add button:', Boolean(projects.length > 0 && user?.role));
-    }, [user, projects]);
+        console.log('[Projects] Storage user:', tokenStorage.getUser());
+    }, [user]);
 
     if (isAuthLoading || isProjectsLoading) {
         return (
@@ -57,8 +52,7 @@ export function Projects() {
         );
     }
 
-    // user와 role 체크를 명확하게
-    const showAddButton = Boolean(projects.length > 0 && user && user.role);
+    const showAddButton = Boolean(projects.length > 0 && user?.role);
 
     return (
         <div className="bg-secondary-5 w-full min-h-screen">

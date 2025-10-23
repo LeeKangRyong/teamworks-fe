@@ -1,36 +1,44 @@
-// src/entities/auth/model/useAuth.js
 import { useState, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { authApi } from '@/entities/auth';
 import { tokenStorage } from '@/shared/lib/tokenStorage';
 
 export const useAuth = () => {
-    // 초기 상태를 쿠키에서 가져오기
     const [user, setUser] = useState(() => {
         if (typeof window !== 'undefined') {
             const storedUser = tokenStorage.getUser();
-            console.log('[useAuth] Initial user from cookie:', storedUser);
+            console.log('[useAuth] Initial user from storage:', storedUser);
             return storedUser;
         }
         return null;
     });
-    const [isLoading, setIsLoading] = useState(false);
+    
+    const [isLoading, setIsLoading] = useState(true); // 초기값을 true로 변경
     const [error, setError] = useState(null);
     const router = useRouter();
 
-    // 컴포넌트 마운트 시 user 정보 재확인
     useEffect(() => {
-        if (typeof window !== 'undefined' && tokenStorage.hasValidToken()) {
-            const storedUser = tokenStorage.getUser();
-            console.log('[useAuth] Mount - user from cookie:', storedUser);
-            console.log('[useAuth] Current user state:', user);
+        const initAuth = () => {
+            console.log('[useAuth] Initializing auth...');
             
-            // user가 없는데 쿠키에는 있으면 업데이트
-            if (storedUser && !user) {
-                console.log('[useAuth] Updating user from cookie');
-                setUser(storedUser);
+            if (typeof window !== 'undefined') {
+                const hasToken = tokenStorage.hasValidToken();
+                const storedUser = tokenStorage.getUser();
+                
+                console.log('[useAuth] Has valid token:', hasToken);
+                console.log('[useAuth] Stored user:', storedUser);
+                
+                if (hasToken && storedUser) {
+                    setUser(storedUser);
+                } else if (!hasToken) {
+                    setUser(null);
+                }
             }
-        }
+            
+            setIsLoading(false);
+        };
+
+        initAuth();
     }, []); 
 
     const clearError = useCallback(() => setError(null), []);
@@ -40,17 +48,18 @@ export const useAuth = () => {
         setError(null);
 
         try {
+            console.log('[useAuth] Login attempt...');
             const data = await authApi.login(credentials);
             const { user, accessToken, refreshToken } = data;
             
-            console.log('[useAuth] Login success, saving user:', user);
+            console.log('[useAuth] Login success, saving tokens and user:', user);
             tokenStorage.setTokens(accessToken, refreshToken, user);            
             setUser(user);
             
-            // 저장 확인
+            // 저장 확인 (디버깅용)
             setTimeout(() => {
                 const savedUser = tokenStorage.getUser();
-                console.log('[useAuth] Verification - saved user:', savedUser);
+                console.log('[useAuth] Verification after login - saved user:', savedUser);
             }, 100);
                         
             return data;
@@ -68,9 +77,10 @@ export const useAuth = () => {
         setIsLoading(true);
         
         try {
+            console.log('[useAuth] Logout attempt...');
             await authApi.logout();
         } catch (error) {
-            console.warn('Logout failed:', error);
+            console.warn('[useAuth] Logout API failed (continuing anyway):', error);
         } finally {
             console.log('[useAuth] Clearing tokens and user');
             tokenStorage.clearTokens();
@@ -82,7 +92,10 @@ export const useAuth = () => {
     }, [router]);
 
     const checkAuth = useCallback(() => {
-        return tokenStorage.hasValidToken() && user;
+        const hasToken = tokenStorage.hasValidToken();
+        const hasUser = !!user;
+        console.log('[useAuth] Check auth - hasToken:', hasToken, 'hasUser:', hasUser);
+        return hasToken && hasUser;
     }, [user]);
 
     return {

@@ -1,4 +1,15 @@
+"use client";
+
 import { Doughnut } from "react-chartjs-2";
+import {
+    Chart as ChartJS,
+    ArcElement,
+    Tooltip,
+    Legend
+} from 'chart.js';
+
+// 🔥 컴포넌트에서 직접 등록
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 export function Percentage({ percentage = 75, label = "전체 기간", color = "#4F8EF7" }) {
     const chartData = {
