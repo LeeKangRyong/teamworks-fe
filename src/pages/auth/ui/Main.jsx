@@ -36,12 +36,13 @@ export function Main() {
             <div className="flex-1 flex flex-col justify-center items-center gap-8 pt-18">
                 <Image src={thumbnail} alt="thumbnail" className="h-30 w-auto" />
                 <p className="text-body-l text-gray-70 text-center">공정한 협업, 효율적인 운영</p>
-                <Image src={google} alt="google" className="h-10 w-auto"/>
+                {/* <Image src={google} alt="google" className="h-10 w-auto"/> */}
+                <button className="bg-warning-100 w-78 px-3 py-2 items-center rounded" onClick={handleLogin}>
+                    <span className="text-body-m text-gray-0 text-center">로그인</span>
+                </button>
             </div>
 
-            <button className="absolute top-135 left-1/2 -translate-x-1/2 bg-warning-100 w-78 px-3 py-2 items-center rounded" onClick={handleLogin}>
-                <span className="text-body-m text-gray-0 text-center">로그인</span>
-            </button>
+            
         </div>
     );
 }
