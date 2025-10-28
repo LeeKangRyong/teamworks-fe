@@ -85,11 +85,11 @@ export function Login() {
                 <div className="flex gap-2">
                     <div className="flex flex-col gap-1">
                         <p className="text-secondary-50 text-body-s">관리자 계정: ID) admin@teamworks.com</p>
-                        <p className="text-secondary-50 text-body-s">관리자 계정: PW) admin1234</p>
+                        <p className="text-secondary-50 text-body-s">관리자 계정: PW) teamworks!admin#2025</p>
                     </div>
                     <div className="flex flex-col gap-1">
                         <p className="text-secondary-50 text-body-s">사용자 계정: ID) user@teamworks.com</p>
-                        <p className="text-secondary-50 text-body-s">사용자 계정: PW) user1234</p>
+                        <p className="text-secondary-50 text-body-s">사용자 계정: PW) teamworks!user#2025</p>
                     </div>
                 </div>
             </div>
