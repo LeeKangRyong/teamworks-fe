@@ -15,12 +15,8 @@ export function Projects() {
     const { projects, setProjects, isLoading: isProjectsLoading, error } = useProjects();
     const [isInitialized, setIsInitialized] = useState(false);
 
-    // 🔥 user 정보 복구 로직 (최초 마운트 시)
+    // user 정보 복구 (최초 마운트 시)
     useEffect(() => {
-        console.log('[Projects] 🔍 Checking user state...');
-        console.log('[Projects] Current user:', user);
-        console.log('[Projects] isAuthLoading:', isAuthLoading);
-        
         if (!user && !isAuthLoading) {
             const storedUser = tokenStorage.getUser();
             console.log('[Projects] Stored user from sessionStorage:', storedUser);
@@ -38,18 +34,18 @@ export function Projects() {
     }, [user, isAuthLoading, setUser]);
 
     // 디버깅용
-    useEffect(() => {
-        if (isInitialized) {
-            console.log('[Projects] 📊 Current state:', {
-                hasUser: !!user,
-                userEmail: user?.email,
-                userRole: user?.role,
-                projectCount: projects.length,
-                isAuthLoading,
-                isProjectsLoading
-            });
-        }
-    }, [user, isAuthLoading, isProjectsLoading, projects, isInitialized]);
+    // useEffect(() => {
+    //     if (isInitialized) {
+    //         console.log('[Projects] 📊 Current state:', {
+    //             hasUser: !!user,
+    //             userEmail: user?.email,
+    //             userRole: user?.role,
+    //             projectCount: projects.length,
+    //             isAuthLoading,
+    //             isProjectsLoading
+    //         });
+    //     }
+    // }, [user, isAuthLoading, isProjectsLoading, projects, isInitialized]);
 
     // 로딩 상태
     if (!isInitialized || isAuthLoading || isProjectsLoading) {
@@ -87,20 +83,12 @@ export function Projects() {
         );
     }
 
-    // 🔥 Add 버튼 표시 조건 강화
     const showAddButton = Boolean(
         projects.length > 0 && 
         user && 
         user.role && 
         (user.role === 'MANAGER' || user.role === 'PARTICIPANT')
     );
-
-    console.log('[Projects] 🎯 Add button decision:', {
-        showAddButton,
-        projectsLength: projects.length,
-        hasUser: !!user,
-        userRole: user?.role
-    });
 
     return (
         <div className="bg-secondary-5 w-full min-h-screen">
@@ -123,18 +111,16 @@ export function Projects() {
                 </div>
             </div>
             
-            {/* Add 버튼 */}
             {showAddButton && <Add role={user.role} />}
             
-            {/* 🐛 디버그 패널 (배포 후 제거하세요!) */}
-            {process.env.NODE_ENV === 'development' && (
+            {/* {process.env.NODE_ENV === 'development' && (
                 <div className="fixed bottom-20 right-4 bg-white p-3 rounded shadow-lg text-xs space-y-1">
                     <div>User: {user?.email || 'none'}</div>
                     <div>Role: {user?.role || 'none'}</div>
                     <div>Projects: {projects.length}</div>
                     <div>Show Add: {showAddButton ? 'YES' : 'NO'}</div>
                 </div>
-            )}
+            )} */}
 
             
         </div>

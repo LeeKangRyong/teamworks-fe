@@ -64,7 +64,7 @@ export const useAuth = () => {
     }, []);
 
     const logout = useCallback(async () => {
-        console.log('[useAuth] 🚪 Starting logout...');
+        console.log('Starting logout...');
         setIsLoading(true);
         
         try {
