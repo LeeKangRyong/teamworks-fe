@@ -2,9 +2,7 @@ export const tokenStorage = {
     setTokens: (accessToken, refreshToken, user = null) => {
         if (typeof window === 'undefined') return;
         
-        try {
-            console.log('[TokenStorage] Saving tokens and user to sessionStorage:', { user });
-            
+        try {            
             sessionStorage.setItem('accessToken', accessToken);
             
             if (refreshToken) {
@@ -13,10 +11,9 @@ export const tokenStorage = {
             
             if (user) {
                 sessionStorage.setItem('user', JSON.stringify(user));
-                console.log('[TokenStorage] User saved to sessionStorage');
             }
         } catch (error) {
-            console.error('[TokenStorage] Failed to save tokens:', error);
+            console.error('Failed to save tokens:', error);
         }
     },
 
@@ -37,7 +34,7 @@ export const tokenStorage = {
             if (!userStr) return null;
             return JSON.parse(userStr);
         } catch (error) {
-            console.error('[TokenStorage] Failed to parse user data:', error);
+            console.error('Failed to parse user data:', error);
             sessionStorage.removeItem('user');
             return null;
         }
@@ -50,9 +47,8 @@ export const tokenStorage = {
             sessionStorage.removeItem('accessToken');
             sessionStorage.removeItem('user');
             localStorage.removeItem('refreshToken');
-            console.log('[TokenStorage] Tokens cleared');
         } catch (error) {
-            console.error('[TokenStorage] Failed to clear tokens:', error);
+            console.error('Failed to clear tokens:', error);
         }
     },
 

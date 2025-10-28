@@ -1,12 +1,8 @@
-// src/shared/lib/tokenStorage.js
-
 export const tokenStorage = {
     setTokens: (accessToken, refreshToken, user = null) => {
         if (typeof window === 'undefined') return;
         
-        try {
-            console.log('[TokenStorage] 💾 Saving tokens...');
-            
+        try {            
             // 1. sessionStorage에 저장
             sessionStorage.setItem('accessToken', accessToken);
             
@@ -21,7 +17,6 @@ export const tokenStorage = {
             ].filter(Boolean).join('; ');
             
             document.cookie = cookieOptions;
-            console.log('[TokenStorage] Cookie set:', cookieOptions);
             
             // 3. refreshToken은 localStorage에
             if (refreshToken) {
@@ -31,17 +26,9 @@ export const tokenStorage = {
             // 4. user 정보는 sessionStorage에
             if (user) {
                 sessionStorage.setItem('user', JSON.stringify(user));
-                console.log('[TokenStorage] ✅ User saved:', user.role);
             }
-            
-            // 5. 검증
-            console.log('[TokenStorage] Verification:', {
-                sessionToken: !!sessionStorage.getItem('accessToken'),
-                cookie: document.cookie.includes('accessToken'),
-                user: !!sessionStorage.getItem('user')
-            });
         } catch (error) {
-            console.error('[TokenStorage] ❌ Save failed:', error);
+            console.error('Token save failed:', error);
         }
     },
 
@@ -59,7 +46,6 @@ export const tokenStorage = {
                 token = tokenCookie.split('=')[1];
                 // sessionStorage에 복구
                 sessionStorage.setItem('accessToken', token);
-                console.log('[TokenStorage] Token restored from cookie');
             }
         }
         
@@ -76,14 +62,13 @@ export const tokenStorage = {
         try {
             const userStr = sessionStorage.getItem('user');
             if (!userStr) {
-                console.warn('[TokenStorage] ⚠️ No user in sessionStorage');
+                console.warn('No user in sessionStorage');
                 return null;
             }
             const user = JSON.parse(userStr);
-            console.log('[TokenStorage] User retrieved:', user.role);
             return user;
         } catch (error) {
-            console.error('[TokenStorage] ❌ Parse user failed:', error);
+            console.error('Parse user failed:', error);
             sessionStorage.removeItem('user');
             return null;
         }
@@ -92,9 +77,7 @@ export const tokenStorage = {
     clearTokens: () => {
         if (typeof window === 'undefined') return;
         
-        try {
-            console.log('[TokenStorage] 🧹 Clearing tokens...');
-            
+        try {            
             // 1. sessionStorage 제거
             sessionStorage.removeItem('accessToken');
             sessionStorage.removeItem('user');
@@ -111,16 +94,8 @@ export const tokenStorage = {
             // 방법 2: max-age=0
             document.cookie = `accessToken=; path=/; max-age=0; SameSite=Lax${isProduction ? '; Secure' : ''}`;
             
-            // 4. 검증
-            console.log('[TokenStorage] After clear:', {
-                sessionToken: sessionStorage.getItem('accessToken'),
-                cookie: document.cookie,
-                localStorage: localStorage.getItem('refreshToken')
-            });
-            
-            console.log('[TokenStorage] ✅ Tokens cleared');
         } catch (error) {
-            console.error('[TokenStorage] ❌ Clear failed:', error);
+            console.error('Token clear failed:', error);
         }
     },
 
@@ -132,7 +107,6 @@ export const tokenStorage = {
         const cookieHasToken = document.cookie.includes('accessToken=');
         
         const isValid = !!(sessionToken || cookieHasToken);
-        console.log('[TokenStorage] hasValidToken:', isValid);
         
         return isValid;
     }
