@@ -1,0 +1,35 @@
+[
+    {
+        "submit_id": 101,
+        "assignment_id": 1,
+        "student_id": 2,
+        "file_name": "중간고사 대체 과제.pdf",
+        "name": "박준형",
+        "team": "노랑통닭",
+        "submit_time": "25/08/25 23:59",
+        "score": 88,
+        "file_url": "/pdf/example.pdf"
+    },
+    {
+        "submit_id": 102,
+        "assignment_id": 2,
+        "student_id": 2,
+        "file_name": "기말고사 과제.pdf",
+        "name": "박준형",
+        "team": "노랑통닭",
+        "submit_time": "25/08/14 20:30",
+        "score": 90,
+        "file_url": "/pdf/example.pdf"
+    },
+    {
+        "submit_id": 103,
+        "assignment_id": 3,
+        "student_id": 2,
+        "file_name": "4차 과제.pdf",
+        "name": "박준형",
+        "team": "노랑통닭",
+        "submit_time": "25/08/13 19:40",
+        "score": 85,
+        "file_url": "/pdf/example.pdf"
+    }
+]

@@ -1,4 +1,5 @@
 export { AssignmentTitle } from "./ui/AssignmentTitle"
+export { ParticipantSubmitWidget } from "./ui/ParticipantSubmitWidget"
 export { SubmitListWidget } from "./ui/SubmitListWidget"
 export { SubmitMemo } from "./ui/SubmitMemo"
 export { SubmitPreview } from "./ui/SubmitPreview"
