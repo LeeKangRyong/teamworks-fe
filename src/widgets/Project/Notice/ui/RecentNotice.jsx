@@ -1,10 +1,12 @@
 import { More } from "@/features/project/dashboard";
 import { useModal } from "@/shared/hooks";
+import { useAuth } from "@/entities/auth";
 import { AddNoticeModal } from "@/widgets/Project/Notice";
 import { AddButton } from "@/shared/ui/Button";
 
 export function RecentNotice() {
     const { isOpen, openModal, closeModal } = useModal();
+    const { user } = useAuth();
 
     const handleNotice = () => {
         console.log("hi");
@@ -29,7 +31,9 @@ export function RecentNotice() {
                     <p className="text-body-m text-secondary-70 truncate">1차 과제 관련 안내</p>
                 </div>
                 <div className="flex flex-col gap-6 flex-shrink-0 ml-4">
-                    <AddButton onClick={handleModal} title="공지 작성 +" />
+                    <div className={user?.role === 'PARTICIPANT' ? 'invisible' : ''}>
+                        <AddButton onClick={handleModal} title="공지 작성 +" />
+                    </div>
                     <p className="text-body-m text-secondary-40 text-right">25/08/21</p>
                 </div>
             </article>
