@@ -22,7 +22,6 @@ export function DashboardWidget() {
     const projectId = params.id;
     const { user } = useAuth();
     
-    // 프로젝트 상세 정보 가져오기
     const { project, isLoading: isProjectLoading } = useProjectDetail(projectId);
     
     const { teams, assignments, chartData } = useDashboard();
@@ -54,11 +53,11 @@ export function DashboardWidget() {
 
     // PARTICIPANT용 핸들러
     const handleTeamChatClick = () => {
-        router.push(`/projects/${projectId}/team/chat`);
+        router.push(`/projects/${projectId}/notice`);
     };
 
     const handleSubmitAssignmentClick = () => {
-        router.push(`/projects/${projectId}/assignment/submit`);
+        router.push(`/projects/${projectId}/assignment`);
     };
 
     // PARTICIPANT용 모킹 데이터

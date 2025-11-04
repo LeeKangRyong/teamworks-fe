@@ -1,10 +1,19 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAuth } from "@/entities/auth";
 import { PercentageWidget, Students } from "@/widgets/Project/Participation";
+import { AssignmentHistory } from "@/entities/project/participation";
+import { TimelineShort } from "@/entities/project/participation";
 import { StatusSelect } from "@/features/project/team";
 
 export function ParticipationWidget() {
+    const { user } = useAuth();
     const [selectedStatus, setSelectedStatus] = useState("all");
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     const handleStatusChange = (status) => {
         setSelectedStatus(status);
@@ -31,6 +40,41 @@ export function ParticipationWidget() {
         </div>
     );
 
+    // 클라이언트에서만 렌더링되도록 보장
+    if (!isMounted) {
+        return (
+            <main className="w-full max-w-[1000px] mx-auto py-4 mb-10 px-4">
+                <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 mb-8">
+                    <PercentageWidget />
+                    <PercentageWidget />
+                </div>
+            </main>
+        );
+    }
+
+    // PARTICIPANT(USER) 화면
+    if (user?.role === 'PARTICIPANT') {
+        return (
+            <main className="w-full max-w-[1000px] mx-auto py-4 mb-10 px-4">
+                <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 mb-8">
+                    <PercentageWidget />
+                    <PercentageWidget />
+                </div>
+                
+                <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 mt-8">
+                    <div className="w-full lg:w-1/2">
+                        <AssignmentHistory />
+                    </div>
+                    
+                    <div className="w-full lg:w-1/2">
+                        <TimelineShort />
+                    </div>
+                </div>
+            </main>
+        );
+    }
+
+    // MANAGER 화면
     return (
         <main className="w-full max-w-[1000px] mx-auto py-4 mb-10 px-4">
             <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 mb-8">

@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useAuth } from "@/entities/auth";
 import { AddButton } from "@/shared/ui/Button";
 import { Sort } from "@/features/project/assignment";
 import { AssignmentStatusSelect } from "@/features/project/assignment";
@@ -28,6 +29,8 @@ const reverseMapStatus = (status) => {
 
 export function AssignmentWidget({ initialStatus }) {
     const [isMounted, setIsMounted] = useState(false);
+    const { user } = useAuth();
+
     
     const { 
         assignments, 
@@ -97,7 +100,9 @@ export function AssignmentWidget({ initialStatus }) {
                             onSortDirectionChange={handleSortDirectionChange}
                             type="deadline"
                         />
-                        <AddButton onClick={handleAdd} title="과제 추가 +" />
+                        {user?.role === 'MANAGER' && (
+                            <AddButton onClick={handleAdd} title="과제 추가 +" />
+                        )}
                     </div>
                 </div>
                 
