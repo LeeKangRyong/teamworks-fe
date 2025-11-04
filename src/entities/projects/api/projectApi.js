@@ -14,8 +14,8 @@ export const projectApi = {
         if (USE_MOCK) {
             return new Promise((resolve) => {
                 setTimeout(() => {
-                    // Mock: JSON 파일에서 모든 프로젝트 반환
                     resolve(projectsData);
+                    // resolve([]);
                 }, 300);
             });
         }
