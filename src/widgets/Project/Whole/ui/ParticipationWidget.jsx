@@ -2,7 +2,11 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@/entities/auth";
 import { PercentageWidget, Students } from "@/widgets/Project/Participation";
-import { AssignmentHistory } from "@/entities/project/participation";
+import { 
+    AssignmentHistory, 
+    HighActivityTeam,
+    PeerFeedback 
+} from "@/entities/project/participation";
 import { TimelineShort } from "@/entities/project/participation";
 import { StatusSelect } from "@/features/project/team";
 
@@ -52,13 +56,13 @@ export function ParticipationWidget() {
         );
     }
 
-    // PARTICIPANT(USER) 화면
+    // PARTICIPANT 화면
     if (user?.role === 'PARTICIPANT') {
         return (
             <main className="w-full max-w-[1000px] mx-auto py-4 mb-10 px-4">
                 <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 mb-8">
                     <PercentageWidget />
-                    <PercentageWidget />
+                    <PeerFeedback />
                 </div>
                 
                 <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 mt-8">
@@ -79,7 +83,7 @@ export function ParticipationWidget() {
         <main className="w-full max-w-[1000px] mx-auto py-4 mb-10 px-4">
             <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 mb-8">
                 <PercentageWidget />
-                <PercentageWidget />
+                <HighActivityTeam />
             </div>
             
             <div className="border-1 border-gray-10 rounded-lg overflow-hidden">
