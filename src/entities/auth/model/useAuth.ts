@@ -24,7 +24,9 @@ export const useAuth = () => {
 
                 if (hasToken && storedUser) {
                     setUser(storedUser);
-                } else if (!hasToken) {
+                } else {
+                    // 쿠키만 남아있고 user 정보 없는 경우 → 완전 초기화
+                    tokenStorage.clearTokens();
                     setUser(null);
                 }
             }
