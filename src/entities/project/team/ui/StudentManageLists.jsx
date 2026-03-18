@@ -1,7 +1,17 @@
+"use client";
+import { useRouter, useParams } from "next/navigation";
 import { StudentManageList } from "@/shared/ui/project/team";
 import { Add } from "@/features/project/team";
 
 export function StudentManageLists({ studentsData }) {
+    const router = useRouter();
+    const params = useParams();
+    const projectId = params.id;
+
+    const handleSendMessage = () => {
+        router.push(`/projects/${projectId}/notice`);
+    };
+
     return (
         <article className="min-h-80">
             {studentsData && studentsData.length > 0 ? (
@@ -14,6 +24,7 @@ export function StudentManageLists({ studentsData }) {
                         status={student.status}
                         contact={student.contact}
                         email={student.email}
+                        onSendMessage={handleSendMessage}
                     />
                 ))
             ) : (

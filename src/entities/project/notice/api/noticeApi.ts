@@ -1,7 +1,7 @@
 import { USE_MOCK, chatData, managersData, studentsData, teamsData } from "@/shared/mock";
 import { apiClient, getAuthHeaders } from "@/shared/api/client";
 import { ENDPOINTS } from "@/shared/api/endpoints";
-import type { Chat, Message } from '../model/types'
+import type { Chat, Message, CreateNoticeDto } from '../model/types'
 import type { ApiError } from '@/shared/api/types'
 
 export const noticeApi = {
@@ -132,6 +132,28 @@ export const noticeApi = {
             const err = error as { response?: { data?: { message?: string }; status?: number } };
             throw {
                 message: err.response?.data?.message || '읽음 처리 실패',
+                status: err.response?.status || 500,
+            } as ApiError;
+        }
+    },
+
+    createNotice: async (projectId: string, dto: CreateNoticeDto): Promise<void> => {
+        if (USE_MOCK) {
+            return new Promise((resolve) => {
+                setTimeout(() => { resolve(); }, 300);
+            });
+        }
+        try {
+            const res = await apiClient.post(
+                ENDPOINTS.PROJECT.NOTICES(projectId),
+                dto,
+                { headers: getAuthHeaders() }
+            );
+            return res.data;
+        } catch (error: unknown) {
+            const err = error as { response?: { data?: { message?: string }; status?: number } };
+            throw {
+                message: err.response?.data?.message || '공지 작성 실패',
                 status: err.response?.status || 500,
             } as ApiError;
         }

@@ -3,7 +3,7 @@ import { ENDPOINTS } from '@/shared/api/endpoints';
 import { USE_MOCK } from '@/shared/mock';
 import projectsData from '@/shared/mock/project/projectsData.json';
 import { tokenStorage } from '@/shared/lib/tokenStorage';
-import type { Project, CreateProjectDto } from '../model/types'
+import type { Project, CreateProjectDto, ParticipateProjectDto } from '../model/types'
 import type { ApiError } from '@/shared/api/types'
 
 export const projectApi = {
@@ -272,6 +272,32 @@ export const projectApi = {
             const err = error as { response?: { data?: { message?: string }; status?: number } };
             throw {
                 message: err.response?.data?.message || '프로젝트 삭제 실패',
+                status: err.response?.status || 500
+            } as ApiError;
+        }
+    },
+
+    /**
+     * 프로젝트 참가
+     * POST /api/projects/participate
+     * Header: X-User-ID
+     */
+    participateProject: async (dto: ParticipateProjectDto): Promise<void> => {
+        if (USE_MOCK) {
+            return new Promise((resolve) => {
+                setTimeout(() => { resolve(); }, 300);
+            });
+        }
+
+        try {
+            const user = tokenStorage.getUser();
+            await apiClient.post(ENDPOINTS.PROJECTS.PARTICIPATE, dto, {
+                headers: { 'X-User-ID': String(user?.id || '') }
+            });
+        } catch (error: unknown) {
+            const err = error as { response?: { data?: { message?: string }; status?: number } };
+            throw {
+                message: err.response?.data?.message || '프로젝트 참가 실패',
                 status: err.response?.status || 500
             } as ApiError;
         }

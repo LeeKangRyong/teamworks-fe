@@ -12,6 +12,10 @@ export function TeamManageLists({ teamsData }) {
         router.push(`/projects/${projectId}/team/${teamId}`);
     };
 
+    const handleSendMessage = () => {
+        router.push(`/projects/${projectId}/notice`);
+    };
+
     return (
         <article className="min-h-80">
             {teamsData && teamsData.length > 0 ? (
@@ -24,6 +28,7 @@ export function TeamManageLists({ teamsData }) {
                         status={team.status}
                         desc={team.desc}
                         onClick={() => handleTeamClick(team.team_id)}
+                        onSendMessage={handleSendMessage}
                     />
                 ))
             ) : (

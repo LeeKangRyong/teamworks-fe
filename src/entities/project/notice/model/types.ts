@@ -19,3 +19,8 @@ export interface Chat {
   badge?: number
   messages: Message[]
 }
+
+export interface CreateNoticeDto {
+  title: string
+  content: string
+}

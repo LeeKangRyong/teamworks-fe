@@ -32,16 +32,5 @@ export const useSubmitDetail = (submitId: string | undefined) => {
         loadSubmit();
     }, [submitId, projectId, assignmentId]);
 
-    const handleMemoUpdate = async (memo: string) => {
-        if (!projectId || !assignmentId || !submitId) return;
-        try {
-            await assignmentApi.updateSubmitMemo(projectId, assignmentId, submitId, memo);
-            setSubmit(prev => prev ? { ...prev, memo } : null);
-        } catch (error) {
-            console.error("Failed to update memo:", error);
-            throw error;
-        }
-    };
-
-    return { submit, loading, handleMemoUpdate };
+    return { submit, loading };
 };

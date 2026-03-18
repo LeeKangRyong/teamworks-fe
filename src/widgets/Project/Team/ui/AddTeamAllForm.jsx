@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { Cancel, Complete } from "@/shared/ui/Button";
 import { AddTeamInput, Search } from "@/features/project/team";
+import { useCreateTeam } from "@/features/project/team";
 import { AddMemberModal } from "./AddMemberModal";
 import { useToast } from "@/shared/ui/Toast";
 import Image from "next/image";
@@ -22,14 +23,15 @@ export function AddTeamAllForm() {
     const params = useParams();
     const projectId = params.id;
     const { showToast } = useToast();
+    const { createTeamsBulk, isCreating } = useCreateTeam();
 
     useEffect(() => {
         const isprojectTeamFilled = projectTeam.trim() !== "";
         const isprojectMemberFilled = projectMember.trim() !== "";
         const hasSelectedMembers = selectedMembers.length > 0;
-        
+
         setShowNameWarning(nameInputFocused && !isprojectTeamFilled && !isprojectMemberFilled);
-        
+
         setIsFormValid(isprojectTeamFilled && isprojectMemberFilled && hasSelectedMembers);
     }, [projectTeam, projectMember, selectedMembers, nameInputFocused]);
 
@@ -48,27 +50,31 @@ export function AddTeamAllForm() {
             setShowMemberWarning(true);
             return;
         }
-        
-        router.push(`/projects/${projectId}/team`);        
-        setTimeout(() => {
-            showToast("팀이 생성되었습니다");
-        }, 100);
+
+        try {
+            await createTeamsBulk(projectId, {
+                teamCount: parseInt(projectTeam),
+                membersPerTeam: parseInt(projectMember),
+                memberIds: selectedMembers.map(m => m.student_id || m.id)
+            });
+            router.push(`/projects/${projectId}/team`);
+            setTimeout(() => {
+                showToast("팀이 생성되었습니다");
+            }, 100);
+        } catch (error) {
+            showToast(error.message || "팀 생성에 실패했습니다");
+        }
     };
 
-    const handleSearchClick = () => {
-        setIsModalOpen(true);
-    };
-
-    const handleModalClose = () => {
-        setIsModalOpen(false);
-    };
+    const handleSearchClick = () => { setIsModalOpen(true); };
+    const handleModalClose = () => { setIsModalOpen(false); };
 
     const handleMemberSelect = (members) => {
         setSelectedMembers(members);
         setShowMemberWarning(false);
     };
 
-    const searchDisplayValue = selectedMembers.length > 0 
+    const searchDisplayValue = selectedMembers.length > 0
         ? selectedMembers.length === 1 ? selectedMembers[0].name
         : `${selectedMembers[0].name} 외 ${selectedMembers.length - 1}명`
         : "";
@@ -79,8 +85,8 @@ export function AddTeamAllForm() {
                 <div className="flex flex-col sm:flex-row gap-4 sm:gap-10 mb-8">
                     <div className="flex flex-col gap-2 flex-1">
                         <p className="text-secondary-50 text-body-s">팀 수</p>
-                        <AddTeamInput 
-                            value={projectTeam} 
+                        <AddTeamInput
+                            value={projectTeam}
                             onChange={setprojectTeam}
                             hasError={showNameWarning}
                             onFocus={() => setNameInputFocused(true)}
@@ -90,8 +96,8 @@ export function AddTeamAllForm() {
                     </div>
                     <div className="flex flex-col gap-2 flex-1">
                         <p className="text-secondary-50 text-body-s">팀별 인원</p>
-                        <AddTeamInput 
-                            value={projectMember} 
+                        <AddTeamInput
+                            value={projectMember}
                             onChange={setprojectMember}
                             hasError={showNameWarning}
                             onFocus={() => setNameInputFocused(true)}
@@ -110,7 +116,7 @@ export function AddTeamAllForm() {
                 </div>
                 <div className="flex flex-col gap-2 mb-8">
                     <p className="text-secondary-50 text-body-s">참여자</p>
-                    <Search 
+                    <Search
                         value={searchDisplayValue}
                         placeholder="팀 참여자를 선택해주세요"
                         onClick={handleSearchClick}
@@ -129,15 +135,15 @@ export function AddTeamAllForm() {
                 <div className="flex-1"></div>
                 <div className="flex gap-3 justify-end">
                     <Cancel />
-                    <Complete 
-                        isValid={isFormValid} 
+                    <Complete
+                        isValid={isFormValid && !isCreating}
                         onClick={handleComplete}
                     />
                 </div>
             </main>
 
             {isModalOpen && (
-                <AddMemberModal 
+                <AddMemberModal
                     onClose={handleModalClose}
                     onConfirm={handleMemberSelect}
                 />

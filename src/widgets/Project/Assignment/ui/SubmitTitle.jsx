@@ -1,11 +1,14 @@
 import { TeamMessage } from "@/features/project/assignment";
 import { useAuth } from "@/entities/auth";
+import { useRouter, useParams } from "next/navigation";
 
 export function SubmitTitle({ title, team, name, submitTime}) {
     const { user } = useAuth();
-    
+    const router = useRouter();
+    const params = useParams();
+
     const handleTeamMessage = () => {
-        console.log("Team Message");
+        router.push(`/projects/${params?.id}/notice`);
     }
 
     return (

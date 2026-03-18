@@ -21,3 +21,13 @@ export interface Submit {
   file_url: string
   memo?: string
 }
+
+export interface CreateAssignmentDto {
+  title: string
+  deadline: string
+  description?: string
+}
+
+export interface CreateSubmitDto {
+  file: File
+}

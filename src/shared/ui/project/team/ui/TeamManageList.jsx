@@ -1,7 +1,7 @@
 import { TeamStatus } from "@/shared/ui/project/base";
 import { SendMessage } from "@/features/project/team";
 
-export function TeamManageList({ team, num, recent, status, desc, onClick }) {
+export function TeamManageList({ team, num, recent, status, desc, onClick, onSendMessage }) {
     return (
         <div 
             className="flex flex-row items-center py-1 hover:bg-gray-10 pl-2 -ml-2 border-b-1 border-gray-10"
@@ -23,7 +23,7 @@ export function TeamManageList({ team, num, recent, status, desc, onClick }) {
                 <p className="text-body-s text-secondary-70 text-left">{desc}</p>
             </div>
             <div onClick={(e) => e.stopPropagation()}>
-                <SendMessage />
+                <SendMessage onClick={onSendMessage} />
             </div>
         </div>
     );

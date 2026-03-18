@@ -1,58 +1,64 @@
 "use client"
 import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import { Cancel } from "@/shared/ui/Button";
 import { Input } from "@/shared/ui/Input";
 import { SubmitButton, TextEditor } from "@/features/project/notice";
+import { useCreateNotice } from "@/features/project/notice";
 import { useToast } from "@/shared/ui/Toast";
 import Image from "next/image";
 import warning from "@/assets/icons/warning.png";
 
 export function AddNoticeModal({ onClose }) {
     const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
     const [isFormValid, setIsFormValid] = useState(false);
     const [showTitleWarning, setShowTitleWarning] = useState(false);
     const [titleInputFocused, setTitleInputFocused] = useState(false);
 
+    const params = useParams();
+    const projectId = params?.id;
     const { showToast } = useToast();
+    const { createNotice, isCreating } = useCreateNotice();
 
     useEffect(() => {
         const isTitleFilled = title.trim() !== "";
         setIsFormValid(isTitleFilled);
-        
+
         if (titleInputFocused && isTitleFilled) {
             setShowTitleWarning(false);
         }
     }, [title, titleInputFocused]);
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const isTitleFilled = title.trim() !== "";
-        
+
         if (!isTitleFilled) {
             setShowTitleWarning(true);
             return;
         }
-        
-        onClose(); // 나중에 여기에 공지 POST 연결
-        setTimeout(() => {
-            showToast("공지가 작성되었습니다");
-        }, 200);
+
+        try {
+            await createNotice(projectId, { title, content });
+            onClose();
+            setTimeout(() => {
+                showToast("공지가 작성되었습니다");
+            }, 200);
+        } catch (error) {
+            showToast(error.message || "공지 작성에 실패했습니다");
+        }
     };
 
-    const handleTitleFocus = () => {
-        setTitleInputFocused(true);
-    };
-
-    const handleTitleBlur = () => {
-        setTitleInputFocused(false);
-    };
+    const handleTitleFocus = () => { setTitleInputFocused(true); };
+    const handleTitleBlur = () => { setTitleInputFocused(false); };
 
     return (
         <main className="bg-white rounded-lg w-200 max-w-[calc(100vw-2rem)] flex-col justify-center h-137">
             <h3 className="text-body-l text-secondary-90 pl-10 pt-6">공지 작성</h3>
             <div className="flex flex-col px-10 mt-2">
                 <div className="relative">
-                    <Input 
-                        placeholder="제목을 작성해주세요" 
+                    <Input
+                        placeholder="제목을 작성해주세요"
                         value={title}
                         onChange={setTitle}
                         hasError={showTitleWarning}
@@ -66,12 +72,12 @@ export function AddNoticeModal({ onClose }) {
                         </div>
                     )}
                 </div>
-                <TextEditor />
+                <TextEditor onChange={setContent} />
             </div>
             <div className="flex flex-row gap-2 justify-end mr-10 -mt-2">
                 <Cancel onClick={onClose} />
-                <SubmitButton 
-                    isValid={isFormValid} 
+                <SubmitButton
+                    isValid={isFormValid && !isCreating}
                     onClick={handleSubmit}
                 />
             </div>

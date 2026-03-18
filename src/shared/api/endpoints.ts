@@ -15,6 +15,7 @@ export const ENDPOINTS = {
         UPDATE:         (id: string | number) => `/api/projects/${id}`,
         DELETE:         (id: string | number) => `/api/projects/${id}`,
         PARTICIPANTS:   (id: string | number) => `/api/projects/${id}/participants`,
+        PARTICIPATE:    '/api/projects/participate',
     },
 
     PROJECT: {
@@ -30,6 +31,9 @@ export const ENDPOINTS = {
 
         TEAMS:          (pId: string | number) => `/api/projects/${pId}/teams`,
         TEAM:           (pId: string | number, tId: string | number) => `/api/projects/${pId}/teams/${tId}`,
+        TEAMS_BULK:     (pId: string | number) => `/api/projects/${pId}/teams/bulk`,
+
+        NOTICES:        (pId: string | number) => `/api/projects/${pId}/notices`,
 
         STUDENTS:       (pId: string | number) => `/api/projects/${pId}/students`,
         STUDENT:        (pId: string | number, sId: string | number) => `/api/projects/${pId}/students/${sId}`,

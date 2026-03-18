@@ -1,5 +1,6 @@
 export { teamApi } from "./api/teamApi"
 export type { Team, Student, MemberStatus } from '@/shared/types'
+export type { CreateTeamDto, CreateTeamsBulkDto } from './model/types'
 
 export { processTeamData, validateData, filterByStatus, sortTeamsData, sortStudentsData } from "./lib/processTeam"
 

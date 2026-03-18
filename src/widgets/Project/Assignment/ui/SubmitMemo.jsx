@@ -1,16 +1,27 @@
 import { useState } from 'react';
 import { Save } from "@/features/project/assignment";
+import { useSaveMemo } from "@/features/project/assignment";
 import { MemoInput } from "@/entities/project/assignment";
 import { useToast } from '@/shared/ui/Toast';
+import { useParams } from 'next/navigation';
 
-export function SubmitMemo({ initialMemo = "", onSave }) {
+export function SubmitMemo({ submitId, initialMemo = "" }) {
     const [memo, setMemo] = useState(initialMemo);
-    const [isSaving, setIsSaving] = useState(false);
+    const params = useParams();
+    const { saveMemo, isSaving } = useSaveMemo(
+        params?.id,
+        params?.assignmentId,
+        String(submitId)
+    );
     const { showToast } = useToast();
 
     const handleSave = async () => {
-        setIsSaving(true);
-        showToast('메모가 저장되었습니다');
+        try {
+            await saveMemo(memo);
+            showToast('메모가 저장되었습니다');
+        } catch {
+            showToast('메모 저장에 실패했습니다');
+        }
     };
 
     return (
@@ -20,7 +31,7 @@ export function SubmitMemo({ initialMemo = "", onSave }) {
                 <div className="w-full h-full flex flex-col items-center">
                     <MemoInput value={memo} onChange={setMemo} />
                     <div className="w-full flex mt-3 pb-4 justify-end">
-                        <Save onClick={handleSave} />
+                        <Save onClick={handleSave} disabled={isSaving} />
                     </div>
                 </div>
             </div>

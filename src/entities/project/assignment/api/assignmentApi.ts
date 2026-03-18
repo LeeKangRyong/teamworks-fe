@@ -2,7 +2,7 @@ import { USE_MOCK, assignmentsData, submitsData, chartData } from "@/shared/mock
 import participantSubmitsData from "@/shared/mock/project/participantSubmitsData.json";
 import { apiClient, getAuthHeaders } from "@/shared/api/client";
 import { ENDPOINTS } from "@/shared/api/endpoints";
-import type { Assignment, Submit } from '../model/types'
+import type { Assignment, Submit, CreateAssignmentDto, CreateSubmitDto } from '../model/types'
 import type { ChartItem } from '@/shared/types'
 import type { ApiError } from '@/shared/api/types'
 
@@ -135,6 +135,73 @@ export const assignmentApi = {
             const err = error as { response?: { data?: { message?: string }; status?: number } };
             throw {
                 message: err.response?.data?.message || '메모 수정 실패',
+                status: err.response?.status || 500,
+            } as ApiError;
+        }
+    },
+
+    createAssignment: async (projectId: string, dto: CreateAssignmentDto): Promise<Assignment> => {
+        if (USE_MOCK) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        assignment_id: Date.now(),
+                        title: dto.title,
+                        deadline: dto.deadline,
+                        submit: '0',
+                        mark: '0',
+                        status: '진행중'
+                    } as Assignment);
+                }, 300);
+            });
+        }
+        try {
+            const res = await apiClient.post(
+                ENDPOINTS.PROJECT.ASSIGNMENTS(projectId),
+                dto,
+                { headers: getAuthHeaders() }
+            );
+            return res.data;
+        } catch (error: unknown) {
+            const err = error as { response?: { data?: { message?: string }; status?: number } };
+            throw {
+                message: err.response?.data?.message || '과제 생성 실패',
+                status: err.response?.status || 500,
+            } as ApiError;
+        }
+    },
+
+    createSubmit: async (projectId: string, assignmentId: string, dto: CreateSubmitDto): Promise<Submit> => {
+        if (USE_MOCK) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        submit_id: Date.now(),
+                        assignment_id: parseInt(assignmentId),
+                        student_id: 0,
+                        file_name: dto.file.name,
+                        name: '',
+                        team: '',
+                        submit_time: new Date().toISOString(),
+                        score: null,
+                        file_url: '',
+                    } as Submit);
+                }, 300);
+            });
+        }
+        try {
+            const formData = new FormData();
+            formData.append('file', dto.file);
+            const res = await apiClient.post(
+                ENDPOINTS.PROJECT.SUBMITS(projectId, assignmentId),
+                formData,
+                { headers: { ...getAuthHeaders(), 'Content-Type': 'multipart/form-data' } }
+            );
+            return res.data;
+        } catch (error: unknown) {
+            const err = error as { response?: { data?: { message?: string }; status?: number } };
+            throw {
+                message: err.response?.data?.message || '과제 제출 실패',
                 status: err.response?.status || 500,
             } as ApiError;
         }

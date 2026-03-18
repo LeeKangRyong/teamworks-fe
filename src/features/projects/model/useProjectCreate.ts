@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { projectApi } from '../api/projectApi';
-import type { Project, CreateProjectDto } from './types'
+import { projectApi } from '@/entities/projects';
+import type { Project, CreateProjectDto } from '@/entities/projects';
 
 export const useProjectCreate = () => {
     const [isCreating, setIsCreating] = useState(false);

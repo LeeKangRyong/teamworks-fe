@@ -1,18 +1,25 @@
-import { Logout } from "@/features/auth";
+import { Logout, useLogout } from "@/features/auth";
 import { Cancel } from "@/shared/ui/Button";
 
 export function LogoutModal({ onClose, onConfirm }) {
+    const { logout } = useLogout();
+
     const handleBackdropClick = (e) => {
         e.stopPropagation();
     };
 
+    const handleLogout = async () => {
+        await logout();
+        onConfirm?.();
+    };
+
     return (
-        <div 
+        <div
             className="fixed inset-0 flex items-center justify-center z-50"
             style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
             onClick={handleBackdropClick}
         >
-            <div 
+            <div
                 className="bg-white rounded-md w-100 p-6 items-center justify-center mt-20"
                 onClick={(e) => e.stopPropagation()}
             >
@@ -26,7 +33,7 @@ export function LogoutModal({ onClose, onConfirm }) {
                 </div>
                 <div className="flex gap-1 justify-end">
                     <Cancel onClick={onClose} />
-                    <Logout onClick={onConfirm} />
+                    <Logout onClick={handleLogout} />
                 </div>
             </div>
         </div>

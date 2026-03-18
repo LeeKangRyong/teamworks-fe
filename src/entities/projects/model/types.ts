@@ -29,3 +29,8 @@ export interface CreateProjectDto {
   maxTeamSize: number
   maxParticipants: number
 }
+
+export interface ParticipateProjectDto {
+  code: string
+  name: string
+}

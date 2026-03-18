@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { projectApi } from '../api/projectApi';
+import { projectApi } from '@/entities/projects';
 
 export const useProjectDelete = () => {
     const [isDeleting, setIsDeleting] = useState(false);

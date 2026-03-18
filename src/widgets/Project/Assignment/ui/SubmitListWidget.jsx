@@ -1,35 +1,28 @@
 "use client";
-import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { submitsData } from "@/shared/mock";
-import { SubmitList, Mark } from "@/entities/project/assignment";
+import { useSubmits, SubmitList, Mark } from "@/entities/project/assignment";
 import { Download } from "@/features/project/assignment";
 
 export function SubmitListWidget({ assignmentId }) {
     const router = useRouter();
     const params = useParams();
     const projectId = params.id;
-    const [filteredSubmits, setFilteredSubmits] = useState([]);
+    const { submits } = useSubmits(assignmentId);
 
-    useEffect(() => {
-        const submits = submitsData.filter(
-            submit => submit.assignment_id === parseInt(assignmentId)
-        );
-        setFilteredSubmits(submits);
-    }, [assignmentId]);
-
-    const handleDownload = (submitId) => {
-        console.log('download:', submitId);
+    const handleDownload = (submit) => {
+        if (submit.file_url) {
+            window.open(submit.file_url, '_blank');
+        }
     };
 
-    const handleMark = (submitId, studentId) => {
-        console.log('mark:', submitId);
+    const handleMark = (submitId) => {
+        router.push(`/projects/${projectId}/assignment/${assignmentId}/submit/${submitId}`);
     };
 
     const renderActions = (submit) => (
         <>
-            <Download onClick={() => handleDownload(submit.submit_id)} />
-            <Mark onClick={() => handleMark(submit.submit_id, submit.student_id)} />
+            <Download onClick={() => handleDownload(submit)} />
+            <Mark onClick={() => handleMark(submit.submit_id)} />
         </>
     );
 
@@ -38,8 +31,8 @@ export function SubmitListWidget({ assignmentId }) {
             <div className="py-6">
                 <h3 className="text-heading-m text-secondary-80 mb-4">제출물 리스트</h3>
                 <div className="mt-2">
-                    <SubmitList 
-                        submitsData={filteredSubmits}
+                    <SubmitList
+                        submitsData={submits}
                         renderActions={renderActions}
                     />
                 </div>

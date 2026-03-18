@@ -1,7 +1,7 @@
 "use client";
 import { Delete } from "@/features/projects";
 import { Cancel } from "@/shared/ui/Button";
-import { useProjectDelete } from "@/entities/projects";
+import { useProjectDelete } from "@/features/projects";
 import { useToast } from "@/shared/ui/Toast";
 
 export function DeleteModal({ projectId, projectName, onClose, onConfirm }) {

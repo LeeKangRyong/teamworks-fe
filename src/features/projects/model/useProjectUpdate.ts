@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { projectApi } from '../api/projectApi';
-import type { CreateProjectDto } from './types'
+import { projectApi } from '@/entities/projects';
+import type { CreateProjectDto } from '@/entities/projects';
 
 export const useProjectUpdate = () => {
     const [isUpdating, setIsUpdating] = useState(false);

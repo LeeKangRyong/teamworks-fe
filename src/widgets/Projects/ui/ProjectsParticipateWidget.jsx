@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { Input } from "@/shared/ui/Input";
 import { Cancel, Complete } from "@/shared/ui/Button";
 import { useToast } from "@/shared/ui/Toast";
+import { useParticipate } from "@/features/projects";
 import Image from "next/image";
 import warning from "@/assets/icons/warning.png";
 
@@ -18,34 +19,24 @@ export function ProjectsParticipateWidget() {
 
     const router = useRouter();
     const { showToast } = useToast();
+    const { participate, isParticipating } = useParticipate();
 
     useEffect(() => {
         const isCodeFilled = projectCode.trim() !== "";
         const isNameFilled = name.trim() !== "";
-        
+
         setShowCodeWarning(codeInputFocused && !isCodeFilled);
         setShowNameWarning(nameInputFocused && !isNameFilled);
-        
+
         setIsFormValid(isCodeFilled && isNameFilled);
     }, [projectCode, name, codeInputFocused, nameInputFocused]);
 
-    const handleCodeFocus = () => {
-        setCodeInputFocused(true);
-    };
+    const handleCodeFocus = () => { setCodeInputFocused(true); };
+    const handleCodeBlur = () => { setCodeInputFocused(false); };
+    const handleNameFocus = () => { setNameInputFocused(true); };
+    const handleNameBlur = () => { setNameInputFocused(false); };
 
-    const handleCodeBlur = () => {
-        setCodeInputFocused(false);
-    };
-
-    const handleNameFocus = () => {
-        setNameInputFocused(true);
-    };
-
-    const handleNameBlur = () => {
-        setNameInputFocused(false);
-    };
-
-    const handleComplete = () => {
+    const handleComplete = async () => {
         const isCodeFilled = projectCode.trim() !== "";
         const isNameFilled = name.trim() !== "";
 
@@ -55,7 +46,6 @@ export function ProjectsParticipateWidget() {
                 setCodeInputFocused(true);
                 return;
             }
-            
             if (!isNameFilled) {
                 setShowNameWarning(true);
                 setNameInputFocused(true);
@@ -63,10 +53,15 @@ export function ProjectsParticipateWidget() {
             }
         }
 
-        router.push("/projects");
-        setTimeout(() => {
-            showToast("프로젝트에 참가하였습니다");
-        }, 300);
+        try {
+            await participate({ code: projectCode, name });
+            router.push("/projects");
+            setTimeout(() => {
+                showToast("프로젝트에 참가하였습니다");
+            }, 300);
+        } catch (error) {
+            showToast(error.message || "프로젝트 참가에 실패했습니다");
+        }
     };
 
     return (
@@ -114,8 +109,8 @@ export function ProjectsParticipateWidget() {
             <div className="flex-1"></div>
             <div className="flex gap-2 sm:gap-3 justify-end">
                 <Cancel onClick={() => router.push('/projects')} />
-                <Complete 
-                    isValid={isFormValid} 
+                <Complete
+                    isValid={isFormValid && !isParticipating}
                     onClick={handleComplete}
                 />
             </div>

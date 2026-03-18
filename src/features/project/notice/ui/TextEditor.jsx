@@ -1,7 +1,7 @@
 "use client"
 import { useState, useRef, useEffect } from "react";
 
-export function TextEditor() {
+export function TextEditor({ onChange }) {
     const [content, setContent] = useState("");
     const [showEmojiModal, setShowEmojiModal] = useState(false);
     const [showHeadingModal, setShowHeadingModal] = useState(false);
@@ -97,6 +97,7 @@ export function TextEditor() {
 
     const handleContentChange = (e) => {
         setContent(e.target.value);
+        onChange?.(e.target.value);
     };
     
     const formatFileSize = (bytes) => {

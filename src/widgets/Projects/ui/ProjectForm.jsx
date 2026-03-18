@@ -5,7 +5,8 @@ import { Cancel, Complete } from "@/shared/ui/Button";
 import { Input, InputDate } from "@/shared/ui/Input";
 import { InviteModal } from "./InviteModal";
 import { useToast } from "@/shared/ui/Toast";
-import { useProjectCreate, useProjectUpdate, useProjectDetail } from "@/entities/projects";
+import { useProjectCreate, useProjectUpdate } from "@/features/projects";
+import { useProjectDetail } from "@/entities/projects";
 import Image from "next/image";
 import warning from "@/assets/icons/warning.png";
 

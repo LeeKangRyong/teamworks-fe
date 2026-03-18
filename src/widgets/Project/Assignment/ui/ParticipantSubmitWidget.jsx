@@ -1,33 +1,28 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useRouter, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import participantSubmitsData from "@/shared/mock/project/participantSubmitsData.json";
 import { ParticipantSubmitList, ParticipantMark } from "@/entities/project/assignment";
 import { Download } from "@/features/project/assignment";
 
 export function ParticipantSubmitWidget({ assignmentId }) {
-    const router = useRouter();
     const params = useParams();
-    const projectId = params.id;
     const [allSubmits, setAllSubmits] = useState([]);
 
     useEffect(() => {
         setAllSubmits(participantSubmitsData);
     }, []);
 
-    const handleDownload = (submitId) => {
-        console.log('download:', submitId);
-    };
-
-    const handleSearch = (submitId) => {
-        console.log('search:', submitId);
+    const handleDownload = (submit) => {
+        if (submit.file_url) {
+            window.open(submit.file_url, '_blank');
+        }
     };
 
     const renderActions = (submit) => (
         <>
-            <Download onClick={() => handleDownload(submit.submit_id)} />
-            <ParticipantMark onClick={() => handleMark(submit.submit_id, submit.student_id)} />
-            
+            <Download onClick={() => handleDownload(submit)} />
+            <ParticipantMark onClick={() => {}} />
         </>
     );
 
@@ -36,7 +31,7 @@ export function ParticipantSubmitWidget({ assignmentId }) {
             <div className="py-6">
                 <h3 className="text-heading-s text-secondary-80 mb-4">제출물</h3>
                 <div className="mt-2">
-                    <ParticipantSubmitList 
+                    <ParticipantSubmitList
                         submitsData={allSubmits}
                         renderActions={renderActions}
                     />

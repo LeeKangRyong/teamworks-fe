@@ -4,6 +4,7 @@ import { useRouter, useParams } from "next/navigation";
 import { Cancel, Complete } from "@/shared/ui/Button";
 import { Input } from "@/shared/ui/Input";
 import { Search } from "@/features/project/team";
+import { useCreateTeam } from "@/features/project/team";
 import { AddMemberModal } from "./AddMemberModal";
 import { useToast } from "@/shared/ui/Toast";
 import Image from "next/image";
@@ -23,13 +24,14 @@ export function AddTeamForm() {
     const params = useParams();
     const projectId = params.id;
     const { showToast } = useToast();
+    const { createTeam, isCreating } = useCreateTeam();
 
     useEffect(() => {
         const isProjectNameFilled = projectName.trim() !== "";
         const hasSelectedMembers = selectedMembers.length > 0;
-        
+
         setShowNameWarning(nameInputFocused && !isProjectNameFilled);
-        
+
         setIsFormValid(isProjectNameFilled && hasSelectedMembers);
     }, [projectName, selectedMembers, nameInputFocused]);
 
@@ -47,27 +49,31 @@ export function AddTeamForm() {
             setShowMemberWarning(true);
             return;
         }
-        
-        router.push(`/projects/${projectId}/team`);        
-        setTimeout(() => {
-            showToast("팀이 생성되었습니다");
-        }, 100);
+
+        try {
+            await createTeam(projectId, {
+                name: projectName,
+                description: projectDescription,
+                memberIds: selectedMembers.map(m => m.student_id || m.id)
+            });
+            router.push(`/projects/${projectId}/team`);
+            setTimeout(() => {
+                showToast("팀이 생성되었습니다");
+            }, 100);
+        } catch (error) {
+            showToast(error.message || "팀 생성에 실패했습니다");
+        }
     };
 
-    const handleSearchClick = () => {
-        setIsModalOpen(true);
-    };
-
-    const handleModalClose = () => {
-        setIsModalOpen(false);
-    };
+    const handleSearchClick = () => { setIsModalOpen(true); };
+    const handleModalClose = () => { setIsModalOpen(false); };
 
     const handleMemberSelect = (members) => {
         setSelectedMembers(members);
         setShowMemberWarning(false);
     };
 
-    const searchDisplayValue = selectedMembers.length > 0 
+    const searchDisplayValue = selectedMembers.length > 0
         ? selectedMembers.length === 1 ? selectedMembers[0].name
         : `${selectedMembers[0].name} 외 ${selectedMembers.length - 1}명`
         : "";
@@ -77,8 +83,8 @@ export function AddTeamForm() {
             <main className="w-full max-w-140 bg-white rounded-md min-h-135 p-5 flex flex-col">
                 <div className="flex flex-col gap-2 mb-8">
                     <p className="text-secondary-50 text-body-s">팀명</p>
-                    <Input 
-                        value={projectName} 
+                    <Input
+                        value={projectName}
                         onChange={setProjectName}
                         hasError={showNameWarning}
                         onFocus={() => setNameInputFocused(true)}
@@ -95,14 +101,14 @@ export function AddTeamForm() {
                 </div>
                 <div className="flex flex-col gap-2 mb-8">
                     <p className="text-secondary-50 text-body-s">팀 설명</p>
-                    <Input 
+                    <Input
                         value={projectDescription}
                         onChange={setProjectDescription}
                     />
                 </div>
                 <div className="flex flex-col gap-2 mb-8">
                     <p className="text-secondary-50 text-body-s">참여자</p>
-                    <Search 
+                    <Search
                         value={searchDisplayValue}
                         placeholder="팀 참여자를 선택해주세요"
                         onClick={handleSearchClick}
@@ -121,15 +127,15 @@ export function AddTeamForm() {
                 <div className="flex-1"></div>
                 <div className="flex gap-3 justify-end">
                     <Cancel />
-                    <Complete 
-                        isValid={isFormValid} 
+                    <Complete
+                        isValid={isFormValid && !isCreating}
                         onClick={handleComplete}
                     />
                 </div>
             </main>
 
             {isModalOpen && (
-                <AddMemberModal 
+                <AddMemberModal
                     onClose={handleModalClose}
                     onConfirm={handleMemberSelect}
                 />

@@ -4,7 +4,7 @@ import { SubmitTitle, SubmitPreview, SubmitMemo } from "@/widgets/Project/Assign
 import { useSubmitDetail } from "@/entities/project/assignment";
 
 export function SubmitDetailWidget({ submitId }) {
-    const { submit, loading, handleMemoUpdate } = useSubmitDetail(submitId);
+    const { submit, loading } = useSubmitDetail(submitId);
 
     if (loading || !submit) {
         return <div>Loading...</div>;
@@ -25,10 +25,9 @@ export function SubmitDetailWidget({ submitId }) {
                         <SubmitPreview fileUrl={submit.file_url} />
                     </div>
                     <div className="w-full lg:w-112 lg:flex-shrink-0">
-                        <SubmitMemo 
+                        <SubmitMemo
                             submitId={submit.submit_id}
-                            initialMemo={submit.memo} 
-                            onSave={handleMemoUpdate} 
+                            initialMemo={submit.memo}
                         />
                     </div>
                 </div>

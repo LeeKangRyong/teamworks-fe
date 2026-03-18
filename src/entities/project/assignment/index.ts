@@ -1,6 +1,6 @@
 
 export { assignmentApi } from "./api/assignmentApi";
-export type { Assignment, AssignmentStatus, Submit } from './model/types'
+export type { Assignment, AssignmentStatus, Submit, CreateAssignmentDto, CreateSubmitDto } from './model/types'
 
 export { 
     filterByStatus, 
