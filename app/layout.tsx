@@ -1,4 +1,4 @@
-import "@/app/globals.css";
+import "./globals.css";
 import "@/shared/lib/chartSetup";
 import { Metadata } from "next";
 import { ToastProvider } from "@/shared/ui/Toast/ToastProvider";

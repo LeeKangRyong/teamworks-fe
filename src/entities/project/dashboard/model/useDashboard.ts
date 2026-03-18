@@ -2,8 +2,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { dashboardApi } from "../api/dashboardApi";
-import type { Team, ChartItem } from '@/shared/types'
-import type { Assignment } from '@/entities/project/assignment'
+import type { Team, ChartItem, Assignment } from '@/shared/types'
 
 export const useDashboard = () => {
     const params = useParams();

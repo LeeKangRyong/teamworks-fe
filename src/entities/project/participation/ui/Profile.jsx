@@ -1,7 +1,6 @@
 import Image from "next/image";
 import profile from "@/assets/icons/profile-blue.png";
 import { TeamStatus } from "@/shared/ui/project/base";
-import { Team } from "@/widgets/Project/Whole";
 
 
 export function Profile({ name, team, status }) {

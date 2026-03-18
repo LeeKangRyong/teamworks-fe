@@ -1,8 +1,7 @@
 import { USE_MOCK, teamsData, assignmentsData, chartData } from "@/shared/mock";
 import { apiClient, getAuthHeaders } from "@/shared/api/client";
 import { ENDPOINTS } from "@/shared/api/endpoints";
-import type { Team, ChartItem } from '@/shared/types'
-import type { Assignment } from '@/entities/project/assignment'
+import type { Team, ChartItem, Assignment } from '@/shared/types'
 import type { ApiError } from '@/shared/api/types'
 
 export const dashboardApi = {

@@ -1,4 +1,4 @@
-import { ProjectsAdd } from "@/pages/projects";
+import { ProjectsAdd } from "@/views/projects";
 
 export default function ProjectsAddPage() {
   return (

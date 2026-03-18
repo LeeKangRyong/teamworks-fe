@@ -1,6 +1,6 @@
 "use client";
 import { useParams } from "next/navigation";
-import { ProjectsUpdate } from "@/pages/projects";
+import { ProjectsUpdate } from "@/views/projects";
 
 export default function ProjectsUpdatePage() {
     const params = useParams();

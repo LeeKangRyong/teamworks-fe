@@ -40,8 +40,8 @@
       "@/widgets/*": [
         "./src/widgets/*"
       ],
-      "@/pages/*": [
-        "./src/pages/*"
+      "@/views/*": [
+        "./src/views/*"
       ],
       "@/app/*": [
         "./src/app/*"

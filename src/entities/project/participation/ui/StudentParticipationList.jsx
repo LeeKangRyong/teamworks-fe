@@ -1,7 +1,6 @@
 "use client";
 import { useRouter, useParams } from "next/navigation";
 import { StudentParticipation } from "@/shared/ui/project/participation";
-import { Add } from "@/features/project/team";
 
 export function StudentParticipationList({ studentsData }) {
     const router = useRouter();

@@ -1,5 +1,4 @@
-import type { Team } from '@/shared/types';
-import type { Assignment } from '@/entities/project/assignment';
+import type { Team, Assignment } from '@/shared/types';
 
 export interface DashboardStats {
     totalTeams: number;

@@ -1,5 +1,4 @@
-import type { Team, ChartItem } from '@/shared/types'
-import type { Assignment } from '@/entities/project/assignment'
+import type { Team, ChartItem, Assignment } from '@/shared/types'
 
 export interface DashboardData {
   teams: Team[]

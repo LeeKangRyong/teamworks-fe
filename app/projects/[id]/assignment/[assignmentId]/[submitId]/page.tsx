@@ -1,4 +1,4 @@
-import { SubmitDetail } from "@/pages/project/assignment";
+import { SubmitDetail } from "@/views/project/assignment";
 
 export default async function SubmitDetailPage({ params }) {
     const { id: projectId, assignmentId, submitId } = await params;

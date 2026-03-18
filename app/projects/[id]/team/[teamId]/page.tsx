@@ -1,4 +1,4 @@
-import { TeamDetail } from "@/pages/project/team";
+import { TeamDetail } from "@/views/project/team";
 
 export default async function TeamDetailPage({ 
     params 

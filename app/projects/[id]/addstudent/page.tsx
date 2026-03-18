@@ -1,4 +1,4 @@
-import { AddStudent } from "@/pages/project/team";
+import { AddStudent } from "@/views/project/team";
 
 export default async function AddStudentPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;

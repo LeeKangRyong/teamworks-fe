@@ -1,4 +1,4 @@
-import type { User } from '@/entities/auth'
+import type { User } from '@/shared/types'
 
 type StoredUser = User
 

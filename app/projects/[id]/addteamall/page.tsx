@@ -1,4 +1,4 @@
-import { AddTeamAll } from "@/pages/project/team";
+import { AddTeamAll } from "@/views/project/team";
 
 export default async function AddTeamAllPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;

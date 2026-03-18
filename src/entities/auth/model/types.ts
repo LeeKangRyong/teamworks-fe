@@ -1,11 +1,4 @@
-export type UserRole = 'MANAGER' | 'PARTICIPANT'
-
-export interface User {
-  id: number
-  email: string
-  name: string
-  role: UserRole
-}
+export type { User, UserRole } from '@/shared/types'
 
 export interface LoginCredentials {
   email: string

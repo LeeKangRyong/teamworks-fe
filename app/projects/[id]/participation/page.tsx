@@ -1,5 +1,5 @@
 
-import { Participation } from "@/pages/project/participation"
+import { Participation } from "@/views/project/participation"
 
 export default async function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
