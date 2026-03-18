@@ -1,11 +1,19 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import { ParticipantList } from "@/entities/project/team";
 import { CheckBox } from "@/shared/ui/Button";
-import { studentsData } from "@/shared/mock";
+import { teamApi } from "@/entities/project/team/api/teamApi";
 
 export function ParticipantLists({ onSelectionChange }) {
+    const params = useParams();
+    const projectId = params.id;
+    const [students, setStudents] = useState([]);
     const [selectedIds, setSelectedIds] = useState([]);
+
+    useEffect(() => {
+        teamApi.getStudents(projectId).then(setStudents);
+    }, [projectId]);
 
     const handleCheck = (participantId) => {
         setSelectedIds(prev => {
@@ -16,26 +24,22 @@ export function ParticipantLists({ onSelectionChange }) {
         });
     };
 
-    const allIds = studentsData.map(student => student.student_id);
+    const allIds = students.map(student => student.student_id);
     const isAllSelected = allIds.length > 0 && allIds.every(id => selectedIds.includes(id));
     const isIndeterminate = selectedIds.length > 0 && !isAllSelected;
 
     const handleSelectAllChange = (newChecked) => {
         if (isIndeterminate) {
-            // 부분 선택 상태 → 전체 해제
             setSelectedIds([]);
         } else if (selectedIds.length === 0) {
-            // 아무것도 선택 안된 상태 → 전체 선택
             setSelectedIds(allIds);
         } else if (isAllSelected) {
-            // 전체 선택 상태 → 전체 해제
             setSelectedIds([]);
         }
     };
 
-    // useEffect로 선택 변경사항을 상위 컴포넌트에 전달
     useEffect(() => {
-        const selectedMembers = studentsData.filter(p => 
+        const selectedMembers = students.filter(p =>
             selectedIds.includes(p.student_id)
         );
         onSelectionChange?.(selectedMembers, selectedIds.length);
@@ -45,7 +49,7 @@ export function ParticipantLists({ onSelectionChange }) {
         <div className="h-full flex flex-col">
             <div className="flex flex-row items-center p-3">
                 <div className="flex items-center">
-                    <CheckBox 
+                    <CheckBox
                         checked={isAllSelected}
                         indeterminate={isIndeterminate}
                         onChange={handleSelectAllChange}
@@ -57,8 +61,8 @@ export function ParticipantLists({ onSelectionChange }) {
                 </div>
             </div>
             <div className="flex-1 overflow-y-auto">
-                <ParticipantList 
-                    participants={studentsData}
+                <ParticipantList
+                    participants={students}
                     selectedIds={selectedIds}
                     onCheck={handleCheck}
                 />

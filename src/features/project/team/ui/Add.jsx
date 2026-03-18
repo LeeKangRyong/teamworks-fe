@@ -10,9 +10,9 @@ export function Add({ type }) {
         if (type === "팀") {
             router.push(`/projects/${projectId}/addteam`);        
         }
-        // if (type === "학생") {
-        //     router.push(`/projects/${projectId}/addstudent`);        
-        // }
+        if (type === "학생") {
+            router.push(`/projects/${projectId}/addstudent`);
+        }
     };
 
     return (

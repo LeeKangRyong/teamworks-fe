@@ -1,11 +1,11 @@
 "use client";
 import { useState, useCallback } from 'react';
 
-export const useModal = (initialState = false) => {
+export const useModal = <T = unknown>(initialState = false) => {
     const [isOpen, setIsOpen] = useState(initialState);
-    const [modalData, setModalData] = useState(null);
+    const [modalData, setModalData] = useState<T | null>(null);
 
-    const openModal = useCallback((data = null) => {
+    const openModal = useCallback((data: T | null = null) => {
         setModalData(data);
         setIsOpen(true);
     }, []);

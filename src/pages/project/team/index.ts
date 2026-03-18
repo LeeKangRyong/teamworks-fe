@@ -1,4 +1,5 @@
 export { AddTeam } from "./ui/AddTeam"
+export { AddStudent } from "./ui/AddStudent"
 export { AddTeamAll } from "./ui/AddTeamAll"
 export { Team } from "./ui/Team"
 export { TeamDetail } from "./ui/TeamDetail"

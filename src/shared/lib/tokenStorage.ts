@@ -1,6 +1,6 @@
 import type { User } from '@/entities/auth'
 
-interface StoredUser extends User {}
+type StoredUser = User
 
 export const tokenStorage = {
     setTokens: (accessToken: string, refreshToken: string | null, user: StoredUser | null = null): void => {

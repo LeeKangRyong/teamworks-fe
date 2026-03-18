@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { processTeamData } from "@/entities/project/team";
 import type { Team, Student } from '@/shared/types'
+import type { ListType } from '@/shared/lib/dateUtils'
 
 interface UseTeamFiltersProps {
     teams: Team[]
@@ -26,7 +27,7 @@ export const useTeamFilters = ({
 
         return processTeamData({
             rawData,
-            listType,
+            listType: listType as ListType,
             selectedStatus,
             sortType,
             sortOrder,

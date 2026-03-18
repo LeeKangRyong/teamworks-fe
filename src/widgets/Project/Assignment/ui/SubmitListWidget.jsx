@@ -16,7 +16,7 @@ export function SubmitListWidget({ assignmentId }) {
     };
 
     const handleMark = (submitId) => {
-        router.push(`/projects/${projectId}/assignment/${assignmentId}/submit/${submitId}`);
+        router.push(`/projects/${projectId}/assignment/${assignmentId}/${submitId}`);
     };
 
     const renderActions = (submit) => (

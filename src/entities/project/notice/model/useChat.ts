@@ -2,18 +2,19 @@
 import { useState, useEffect, useMemo } from "react";
 import { useParams } from "next/navigation";
 import { noticeApi, searchChats, mapChatsToDisplay, filterChatsByType } from "@/entities/project/notice";
-import type { Chat } from './types'
+import type { Chat, ChatUserType } from './types'
+import type { ChatUser } from '../lib/processNotice'
 
 export const useChat = () => {
     const params = useParams();
     const projectId = params?.id as string | undefined;
 
     const [chats, setChats] = useState<Chat[]>([]);
-    const [managers, setManagers] = useState<unknown[]>([]);
-    const [students, setStudents] = useState<unknown[]>([]);
-    const [teams, setTeams] = useState<unknown[]>([]);
+    const [managers, setManagers] = useState<ChatUser[]>([]);
+    const [students, setStudents] = useState<ChatUser[]>([]);
+    const [teams, setTeams] = useState<ChatUser[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
-    const [chatType, setChatType] = useState("all");
+    const [chatType, setChatType] = useState<ChatUserType | 'all'>("all");
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -28,9 +29,9 @@ export const useChat = () => {
                     noticeApi.getTeams(projectId),
                 ]);
                 setChats(chatData);
-                setManagers(managerData);
-                setStudents(studentData);
-                setTeams(teamData);
+                setManagers(managerData as ChatUser[]);
+                setStudents(studentData as ChatUser[]);
+                setTeams(teamData as ChatUser[]);
             } catch (error) {
                 console.error("Failed to load chat data:", error);
             } finally {

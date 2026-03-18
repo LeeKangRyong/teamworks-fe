@@ -20,6 +20,7 @@ export interface Submit {
   score: number | null
   file_url: string
   memo?: string
+  status?: string
 }
 
 export interface CreateAssignmentDto {
