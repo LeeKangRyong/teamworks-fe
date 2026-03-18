@@ -1,15 +1,21 @@
 import { useState, useEffect, useMemo } from "react";
+import { useParams } from "next/navigation";
 import { assignmentApi, filterByStatus, sortByDeadline, calculateAssignmentStats } from "@/entities/project/assignment";
 
 export const useAssignments = () => {
+    const params = useParams();
+    const projectId = params?.id;
+
     const [assignments, setAssignments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [statusFilter, setStatusFilter] = useState("전체");
 
     useEffect(() => {
-        const loadAssignments = () => {
+        if (!projectId) return;
+
+        const loadAssignments = async () => {
             try {
-                const data = assignmentApi.getAssignments();
+                const data = await assignmentApi.getAssignments(projectId);
                 setAssignments(data);
             } catch (error) {
                 console.error("Failed to load assignments:", error);
@@ -19,7 +25,7 @@ export const useAssignments = () => {
         };
 
         loadAssignments();
-    }, []);
+    }, [projectId]);
 
     const filteredAssignments = useMemo(() => {
         const filtered = filterByStatus(assignments, statusFilter);

@@ -1,23 +1,24 @@
 import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import { assignmentApi } from "@/entities/project/assignment";
 
-/**
- * 특정 과제 상세 정보 조회 Hook
- */
 export const useAssignmentDetail = (assignmentId) => {
+    const params = useParams();
+    const projectId = params?.id;
+
     const [assignment, setAssignment] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (!assignmentId) {
+        if (!assignmentId || !projectId) {
             setAssignment(null);
             setLoading(false);
             return;
         }
 
-        const loadAssignment = () => {
+        const loadAssignment = async () => {
             try {
-                const data = assignmentApi.getAssignmentById(assignmentId);
+                const data = await assignmentApi.getAssignmentById(projectId, assignmentId);
                 setAssignment(data);
             } catch (error) {
                 console.error("Failed to load assignment:", error);
@@ -27,10 +28,7 @@ export const useAssignmentDetail = (assignmentId) => {
         };
 
         loadAssignment();
-    }, [assignmentId]);
+    }, [assignmentId, projectId]);
 
-    return {
-        assignment,
-        loading
-    };
+    return { assignment, loading };
 };

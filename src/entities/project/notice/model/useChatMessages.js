@@ -1,21 +1,25 @@
 "use client"
 import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import { noticeApi, createNewMessage } from "@/entities/project/notice";
 
 export const useChatMessages = (chatId) => {
+    const params = useParams();
+    const projectId = params?.id;
+
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (!chatId) {
+        if (!chatId || !projectId) {
             setMessages([]);
             setLoading(false);
             return;
         }
 
-        const loadMessages = () => {
+        const loadMessages = async () => {
             try {
-                const chat = noticeApi.getChatById(chatId);
+                const chat = await noticeApi.getChatById(projectId, chatId);
                 setMessages(chat?.messages || []);
             } catch (error) {
                 console.error("Failed to load messages:", error);
@@ -25,15 +29,15 @@ export const useChatMessages = (chatId) => {
         };
 
         loadMessages();
-    }, [chatId]);
+    }, [chatId, projectId]);
 
     const sendMessage = async (content) => {
         if (!content.trim()) return;
 
         const newMessage = createNewMessage(content);
-        
+
         try {
-            await noticeApi.sendMessage(chatId, newMessage);
+            await noticeApi.sendMessage(projectId, chatId, newMessage);
             setMessages(prev => [...prev, newMessage]);
         } catch (error) {
             console.error("Failed to send message:", error);
@@ -42,8 +46,8 @@ export const useChatMessages = (chatId) => {
 
     const markAsRead = async () => {
         try {
-            await noticeApi.markAsRead(chatId);
-            setMessages(prev => 
+            await noticeApi.markAsRead(projectId, chatId);
+            setMessages(prev =>
                 prev.map(msg => ({ ...msg, isRead: true }))
             );
         } catch (error) {
@@ -51,10 +55,5 @@ export const useChatMessages = (chatId) => {
         }
     };
 
-    return {
-        messages,
-        loading,
-        sendMessage,
-        markAsRead
-    };
+    return { messages, loading, sendMessage, markAsRead };
 };

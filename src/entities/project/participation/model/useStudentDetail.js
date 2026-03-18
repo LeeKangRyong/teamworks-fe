@@ -1,15 +1,21 @@
 import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import { participationApi } from "@/entities/project/participation";
 
 export const useStudentDetail = (studentId) => {
+    const params = useParams();
+    const projectId = params?.id;
+
     const [studentData, setStudentData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        if (!studentId || !projectId) return;
+
         const fetchStudentData = async () => {
             setIsLoading(true);
             try {
-                const student = participationApi.getStudentById(studentId);
+                const student = await participationApi.getStudentById(projectId, studentId);
                 setStudentData(student);
             } catch (err) {
                 console.error('Error fetching student:', err);
@@ -19,13 +25,8 @@ export const useStudentDetail = (studentId) => {
             }
         };
 
-        if (studentId) {
-            fetchStudentData();
-        }
-    }, [studentId]);
+        fetchStudentData();
+    }, [studentId, projectId]);
 
-    return {
-        studentData,
-        isLoading
-    };
+    return { studentData, isLoading };
 };

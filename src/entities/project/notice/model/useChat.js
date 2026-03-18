@@ -1,8 +1,12 @@
 "use client"
 import { useState, useEffect, useMemo } from "react";
+import { useParams } from "next/navigation";
 import { noticeApi, searchChats, mapChatsToDisplay, filterChatsByType } from "@/entities/project/notice";
 
 export const useChat = () => {
+    const params = useParams();
+    const projectId = params?.id;
+
     const [chats, setChats] = useState([]);
     const [managers, setManagers] = useState([]);
     const [students, setStudents] = useState([]);
@@ -12,13 +16,16 @@ export const useChat = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const loadData = () => {
+        if (!projectId) return;
+
+        const loadData = async () => {
             try {
-                const chatData = noticeApi.getChats();
-                const managerData = noticeApi.getManagers();
-                const studentData = noticeApi.getStudents();
-                const teamData = noticeApi.getTeams();
-                
+                const [chatData, managerData, studentData, teamData] = await Promise.all([
+                    noticeApi.getChats(projectId),
+                    noticeApi.getManagers(projectId),
+                    noticeApi.getStudents(projectId),
+                    noticeApi.getTeams(projectId),
+                ]);
                 setChats(chatData);
                 setManagers(managerData);
                 setStudents(studentData);
@@ -31,7 +38,7 @@ export const useChat = () => {
         };
 
         loadData();
-    }, []);
+    }, [projectId]);
 
     const displayManagers = useMemo(() => {
         const mapped = mapChatsToDisplay(managers, chats);

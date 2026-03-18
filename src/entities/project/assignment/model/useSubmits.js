@@ -1,18 +1,22 @@
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect, useMemo } from "react";
+import { useParams } from "next/navigation";
 import { assignmentApi, searchSubmits, filterSubmitsByStatus } from "@/entities/project/assignment";
 
 export const useSubmits = (assignmentId) => {
+    const params = useParams();
+    const projectId = params?.id;
+
     const [submits, setSubmits] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
     const [statusFilter, setStatusFilter] = useState("전체");
 
     useEffect(() => {
-        const loadSubmits = () => {
+        if (!projectId || !assignmentId) return;
+
+        const loadSubmits = async () => {
             try {
-                const data = assignmentId 
-                    ? assignmentApi.getSubmitsByAssignment(assignmentId)
-                    : assignmentApi.getSubmits();
+                const data = await assignmentApi.getSubmits(projectId, assignmentId);
                 setSubmits(data);
             } catch (error) {
                 console.error("Failed to load submits:", error);
@@ -22,7 +26,7 @@ export const useSubmits = (assignmentId) => {
         };
 
         loadSubmits();
-    }, [assignmentId]);
+    }, [projectId, assignmentId]);
 
     const filteredSubmits = useMemo(() => {
         let result = submits;
@@ -33,10 +37,10 @@ export const useSubmits = (assignmentId) => {
 
     const handleMemoUpdate = async (submitId, memo) => {
         try {
-            await assignmentApi.updateSubmitMemo(submitId, memo);
-            setSubmits(prev => 
-                prev.map(submit => 
-                    submit.submit_id === submitId 
+            await assignmentApi.updateSubmitMemo(projectId, assignmentId, submitId, memo);
+            setSubmits(prev =>
+                prev.map(submit =>
+                    submit.submit_id === submitId
                         ? { ...submit, memo }
                         : submit
                 )

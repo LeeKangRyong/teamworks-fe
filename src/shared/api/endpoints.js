@@ -36,6 +36,7 @@ export const ENDPOINTS = {
 
         CHATS:          (pId) => `/api/projects/${pId}/chats`,
         CHAT:           (pId, cId) => `/api/projects/${pId}/chats/${cId}`,
+        CHAT_READ:      (pId, cId) => `/api/projects/${pId}/chats/${cId}/read`,
         MESSAGES:       (pId, cId) => `/api/projects/${pId}/chats/${cId}/messages`,
 
         MANAGERS:       (pId) => `/api/projects/${pId}/managers`,
