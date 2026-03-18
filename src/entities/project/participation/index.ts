@@ -1,4 +1,5 @@
 export { participationApi } from "./api/participationApi";
+export type { Student, MemberStatus } from '@/shared/types'
 
 export { filterStudents,calculateParticipationStats } from "./lib/processParticipation";
 

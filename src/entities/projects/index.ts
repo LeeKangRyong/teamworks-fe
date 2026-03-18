@@ -1,4 +1,5 @@
 export { projectApi } from './api/projectApi'
+export type { Project, ProjectStatus, ProjectType, CreateProjectDto } from './model/types'
 
 export { timeFormat } from './lib/timeFormat'
 

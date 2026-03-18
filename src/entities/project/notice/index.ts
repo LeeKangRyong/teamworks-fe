@@ -1,4 +1,5 @@
 export { noticeApi } from "./api/noticeApi";
+export type { Chat, Message, ChatUserType } from './model/types'
 
 export { 
     searchChats,

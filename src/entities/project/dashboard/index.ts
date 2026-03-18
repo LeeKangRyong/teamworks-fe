@@ -1,5 +1,6 @@
 // src/entities/project/dashboard/index.ts
 export { dashboardApi } from "./api/dashboardApi"
+export type { DashboardData } from './model/types'
 
 export { getWarningTeams, getProgressAssignments, calculateDashboardStats } from "./lib/processDashboard"
 
