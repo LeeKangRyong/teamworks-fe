@@ -9,5 +9,5 @@ export { default as submitsData } from "./project/submitsData.json"
 export { default as teamsData } from "./project/teamsData.json"
 export { default as timelineData } from "./project/timelineData.json"
 
-export { USE_MOCK } from "./useMock";
+export { USE_MOCK } from "../config/env";
 export { default as usersData } from "./usersData.json"
