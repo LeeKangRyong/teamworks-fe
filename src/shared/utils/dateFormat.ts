@@ -25,7 +25,7 @@ export function formatDateInput(value: string): string {
 /**
  * 키보드 입력이 숫자인지 확인
  */
-export function isNumberKey(e: KeyboardEvent): boolean {
+export function isNumberKey(e: KeyboardEvent | React.KeyboardEvent<HTMLInputElement>): boolean {
     if (
         e.key === "Backspace" ||
         e.key === "Delete" ||

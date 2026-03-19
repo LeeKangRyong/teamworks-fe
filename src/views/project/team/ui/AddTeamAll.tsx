@@ -1,0 +1,32 @@
+"use client";
+import { LayoutHeader, LayoutAside, useAsideStore } from "@/widgets/Layout";
+import { AddTeamAllForm } from "@/widgets/Project/Team";
+
+interface Props {
+    id?: string;
+}
+
+export function AddTeamAll({ id }: Props) {
+    const { isCollapsed } = useAsideStore();
+
+    return (
+        <div className="bg-secondary-5 w-full min-h-screen">
+            <LayoutHeader />
+            <LayoutAside />
+
+            <div
+                className="transition-all duration-300"
+                style={{
+                    paddingLeft: isCollapsed ? '48px' : '200px'
+                }}
+            >
+                <div className="flex justify-center mt-20">
+                    <div className="w-full max-w-[1040px] px-4 lg:px-4 flex flex-col items-center">
+                        <h1 className="text-heading-m mt-7 mb-5 font-bold">팀 생성</h1>
+                        <AddTeamAllForm />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}

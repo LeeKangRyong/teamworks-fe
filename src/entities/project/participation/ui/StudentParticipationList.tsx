@@ -1,0 +1,50 @@
+"use client";
+import { useRouter, useParams } from "next/navigation";
+import { StudentParticipation } from "@/shared/ui/project/participation";
+
+interface StudentData {
+    student_id: number;
+    name: string;
+    team: string;
+    recent: string;
+    status: string;
+    desc: string;
+}
+
+interface Props {
+    studentsData?: StudentData[];
+}
+
+export function StudentParticipationList({ studentsData }: Props) {
+    const router = useRouter();
+    const params = useParams();
+    const projectId = params.id;
+
+    const handlePart = (studentId: number) => {
+        router.push(`/projects/${projectId}/participation/${studentId}`);
+    };
+
+    return (
+        <article className="min-h-80">
+            {studentsData && studentsData.length > 0 ? (
+                studentsData.map((student) => (
+                    <StudentParticipation
+                        key={student.student_id}
+                        student_id={student.student_id}
+                        name={student.name}
+                        team={student.team}
+                        recent={student.recent}
+                        status={student.status}
+                        desc={student.desc}
+                        onClick={() => handlePart(student.student_id)}
+                    />
+                ))
+            ) : (
+                <div className="flex flex-col justify-center items-center py-16">
+                    <p className="text-body-s text-secondary-60 mb-2">등록된 학생이 없습니다</p>
+                    <p className="text-body-s text-secondary-60 mb-4">새로운 학생을 추가해보세요</p>
+                </div>
+            )}
+        </article>
+    );
+}
