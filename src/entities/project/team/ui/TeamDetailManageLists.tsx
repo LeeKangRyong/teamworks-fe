@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { TeamDetailManageList } from "@/shared/ui/project/team";
 import { teamApi } from "@/entities/project/team/api/teamApi";
+import type { Team, Student } from "@/shared/types";
 
 interface Props {
     teamId: string | number;
@@ -11,18 +12,18 @@ interface Props {
 export function TeamDetailManageLists({ teamId }: Props) {
     const params = useParams();
     const projectId = params.id;
-    const [teamInfo, setTeamInfo] = useState<any>(null);
-    const [teamMembers, setTeamMembers] = useState<any[]>([]);
+    const [teamInfo, setTeamInfo] = useState<Team | null>(null);
+    const [teamMembers, setTeamMembers] = useState<Student[]>([]);
 
     useEffect(() => {
         Promise.all([
             teamApi.getTeams(projectId as string),
             teamApi.getStudents(projectId as string),
         ]).then(([teams, students]) => {
-            const team = teams.find((t: any) => t.team_id === parseInt(String(teamId)));
-            setTeamInfo(team);
+            const team = teams.find((t: Team) => t.team_id === parseInt(String(teamId)));
+            setTeamInfo(team ?? null);
             if (team) {
-                setTeamMembers(students.filter((s: any) => s.team === team.team));
+                setTeamMembers(students.filter((s: Student) => s.team === team.team));
             }
         });
     }, [projectId, teamId]);

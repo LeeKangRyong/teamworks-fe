@@ -3,7 +3,7 @@ import { SendMessage } from "@/features/project/team";
 
 interface Props {
     team: string;
-    num: number;
+    num: string;
     recent: string;
     status: string;
     desc: string;

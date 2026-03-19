@@ -1,7 +1,6 @@
 import Image from "next/image";
 import user from "@/assets/icons/user.png";
 import notification_default from "@/assets/icons/notification-default.png";
-import notification_active from "@/assets/icons/notification-active.png";
 import arrow_down from "@/assets/icons/arrow-down.png";
 
 export function HeaderList() {

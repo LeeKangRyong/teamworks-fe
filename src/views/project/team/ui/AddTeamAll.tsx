@@ -2,11 +2,7 @@
 import { LayoutHeader, LayoutAside, useAsideStore } from "@/widgets/Layout";
 import { AddTeamAllForm } from "@/widgets/Project/Team";
 
-interface Props {
-    id?: string;
-}
-
-export function AddTeamAll({ id }: Props) {
+export function AddTeamAll() {
     const { isCollapsed } = useAsideStore();
 
     return (

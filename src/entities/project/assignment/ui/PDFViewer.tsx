@@ -1,13 +1,14 @@
 "use client";
 import { useState, useEffect } from "react";
+import type { DocumentProps, PageProps } from "react-pdf";
 
 interface Props {
     fileUrl?: string;
 }
 
 export function PDFViewer({ fileUrl }: Props) {
-    const [Document, setDocument] = useState<React.ComponentType<any> | null>(null);
-    const [Page, setPage] = useState<React.ComponentType<any> | null>(null);
+    const [Document, setDocument] = useState<React.ComponentType<DocumentProps> | null>(null);
+    const [Page, setPage] = useState<React.ComponentType<PageProps> | null>(null);
     const [numPages, setNumPages] = useState<number | null>(null);
     const [isFullView, setIsFullView] = useState(false);
 

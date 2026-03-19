@@ -5,7 +5,7 @@ import { TeamManageList } from "@/shared/ui/project/team";
 interface TeamData {
     team_id: number;
     team: string;
-    num: number;
+    num: string;
     recent: string;
     status: string;
     desc: string;

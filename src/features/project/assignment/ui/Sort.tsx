@@ -8,7 +8,7 @@ interface Props {
     type?: string;
 }
 
-export function Sort({ onSortDirectionChange, type }: Props) {
+export function Sort({ onSortDirectionChange }: Props) {
     const [selectedDirection, setSelectedDirection] = useState("desc");
 
     const sortOptions = {

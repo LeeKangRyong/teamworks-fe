@@ -9,6 +9,13 @@ interface StatusOption {
     textColor: string;
 }
 
+const STATUS_OPTIONS: StatusOption[] = [
+    { value: "all", label: "상태", textColor: "text-secondary-60" },
+    { value: "good", label: "좋음", textColor: "text-secondary-60" },
+    { value: "warning", label: "위험", textColor: "text-secondary-60" },
+    { value: "freeload", label: "무임승차", textColor: "text-secondary-60" }
+];
+
 interface Props {
     onStatusChange?: (status: string) => void;
     initialStatus?: string;
@@ -19,17 +26,10 @@ export function StatusSelect({ onStatusChange, initialStatus }: Props) {
     const [selectedStatus, setSelectedStatus] = useState("상태");
     const dropdownRef = useRef<HTMLDivElement>(null);
 
-    const statusOptions: StatusOption[] = [
-        { value: "all", label: "상태", textColor: "text-secondary-60" },
-        { value: "good", label: "좋음", textColor: "text-secondary-60" },
-        { value: "warning", label: "위험", textColor: "text-secondary-60" },
-        { value: "freeload", label: "무임승차", textColor: "text-secondary-60" }
-    ];
-
     // initialStatus가 변경될 때 상태 업데이트
     useEffect(() => {
         if (initialStatus) {
-            const matchedOption = statusOptions.find(option => option.value === initialStatus);
+            const matchedOption = STATUS_OPTIONS.find(option => option.value === initialStatus);
             if (matchedOption) {
                 setSelectedStatus(matchedOption.label);
             }
@@ -76,7 +76,7 @@ export function StatusSelect({ onStatusChange, initialStatus }: Props) {
                 {isOpen && (
                     <div className="absolute top-full -left-2 mt-1 w-27 bg-secondary-3 rounded-lg z-50 shadow-lg">
                         <div>
-                            {statusOptions.map((option) => {
+                            {STATUS_OPTIONS.map((option) => {
                                 const isSelected = selectedStatus === option.label;
                                 return (
                                     <button

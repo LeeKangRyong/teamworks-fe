@@ -13,16 +13,19 @@ interface Project {
     startDate: string;
     endDate: string;
     participantCount: number;
-    [key: string]: unknown;
+}
+
+interface ProjectModalData {
+    id: number;
+    name: string;
 }
 
 interface Props {
     projects: Project[];
-    setProjects: (projects: Project[]) => void;
 }
 
-export function ProjectCards({ projects, setProjects }: Props) {
-    const { isOpen: isDeleteModalOpen, modalData: deleteProjectData, openModal: openDeleteModal, closeModal: closeDeleteModal } = useModal();
+export function ProjectCards({ projects }: Props) {
+    const { isOpen: isDeleteModalOpen, modalData: deleteProjectData, openModal: openDeleteModal, closeModal: closeDeleteModal } = useModal<ProjectModalData>();
     const router = useRouter();
     const { user } = useAuth();
 
@@ -69,7 +72,7 @@ export function ProjectCards({ projects, setProjects }: Props) {
 
             {isDeleteModalOpen && deleteProjectData && (
                 <DeleteModal
-                    projectName={(deleteProjectData as any).name}
+                    projectName={deleteProjectData.name}
                     onClose={closeDeleteModal}
                     onConfirm={handleConfirmDelete}
                 />

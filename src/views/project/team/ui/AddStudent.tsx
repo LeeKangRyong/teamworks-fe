@@ -1,11 +1,7 @@
 "use client";
 import { LayoutHeader, LayoutAside, useAsideStore } from "@/widgets/Layout";
 
-interface Props {
-    id?: string;
-}
-
-export function AddStudent({ id }: Props) {
+export function AddStudent() {
     const { isCollapsed } = useAsideStore();
 
     return (

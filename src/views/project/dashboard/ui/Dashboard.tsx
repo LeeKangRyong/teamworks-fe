@@ -5,6 +5,7 @@ import { LayoutHeader, LayoutAside, useAsideStore } from "@/widgets/Layout";
 import { DashboardWidget } from "@/widgets/Project/Whole";
 import { Options } from "@/features/project/layout";
 import projectsData from "@/shared/mock/project/projectsData.json";
+import type { Project } from "@/entities/projects";
 
 interface Props {
     id?: string;
@@ -12,17 +13,17 @@ interface Props {
 
 export function Dashboard({ id }: Props) {
     const [activeTab, setActiveTab] = useState("dashboard");
-    const [projectData, setProjectData] = useState<any>(null);
+    const [projectData, setProjectData] = useState<Project | null>(null);
     const { isCollapsed } = useAsideStore();
 
     const params = useParams();
     const projectId = params.id || id;
 
     useEffect(() => {
-        const foundProject = (projectsData as any[]).find(project =>
+        const foundProject = (projectsData as Project[]).find(project =>
             project.project_id === parseInt(String(projectId))
         );
-        setProjectData(foundProject);
+        setProjectData((foundProject as Project) ?? null);
     }, [projectId]);
 
     return (
@@ -39,7 +40,7 @@ export function Dashboard({ id }: Props) {
                 <div className="flex justify-center mt-20">
                     <div className="w-full max-w-[1040px] px-4 lg:px-4">
                         <h1 className="text-heading-m font-bold mt-10 mb-5">
-                            {projectData?.title || "과목"}
+                            {projectData?.name || "과목"}
                         </h1>
                         <article className="bg-white w-full py-4 mb-10 rounded-md">
                             <Options activeTab={activeTab} setActiveTab={setActiveTab} />

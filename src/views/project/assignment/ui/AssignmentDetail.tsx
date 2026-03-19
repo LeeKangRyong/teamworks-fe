@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { LayoutHeader, LayoutAside } from "@/widgets/Layout";
 import { projectsData } from "@/shared/mock";
+import type { Project } from "@/entities/projects";
 import { Options } from "@/features/project/layout";
 import { AssignmentDetailWidget } from "@/widgets/Project/Whole";
 import { useAsideStore } from "@/widgets/Layout";
@@ -14,13 +15,13 @@ interface Props {
 export function AssignmentDetail({ projectId, assignmentId }: Props) {
     const [activeTab, setActiveTab] = useState("assignment");
     const { isCollapsed } = useAsideStore();
-    const [projectData, setProjectData] = useState<any>(null);
+    const [projectData, setProjectData] = useState<Project | null>(null);
 
     useEffect(() => {
         const foundProject = projectsData.find(project =>
             project.project_id === parseInt(String(projectId))
         );
-        setProjectData(foundProject);
+        setProjectData((foundProject as Project) ?? null);
     }, [projectId]);
 
     return (
@@ -36,7 +37,7 @@ export function AssignmentDetail({ projectId, assignmentId }: Props) {
                 <div className="flex justify-center mt-20">
                     <div className="w-full max-w-[1040px] px-4 lg:px-4">
                         <h1 className="text-heading-m font-bold mt-10 mb-5">
-                            {projectData?.title || "과목"}
+                            {projectData?.name || "과목"}
                         </h1>
                         <article className="bg-white w-full py-4 mb-10 rounded-md">
                             <Options activeTab={activeTab} setActiveTab={setActiveTab} />

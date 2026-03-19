@@ -9,6 +9,13 @@ interface StatusOption {
     textColor: string;
 }
 
+const STATUS_OPTIONS: StatusOption[] = [
+    { value: "all", label: "상태", textColor: "text-secondary-60" },
+    { value: "complete", label: "채점완료", textColor: "text-secondary-60" },
+    { value: "progress", label: "진행중", textColor: "text-secondary-60" },
+    { value: "end", label: "마감", textColor: "text-secondary-60" }
+];
+
 interface Props {
     onStatusChange?: (status: string) => void;
     initialStatus?: string;
@@ -19,17 +26,9 @@ export function AssignmentStatusSelect({ onStatusChange, initialStatus }: Props)
     const [selectedStatus, setSelectedStatus] = useState("상태");
     const dropdownRef = useRef<HTMLDivElement>(null);
 
-    // query parameter 방식
-    const statusOptions: StatusOption[] = [
-        { value: "all", label: "상태", textColor: "text-secondary-60" },
-        { value: "complete", label: "채점완료", textColor: "text-secondary-60" },
-        { value: "progress", label: "진행중", textColor: "text-secondary-60" },
-        { value: "end", label: "마감", textColor: "text-secondary-60" }
-    ];
-
     useEffect(() => {
         if (initialStatus) {
-            const matchedOption = statusOptions.find(option => option.value === initialStatus);
+            const matchedOption = STATUS_OPTIONS.find(option => option.value === initialStatus);
             if (matchedOption) {
                 setSelectedStatus(matchedOption.label);
             }
@@ -76,7 +75,7 @@ export function AssignmentStatusSelect({ onStatusChange, initialStatus }: Props)
                 {isOpen && (
                     <div className="absolute top-full -left-2 mt-1 w-20 bg-secondary-3 rounded-lg z-50 shadow-lg">
                         <div>
-                            {statusOptions.map((option) => {
+                            {STATUS_OPTIONS.map((option) => {
                                 const isSelected = selectedStatus === option.label;
                                 return (
                                     <button

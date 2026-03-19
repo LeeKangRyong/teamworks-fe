@@ -5,6 +5,7 @@ import { LayoutHeader, LayoutAside, useAsideStore } from "@/widgets/Layout";
 import { Options } from "@/features/project/layout";
 import { TeamDetailWidget } from "@/widgets/Project/Whole";
 import { projectsData } from "@/shared/mock";
+import type { Project } from "@/entities/projects";
 
 export function TeamDetail() {
     const params = useParams();
@@ -12,11 +13,11 @@ export function TeamDetail() {
     const projectId = params.id;
     const [activeTab, setActiveTab] = useState("team");
     const { isCollapsed } = useAsideStore();
-    const [projectData, setProjectData] = useState<any>(null);
+    const [projectData, setProjectData] = useState<Project | null>(null);
 
     useEffect(() => {
         const foundProject = projectsData.find(project => project.project_id === parseInt(String(projectId)));
-        setProjectData(foundProject);
+        setProjectData((foundProject as Project) ?? null);
     }, [projectId]);
 
     return (
@@ -33,7 +34,7 @@ export function TeamDetail() {
                 <div className="flex justify-center mt-20">
                     <div className="w-full max-w-[1040px] px-4 lg:px-4">
                         <h1 className="text-heading-m font-bold mt-10 mb-5">
-                            {projectData?.title || "과목"}
+                            {projectData?.name || "과목"}
                         </h1>
                         <article className="bg-white w-full py-4 mb-10 rounded-md">
                             <Options activeTab={activeTab} setActiveTab={setActiveTab} />

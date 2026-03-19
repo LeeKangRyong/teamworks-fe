@@ -19,7 +19,6 @@ export function InputDate({
     hasError = false,
     onFocus,
     onBlur,
-    disabled
 }: Props) {
     return (
         <div className="flex gap-2 items-center">

@@ -3,7 +3,7 @@ interface Props {
     disabled?: boolean;
 }
 
-export function Save({ onClick, disabled }: Props) {
+export function Save({ onClick }: Props) {
     return (
         <button
             onClick={onClick}

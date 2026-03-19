@@ -49,7 +49,7 @@ export function Chat({ selectedChatId }: Props) {
                 {hasMessages ? (
                     <>
                         <ChatList
-                            messages={messages as any}
+                            messages={messages}
                             DownloadButton={DownloadChat}
                         />
                         <div ref={messagesEndRef} />

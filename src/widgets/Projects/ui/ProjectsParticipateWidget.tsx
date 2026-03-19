@@ -59,8 +59,9 @@ export function ProjectsParticipateWidget() {
             setTimeout(() => {
                 showToast("프로젝트에 참가하였습니다");
             }, 300);
-        } catch (error: any) {
-            showToast(error.message || "프로젝트 참가에 실패했습니다");
+        } catch (error: unknown) {
+            const err = error as { message?: string };
+            showToast(err.message || "프로젝트 참가에 실패했습니다");
         }
     };
 

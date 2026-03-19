@@ -17,10 +17,8 @@ export function ListButtons({ onListChange }: Props) {
     };
 
     useEffect(() => {
-        if (onListChange) {
-            onListChange(selectedButton);
-        }
-    }, []);
+        onListChange?.("팀 리스트");
+    }, [onListChange]);
 
     return (
         <div className="flex flex-row gap-4" role="tablist" aria-label="팀 관리 메뉴">

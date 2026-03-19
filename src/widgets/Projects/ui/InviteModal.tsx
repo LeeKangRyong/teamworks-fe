@@ -10,7 +10,7 @@ interface Props {
     projectId?: string | number;
 }
 
-export function InviteModal({ isOpen, onClose, projectId }: Props) {
+export function InviteModal({ isOpen }: Props) {
     const router = useRouter();
     const { showToast } = useToast();
     const inviteCode = "asdasdasdaasdssdsdasda";

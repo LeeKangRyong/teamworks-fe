@@ -8,11 +8,12 @@ import { AddMemberModal } from "./AddMemberModal";
 import { useToast } from "@/shared/ui/Toast";
 import Image from "next/image";
 import warning from "@/assets/icons/warning.png";
+import type { Student } from "@/shared/types";
 
 export function AddTeamAllForm() {
     const [projectTeam, setprojectTeam] = useState("");
     const [projectMember, setprojectMember] = useState("");
-    const [selectedMembers, setSelectedMembers] = useState<any[]>([]);
+    const [selectedMembers, setSelectedMembers] = useState<Student[]>([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isFormValid, setIsFormValid] = useState(false);
     const [showNameWarning, setShowNameWarning] = useState(false);
@@ -54,14 +55,15 @@ export function AddTeamAllForm() {
             await createTeamsBulk(projectId, {
                 teamCount: parseInt(projectTeam),
                 membersPerTeam: parseInt(projectMember),
-                memberIds: selectedMembers.map((m: any) => m.student_id || m.id)
+                memberIds: selectedMembers.map((m: Student) => m.student_id)
             });
             router.push(`/projects/${projectId}/team`);
             setTimeout(() => {
                 showToast("팀이 생성되었습니다");
             }, 100);
-        } catch (error: any) {
-            showToast(error.message || "팀 생성에 실패했습니다");
+        } catch (error: unknown) {
+            const err = error as { message?: string };
+            showToast(err.message || "팀 생성에 실패했습니다");
         }
     };
 
@@ -69,7 +71,7 @@ export function AddTeamAllForm() {
     const handleModalClose = () => { setIsModalOpen(false); };
 
     const handleMemberSelect = (members: unknown[]) => {
-        setSelectedMembers(members as any[]);
+        setSelectedMembers(members as Student[]);
         setShowMemberWarning(false);
     };
 

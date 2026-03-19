@@ -4,6 +4,11 @@ import type { Chat, Message, ChatUserType } from '../model/types';
 export interface ChatUser extends Omit<Chat, 'messages'> {
     name?: string;
     team?: string;
+    manager_id?: number;
+    student_id?: number;
+    team_id?: number;
+    memberCount?: number;
+    role?: string;
 }
 
 /**

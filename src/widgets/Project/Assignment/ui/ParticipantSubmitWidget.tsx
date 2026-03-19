@@ -8,20 +8,29 @@ interface Props {
     assignmentId: string | number;
 }
 
+interface ParticipantSubmit {
+    submit_id: number;
+    file_name: string;
+    submit_time: string;
+    file_url?: string;
+    [key: string]: unknown;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function ParticipantSubmitWidget({ assignmentId }: Props) {
-    const [allSubmits, setAllSubmits] = useState<any[]>([]);
+    const [allSubmits, setAllSubmits] = useState<ParticipantSubmit[]>([]);
 
     useEffect(() => {
-        setAllSubmits(participantSubmitsData as any[]);
+        setAllSubmits(participantSubmitsData as ParticipantSubmit[]);
     }, []);
 
-    const handleDownload = (submit: any) => {
+    const handleDownload = (submit: ParticipantSubmit) => {
         if (submit.file_url) {
             window.open(submit.file_url, '_blank');
         }
     };
 
-    const renderActions = (submit: any) => (
+    const renderActions = (submit: ParticipantSubmit) => (
         <>
             <Download onClick={() => handleDownload(submit)} />
             <ParticipantMark onClick={() => {}} />

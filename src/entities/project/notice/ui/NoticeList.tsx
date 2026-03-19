@@ -3,6 +3,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { NoticeStudentItem, NoticeTeamItem } from "@/shared/ui/project/notice";
 import { useChat } from "@/entities/project/notice";
+import type { Chat } from "@/entities/project/notice/model/types";
+import type { ChatUser } from "@/entities/project/notice/lib/processNotice";
 import arrow_right from "@/assets/icons/arrow-right.png";
 import arrow_down from "@/assets/icons/arrow-down.png";
 
@@ -28,7 +30,7 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }: P
     const openSectionsCount = [isManagerOpen, isTeamOpen, isStudentOpen].filter(Boolean).length;
 
     const handleItemClick = (userId: string, userType: string) => {
-        const chat = chats.find((chat: any) => chat.userId === userId && chat.userType === userType);
+        const chat = chats.find((chat: Chat) => chat.userId === userId && chat.userType === userType);
 
         if (!chat) {
             const tempChatId = `chat_temp_${userId}_${userType}`;
@@ -47,20 +49,20 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }: P
     }
 
     const filteredManagers = searchValue.trim()
-        ? displayManagers.filter((manager: any) =>
-            manager.name.toLowerCase().includes(searchValue.toLowerCase())
+        ? displayManagers.filter((manager: ChatUser) =>
+            manager.name?.toLowerCase().includes(searchValue.toLowerCase())
         )
         : displayManagers;
 
     const filteredStudents = searchValue.trim()
-        ? displayStudents.filter((student: any) =>
-            student.name.toLowerCase().includes(searchValue.toLowerCase())
+        ? displayStudents.filter((student: ChatUser) =>
+            student.name?.toLowerCase().includes(searchValue.toLowerCase())
         )
         : displayStudents;
 
     const filteredTeams = searchValue.trim()
-        ? displayTeams.filter((team: any) =>
-            team.team.toLowerCase().includes(searchValue.toLowerCase())
+        ? displayTeams.filter((team: ChatUser) =>
+            team.team?.toLowerCase().includes(searchValue.toLowerCase())
         )
         : displayTeams;
 
@@ -88,19 +90,19 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }: P
                 {isManagerOpen && (
                     <div className="flex-1 overflow-y-auto scrollbar-thin">
                         {filteredManagers.length > 0 ? (
-                            filteredManagers.map((manager: any) => {
-                                const chat = chats.find((c: any) => c.userId === manager.name);
+                            filteredManagers.map((manager: ChatUser) => {
+                                const chat = chats.find((c: Chat) => c.userId === manager.name);
                                 const isSelected = chat?.id === selectedChatId;
                                 return (
                                     <div
                                         key={manager.manager_id}
-                                        onClick={() => handleItemClick(manager.name, 'manager')}
+                                        onClick={() => handleItemClick(manager.name ?? '', 'manager')}
                                         className={`cursor-pointer transition-colors ${
                                             isSelected ? 'bg-primary-5' : 'hover:bg-gray-5'
                                         }`}
                                     >
                                         <NoticeStudentItem
-                                            name={manager.name}
+                                            name={manager.name ?? ''}
                                             badge={manager.badge}
                                         />
                                     </div>
@@ -137,19 +139,19 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }: P
                 {isTeamOpen && (
                     <div className="flex-1 overflow-y-auto scrollbar-thin">
                         {filteredTeams.length > 0 ? (
-                            filteredTeams.map((team: any) => {
-                                const chat = chats.find((c: any) => c.userId === team.team);
+                            filteredTeams.map((team: ChatUser) => {
+                                const chat = chats.find((c: Chat) => c.userId === team.team);
                                 const isSelected = chat?.id === selectedChatId;
                                 return (
                                     <div
                                         key={team.team_id}
-                                        onClick={() => handleItemClick(team.team, 'team')}
+                                        onClick={() => handleItemClick(team.team ?? '', 'team')}
                                         className={`cursor-pointer transition-colors ${
                                             isSelected ? 'bg-primary-5' : 'hover:bg-gray-5'
                                         }`}
                                     >
                                         <NoticeTeamItem
-                                            team={team.team}
+                                            team={team.team ?? ''}
                                             memberCount={team.memberCount}
                                             badge={team.badge}
                                         />
@@ -187,19 +189,19 @@ export function NoticeList({ searchValue = "", onSelectChat, selectedChatId }: P
                 {isStudentOpen && (
                     <div className="flex-1 overflow-y-auto scrollbar-thin">
                         {filteredStudents.length > 0 ? (
-                            filteredStudents.map((student: any) => {
-                                const chat = chats.find((c: any) => c.userId === student.name);
+                            filteredStudents.map((student: ChatUser) => {
+                                const chat = chats.find((c: Chat) => c.userId === student.name);
                                 const isSelected = chat?.id === selectedChatId;
                                 return (
                                     <div
                                         key={student.student_id}
-                                        onClick={() => handleItemClick(student.name, 'student')}
+                                        onClick={() => handleItemClick(student.name ?? '', 'student')}
                                         className={`cursor-pointer transition-colors ${
                                             isSelected ? 'bg-primary-5' : 'hover:bg-gray-5'
                                         }`}
                                     >
                                         <NoticeStudentItem
-                                            name={student.name}
+                                            name={student.name ?? ''}
                                             badge={student.badge}
                                         />
                                     </div>

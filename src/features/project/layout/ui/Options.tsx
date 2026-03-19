@@ -1,6 +1,5 @@
 "use client";
-import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useRouter, useParams, usePathname } from "next/navigation";
 import { useAuth } from "@/entities/auth";
 import dashboard from "@/assets/icons/dashboard.png";
@@ -26,6 +25,22 @@ interface OptionItem {
     path: string;
 }
 
+const MANAGER_OPTIONS: OptionItem[] = [
+    { img: dashboard, imgHover: dashboardBlue, title: "대시보드", key: "dashboard", path: "dashboard" },
+    { img: team, imgHover: teamBlue, title: "팀 관리", key: "team", path: "team" },
+    { img: chart, imgHover: chartBlue, title: "참여도", key: "participation", path: "participation" },
+    { img: notice, imgHover: noticeBlue, title: "메시지/공지", key: "notice", path: "notice" },
+    { img: assignment, imgHover: assignmentBlue, title: "과제 확인", key: "assignment", path: "assignment"}
+];
+
+const PARTICIPANT_OPTIONS: OptionItem[] = [
+    { img: dashboard, imgHover: dashboardBlue, title: "대시보드", key: "dashboard", path: "dashboard" },
+    { img: notice, imgHover: noticeBlue, title: "채팅/공지", key: "notice", path: "notice" },
+    { img: assignment, imgHover: assignmentBlue, title: "과제 제출", key: "assignment", path: "assignment"},
+    { img: chart, imgHover: chartBlue, title: "참여도", key: "participation", path: "participation" },
+    { img: workspace, imgHover: workspaceBlue, title: "워크스페이스", key: "workspace", path: "workspace" }
+];
+
 interface Props {
     activeTab: string;
     setActiveTab: (tab: string) => void;
@@ -45,25 +60,10 @@ export function Options({ activeTab, setActiveTab }: Props) {
         setIsMounted(true);
     }, []);
 
-    // MANAGER용 옵션
-    const managerOptions: OptionItem[] = [
-        { img: dashboard, imgHover: dashboardBlue, title: "대시보드", key: "dashboard", path: "dashboard" },
-        { img: team, imgHover: teamBlue, title: "팀 관리", key: "team", path: "team" },
-        { img: chart, imgHover: chartBlue, title: "참여도", key: "participation", path: "participation" },
-        { img: notice, imgHover: noticeBlue, title: "메시지/공지", key: "notice", path: "notice" },
-        { img: assignment, imgHover: assignmentBlue, title: "과제 확인", key: "assignment", path: "assignment"}
-    ];
-
-    // PARTICIPANT용 옵션
-    const participantOptions: OptionItem[] = [
-        { img: dashboard, imgHover: dashboardBlue, title: "대시보드", key: "dashboard", path: "dashboard" },
-        { img: notice, imgHover: noticeBlue, title: "채팅/공지", key: "notice", path: "notice" },
-        { img: assignment, imgHover: assignmentBlue, title: "과제 제출", key: "assignment", path: "assignment"},
-        { img: chart, imgHover: chartBlue, title: "참여도", key: "participation", path: "participation" },
-        { img: workspace, imgHover: workspaceBlue, title: "워크스페이스", key: "workspace", path: "workspace" }
-    ];
-
-    const optionItems = user?.role === 'PARTICIPANT' ? participantOptions : managerOptions;
+    const optionItems = useMemo(
+        () => user?.role === 'PARTICIPANT' ? PARTICIPANT_OPTIONS : MANAGER_OPTIONS,
+        [user?.role]
+    );
 
     useEffect(() => {
         if (!isMounted) return;
@@ -76,7 +76,7 @@ export function Options({ activeTab, setActiveTab }: Props) {
                 setActiveTab(matchedItem.key);
             }
         }
-    }, [pathname, projectId, setActiveTab, isMounted]);
+    }, [pathname, projectId, setActiveTab, isMounted, optionItems]);
 
     const handleOptionClick = (item: OptionItem) => {
         setActiveTab(item.key);

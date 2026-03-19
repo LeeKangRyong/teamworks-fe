@@ -4,7 +4,7 @@ import user from "@/assets/icons/user.png";
 interface Message {
     id: number | string;
     date: string;
-    isMine: boolean;
+    isMine?: boolean;
     sender?: string;
     timestamp: string;
     isFile?: boolean;

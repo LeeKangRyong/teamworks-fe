@@ -5,6 +5,6 @@ export default async function TeamDetailPage({
 }: { 
     params: Promise<{ id: string; teamId: string }> 
 }) {
-    const { id, teamId } = await params;
+    await params;
     return <TeamDetail />;
 }

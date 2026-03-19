@@ -1,6 +1,7 @@
 "use client";
 import { useRouter, useParams } from "next/navigation";
 import { useSubmits, SubmitList, Mark } from "@/entities/project/assignment";
+import type { SubmitData } from "@/entities/project/assignment";
 import { Download } from "@/features/project/assignment";
 
 interface Props {
@@ -13,7 +14,7 @@ export function SubmitListWidget({ assignmentId }: Props) {
     const projectId = params.id;
     const { submits } = useSubmits(String(assignmentId));
 
-    const handleDownload = (submit: any) => {
+    const handleDownload = (submit: SubmitData) => {
         if (submit.file_url) {
             window.open(submit.file_url, '_blank');
         }
@@ -23,7 +24,7 @@ export function SubmitListWidget({ assignmentId }: Props) {
         router.push(`/projects/${projectId}/assignment/${assignmentId}/${submitId}`);
     };
 
-    const renderActions = (submit: any) => (
+    const renderActions = (submit: SubmitData) => (
         <>
             <Download onClick={() => handleDownload(submit)} />
             <Mark onClick={() => handleMark(submit.submit_id)} />
@@ -36,7 +37,7 @@ export function SubmitListWidget({ assignmentId }: Props) {
                 <h3 className="text-heading-m text-secondary-80 mb-4">제출물 리스트</h3>
                 <div className="mt-2">
                     <SubmitList
-                        submitsData={submits as any}
+                        submitsData={submits}
                         renderActions={renderActions}
                     />
                 </div>

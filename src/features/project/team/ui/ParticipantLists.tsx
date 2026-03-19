@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { ParticipantList } from "@/entities/project/team";
 import { CheckBox } from "@/shared/ui/Button";
 import { teamApi } from "@/entities/project/team/api/teamApi";
+import type { Student } from "@/shared/types";
 
 interface Props {
     onSelectionChange?: (selectedMembers: unknown[], count: number) => void;
@@ -12,7 +13,7 @@ interface Props {
 export function ParticipantLists({ onSelectionChange }: Props) {
     const params = useParams();
     const projectId = params.id;
-    const [students, setStudents] = useState<any[]>([]);
+    const [students, setStudents] = useState<Student[]>([]);
     const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
     useEffect(() => {
@@ -32,7 +33,7 @@ export function ParticipantLists({ onSelectionChange }: Props) {
     const isAllSelected = allIds.length > 0 && allIds.every(id => selectedIds.includes(id));
     const isIndeterminate = selectedIds.length > 0 && !isAllSelected;
 
-    const handleSelectAllChange = (_newChecked: boolean) => {
+    const handleSelectAllChange = () => {
         if (isIndeterminate) {
             setSelectedIds([]);
         } else if (selectedIds.length === 0) {
@@ -47,7 +48,7 @@ export function ParticipantLists({ onSelectionChange }: Props) {
             selectedIds.includes(p.student_id)
         );
         onSelectionChange?.(selectedMembers, selectedIds.length);
-    }, [selectedIds, onSelectionChange]);
+    }, [selectedIds, onSelectionChange, students]);
 
     return (
         <div className="h-full flex flex-col">

@@ -7,7 +7,7 @@ interface Props {
     badge?: number;
 }
 
-export function NoticeStudentItem({ name, team, badge }: Props) {
+export function NoticeStudentItem({ name, badge }: Props) {
     return (
         <div className="flex flex-row items-center gap-2 py-2 px-3 hover:bg-gray-10 cursor-pointer border-b-1 border-gray-10">
             <div className="relative">

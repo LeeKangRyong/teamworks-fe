@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { ListButtons } from "@/features/project/team";
+import type { Team, Student } from "@/shared/types";
 import {
     TeamManageLists,
     StudentManageLists,
@@ -167,8 +168,8 @@ export function TeamWidget({ initialStatus }: Props) {
                         <div className="h-104 overflow-y-auto scrollbar-thin">
                             {hasData ? (
                                 selectedList === "팀 리스트" ?
-                                <TeamManageLists teamsData={currentData as any} /> :
-                                <StudentManageLists studentsData={currentData as any} />
+                                <TeamManageLists teamsData={currentData as Team[]} /> :
+                                <StudentManageLists studentsData={currentData as Student[]} />
                             ) : (
                                 <div className="flex flex-col justify-center items-center py-16">
                                     {!hasOriginalData ? (

@@ -11,7 +11,7 @@ interface Props {
     student_id: number;
 }
 
-export function StudentParticipation({ name, team, recent, status, desc, onClick, student_id }: Props) {
+export function StudentParticipation({ name, team, recent, status, desc, onClick }: Props) {
 
     const handleClick = () => {
         if (onClick) {

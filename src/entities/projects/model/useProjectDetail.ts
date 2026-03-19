@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { projectApi } from '../api/projectApi';
 import type { Project } from './types'
 
@@ -7,7 +7,7 @@ export const useProjectDetail = (projectId: string | number | undefined) => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    const fetchProjectDetail = async () => {
+    const fetchProjectDetail = useCallback(async () => {
         if (!projectId) return;
 
         try {
@@ -22,11 +22,11 @@ export const useProjectDetail = (projectId: string | number | undefined) => {
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [projectId]);
 
     useEffect(() => {
         fetchProjectDetail();
-    }, [projectId]);
+    }, [fetchProjectDetail]);
 
     const refreshProject = () => {
         fetchProjectDetail();

@@ -1,6 +1,7 @@
 
 export { assignmentApi } from "./api/assignmentApi";
 export type { Assignment, AssignmentStatus, Submit, CreateAssignmentDto, CreateSubmitDto } from './model/types'
+export type { SubmitData } from './ui/SubmitList'
 
 export { 
     filterByStatus, 

@@ -6,17 +6,28 @@ interface Props {
     chartData?: ChartItem[];
 }
 
+interface TickProps {
+    x?: number;
+    y?: number;
+    payload?: { value: string };
+}
+
+interface LabelProps {
+    x?: number;
+    y?: number;
+    width?: number;
+    value?: number;
+    index?: number;
+}
+
 export function NextSubmit({ chartData }: Props) {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-    const [isTransitioning, setIsTransitioning] = useState(false);
 
     const handleMouseEnter = (index: number) => {
-        setIsTransitioning(false);
         setHoveredIndex(index);
     };
 
     const handleMouseLeave = () => {
-        setIsTransitioning(true);
         setHoveredIndex(null);
     };
 
@@ -38,9 +49,9 @@ export function NextSubmit({ chartData }: Props) {
         return 'url(#normalGradient)';
     };
 
-    const CustomTick = (props: any) => {
-        const { x, y, payload } = props;
-        const lines = payload.value.split('|');
+    const CustomTick = (props: TickProps) => {
+        const { x = 0, y = 0, payload } = props;
+        const lines = (payload?.value ?? '').split('|');
 
         return (
             <g transform={`translate(${x},${y})`}>
@@ -61,8 +72,8 @@ export function NextSubmit({ chartData }: Props) {
         );
     };
 
-    const CustomLabel = (props: any) => {
-        const { x, y, width, value, index } = props;
+    const CustomLabel = (props: LabelProps) => {
+        const { x = 0, y = 0, width = 0, value = 0, index = 0 } = props;
 
         if (hoveredIndex !== index) return null;
 

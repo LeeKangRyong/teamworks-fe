@@ -23,32 +23,29 @@ export function ChatWidget() {
         setIsResizing(true);
     };
 
-    const stopResizing = () => {
-        setIsResizing(false);
-    };
-
-    const resize = (e: MouseEvent) => {
-        if (isResizing && sidebarRef.current) {
-            const containerRect = sidebarRef.current.parentElement!.getBoundingClientRect();
-            const newWidth = e.clientX - containerRect.left;
-
-            const minWidth = 160;
-            const maxWidth = containerRect.width * 0.5;
-
-            if (newWidth >= minWidth && newWidth <= maxWidth) {
-                setSidebarWidth(newWidth);
-            }
-        }
-    };
-
     useEffect(() => {
-        if (isResizing) {
-            window.addEventListener('mousemove', resize);
-            window.addEventListener('mouseup', stopResizing);
-        } else {
-            window.removeEventListener('mousemove', resize);
-            window.removeEventListener('mouseup', stopResizing);
-        }
+        if (!isResizing) return;
+
+        const resize = (e: MouseEvent) => {
+            if (sidebarRef.current) {
+                const containerRect = sidebarRef.current.parentElement!.getBoundingClientRect();
+                const newWidth = e.clientX - containerRect.left;
+
+                const minWidth = 160;
+                const maxWidth = containerRect.width * 0.5;
+
+                if (newWidth >= minWidth && newWidth <= maxWidth) {
+                    setSidebarWidth(newWidth);
+                }
+            }
+        };
+
+        const stopResizing = () => {
+            setIsResizing(false);
+        };
+
+        window.addEventListener('mousemove', resize);
+        window.addEventListener('mouseup', stopResizing);
 
         return () => {
             window.removeEventListener('mousemove', resize);

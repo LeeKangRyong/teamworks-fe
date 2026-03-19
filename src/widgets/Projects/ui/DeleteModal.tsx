@@ -27,8 +27,9 @@ export function DeleteModal({ projectId, projectName, onClose, onConfirm }: Prop
             showToast("프로젝트가 삭제되었습니다");
             onConfirm?.(projectId);
             onClose?.();
-        } catch (error: any) {
-            showToast(error.message || "프로젝트 삭제에 실패했습니다");
+        } catch (error: unknown) {
+            const err = error as { message?: string };
+            showToast(err.message || "프로젝트 삭제에 실패했습니다");
         }
     };
 

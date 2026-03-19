@@ -10,7 +10,7 @@ import { tokenStorage } from "@/shared/lib/tokenStorage";
 export function Projects() {
     const { user, isLoading: isAuthLoading, setUser } = useAuth();
     const { isCollapsed } = useAsideStore();
-    const { projects, setProjects, isLoading: isProjectsLoading, error } = useProjects();
+    const { projects, isLoading: isProjectsLoading, error } = useProjects();
     const [isInitialized, setIsInitialized] = useState(false);
 
     useEffect(() => {
@@ -86,7 +86,7 @@ export function Projects() {
                         {projects.length > 0 && (
                             <h1 className="text-heading-l mt-10 mb-5 font-bold">내 프로젝트</h1>
                         )}
-                        <ProjectCards projects={projects as any} setProjects={setProjects as any} />
+                        <ProjectCards projects={projects} />
                     </div>
                 </div>
             </div>

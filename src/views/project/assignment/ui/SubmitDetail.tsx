@@ -12,7 +12,7 @@ interface Props {
     submitId: string | number;
 }
 
-export function SubmitDetail({ projectId, assignmentId, submitId }: Props) {
+export function SubmitDetail({ projectId, submitId }: Props) {
     const [activeTab, setActiveTab] = useState("assignment");
     const { isCollapsed } = useAsideStore();
 

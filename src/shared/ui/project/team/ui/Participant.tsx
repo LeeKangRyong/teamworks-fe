@@ -17,7 +17,7 @@ export function Participant({ participant, isSelected, onCheck }: Props) {
         onCheck(participant.student_id);
     };
 
-    const handleCheckboxChange = (_newChecked: boolean) => {
+    const handleCheckboxChange = () => {
         onCheck(participant.student_id);
     };
 

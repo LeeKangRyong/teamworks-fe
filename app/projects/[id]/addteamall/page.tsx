@@ -1,6 +1,6 @@
 import { AddTeamAll } from "@/views/project/team";
 
 export default async function AddTeamAllPage({ params }: { params: Promise<{ id: string }> }) {
-    const { id } = await params;
-    return <AddTeamAll id={id} />;
+    await params;
+    return <AddTeamAll />;
 }

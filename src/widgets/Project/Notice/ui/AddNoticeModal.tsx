@@ -48,8 +48,9 @@ export function AddNoticeModal({ onClose }: Props) {
             setTimeout(() => {
                 showToast("공지가 작성되었습니다");
             }, 200);
-        } catch (error: any) {
-            showToast(error.message || "공지 작성에 실패했습니다");
+        } catch (error: unknown) {
+            const err = error as { message?: string };
+            showToast(err.message || "공지 작성에 실패했습니다");
         }
     };
 

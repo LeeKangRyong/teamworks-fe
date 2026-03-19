@@ -2,13 +2,13 @@
 import { useRouter, useParams } from "next/navigation";
 import { SubmitItem } from "@/shared/ui/project/assignment";
 
-interface SubmitData {
+export interface SubmitData {
     submit_id: number;
     file_name: string;
     name: string;
     team: string;
     submit_time: string;
-    [key: string]: unknown;
+    file_url?: string;
 }
 
 interface Props {

@@ -15,7 +15,7 @@ interface Props {
     initialSortType?: string;
 }
 
-export function Sort({ type, selectedList, onSortChange, initialSortType }: Props) {
+export function Sort({ selectedList, onSortChange, initialSortType }: Props) {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedSort, setSelectedSort] = useState("최근 활동일 순");
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -40,12 +40,13 @@ export function Sort({ type, selectedList, onSortChange, initialSortType }: Prop
     const sortOptions = getSortOptions();
 
     useEffect(() => {
-        if (initialSortType) {
-            const option = sortOptions.find(opt => opt.value === initialSortType);
-            if (option) {
-                setSelectedSort(option.label);
-            }
+        if (!initialSortType) return;
+        const option = sortOptions.find(opt => opt.value === initialSortType);
+        if (option) {
+            setSelectedSort(option.label);
         }
+    // sortOptions is derived from selectedList which is already in deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [initialSortType, selectedList]);
 
     useEffect(() => {
