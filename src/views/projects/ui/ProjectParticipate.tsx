@@ -10,12 +10,7 @@ export function ProjectsParticipate() {
             <LayoutHeader />
             <LayoutAside />
 
-            <div
-                className="transition-all duration-300"
-                style={{
-                    paddingLeft: isCollapsed ? '48px' : '200px'
-                }}
-            >
+            <div className="transition-all duration-300 pl-12">
                 <div className="flex justify-center mt-20">
                     <div className="w-full max-w-[1040px] px-4 lg:px-4">
                         <h1 className="text-heading-m mt-7 mb-5 text-center mr-90">프로젝트 참가</h1>

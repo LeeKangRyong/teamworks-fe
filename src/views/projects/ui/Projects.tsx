@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { LayoutHeader, LayoutAside, useAsideStore } from "@/widgets/Layout";
+import { LayoutHeader, LayoutAside } from "@/widgets/Layout";
 import { ProjectCards } from "@/widgets/Projects";
 import { Add } from "@/features/projects";
 import { useProjects } from "@/entities/projects";
@@ -9,7 +9,6 @@ import { tokenStorage } from "@/shared/lib/tokenStorage";
 
 export function Projects() {
     const { user, isLoading: isAuthLoading, setUser } = useAuth();
-    const { isCollapsed } = useAsideStore();
     const { projects, isLoading: isProjectsLoading, error } = useProjects();
     const [isInitialized, setIsInitialized] = useState(false);
 
@@ -34,12 +33,7 @@ export function Projects() {
             <div className="bg-secondary-5 w-full min-h-screen">
                 <LayoutHeader />
                 <LayoutAside />
-                <div
-                    className="transition-all duration-300 flex justify-center items-center min-h-screen"
-                    style={{
-                        paddingLeft: isCollapsed ? '48px' : '200px'
-                    }}
-                >
+                <div className="flex justify-center items-center min-h-screen pl-12">
                     <p className="text-body-m text-secondary-60">로딩 중...</p>
                 </div>
             </div>
@@ -51,12 +45,7 @@ export function Projects() {
             <div className="bg-secondary-5 w-full min-h-screen">
                 <LayoutHeader />
                 <LayoutAside />
-                <div
-                    className="transition-all duration-300 flex justify-center items-center min-h-screen"
-                    style={{
-                        paddingLeft: isCollapsed ? '48px' : '200px'
-                    }}
-                >
+                <div className="transition-all duration-300 flex justify-center items-center min-h-screen pl-12">
                     <p className="text-body-m text-error-50">에러: {error}</p>
                 </div>
             </div>
@@ -71,16 +60,11 @@ export function Projects() {
     );
 
     return (
-        <div className="bg-secondary-5 w-full min-h-screen">
+        <div className="bg-secondary-5 w-full min-h-screen relative">
             <LayoutHeader />
             <LayoutAside />
 
-            <div
-                className="transition-all duration-300"
-                style={{
-                    paddingLeft: isCollapsed ? '48px' : '200px'
-                }}
-            >
+            <div className="transition-all duration-300 pl-12">
                 <div className="flex justify-center mt-20">
                     <div className="w-full max-w-[1040px] px-4 lg:px-4">
                         {projects.length > 0 && (

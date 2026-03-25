@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import { LayoutHeader, LayoutAside, useAsideStore } from "@/widgets/Layout";
+import { LayoutHeader, LayoutAside } from "@/widgets/Layout";
 import { Options } from "@/features/project/layout";
 import { TeamDetailWidget } from "@/widgets/Project/Whole";
 import { projectsData } from "@/shared/mock";
@@ -12,7 +12,6 @@ export function TeamDetail() {
     const teamId = params.teamId as string;
     const projectId = params.id;
     const [activeTab, setActiveTab] = useState("team");
-    const { isCollapsed } = useAsideStore();
     const [projectData, setProjectData] = useState<Project | null>(null);
 
     useEffect(() => {
@@ -25,12 +24,7 @@ export function TeamDetail() {
             <LayoutHeader />
             <LayoutAside />
 
-            <div
-                className="transition-all duration-300"
-                style={{
-                    paddingLeft: isCollapsed ? '48px' : '200px'
-                }}
-            >
+            <div className="transition-all duration-300 pl-12">
                 <div className="flex justify-center mt-20">
                     <div className="w-full max-w-[1040px] px-4 lg:px-4">
                         <h1 className="text-heading-m font-bold mt-10 mb-5">

@@ -47,6 +47,8 @@ export function LayoutAside() {
                     transition-all duration-300 ease-in-out
                     h-full min-h-screen
                     ${isCollapsed ? 'w-[48px]' : 'w-[200px]'}
+                    z-[1000]
+                    shadow-lg
                 `}
             >
                 <div className="relative mt-18">
