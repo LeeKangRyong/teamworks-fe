@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ListButton } from "@/shared/ui/project/team";
 
 interface Props {
@@ -15,10 +15,6 @@ export function ListButtons({ onListChange }: Props) {
             onListChange(buttonName);
         }
     };
-
-    useEffect(() => {
-        onListChange?.("팀 리스트");
-    }, [onListChange]);
 
     return (
         <div className="flex flex-row gap-4" role="tablist" aria-label="팀 관리 메뉴">
