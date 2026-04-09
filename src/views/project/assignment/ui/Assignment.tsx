@@ -1,6 +1,6 @@
 "use client";
 import { useParams, useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { LayoutHeader, LayoutAside } from "@/widgets/Layout";
 import { AssignmentWidget } from "@/widgets/Project/Whole";
 import { Options } from "@/features/project/layout";
@@ -14,7 +14,6 @@ interface Props {
 export function Assignment({ id }: Props) {
     const [activeTab, setActiveTab] = useState("assignment");
     const [initialStatus, setInitialStatus] = useState<string | null>(null);
-    const [projectData, setProjectData] = useState<Project | null>(null);
 
     const params = useParams();
     const projectId = params.id || id;
@@ -28,12 +27,12 @@ export function Assignment({ id }: Props) {
         }
     }, [searchParams]);
 
-    useEffect(() => {
-        const foundProject = projectsData.find(project =>
+    const projectData = useMemo(() =>
+        projectsData.find(project =>
             project.project_id === parseInt(String(projectId))
-        );
-        setProjectData((foundProject as Project) ?? null);
-    }, [projectId]);
+        ) as Project ?? null,
+        [projectId]
+    );
 
     return (
         <div className="bg-secondary-5 w-full min-h-screen">

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { LayoutHeader, LayoutAside } from "@/widgets/Layout";
 import { projectsData } from "@/shared/mock";
 import type { Project } from "@/entities/projects";
@@ -13,14 +13,13 @@ interface Props {
 
 export function AssignmentDetail({ projectId, assignmentId }: Props) {
     const [activeTab, setActiveTab] = useState("assignment");
-    const [projectData, setProjectData] = useState<Project | null>(null);
 
-    useEffect(() => {
-        const foundProject = projectsData.find(project =>
+    const projectData = useMemo(() =>
+        projectsData.find(project =>
             project.project_id === parseInt(String(projectId))
-        );
-        setProjectData((foundProject as Project) ?? null);
-    }, [projectId]);
+        ) as Project ?? null,
+        [projectId]
+    );
 
     return (
         <div className="bg-secondary-5 w-full min-h-screen">

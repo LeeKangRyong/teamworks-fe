@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { useParams } from "next/navigation";
 import { LayoutHeader, LayoutAside } from "@/widgets/Layout";
 import { DashboardWidget } from "@/widgets/Project/Whole";
@@ -13,16 +13,15 @@ interface Props {
 
 export function Dashboard({ id }: Props) {
     const [activeTab, setActiveTab] = useState("dashboard");
-    const [projectData, setProjectData] = useState<Project | null>(null);
     const params = useParams();
     const projectId = params.id || id;
 
-    useEffect(() => {
-        const foundProject = (projectsData as Project[]).find(project =>
+    const projectData = useMemo(() =>
+        (projectsData as Project[]).find(project =>
             project.project_id === parseInt(String(projectId))
-        );
-        setProjectData((foundProject as Project) ?? null);
-    }, [projectId]);
+        ) ?? null,
+        [projectId]
+    );
 
     return (
         <div className="bg-secondary-5 w-full min-h-screen">

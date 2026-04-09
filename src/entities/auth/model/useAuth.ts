@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { authApi } from '@/entities/auth';
 import { tokenStorage } from '@/shared/lib/tokenStorage';
 import type { User, LoginCredentials } from './types'
@@ -12,30 +12,8 @@ export const useAuth = () => {
         return null;
     });
 
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-
-    useEffect(() => {
-        const initAuth = () => {
-
-            if (typeof window !== 'undefined') {
-                const hasToken = tokenStorage.hasValidToken();
-                const storedUser = tokenStorage.getUser();
-
-                if (hasToken && storedUser) {
-                    setUser(storedUser);
-                } else {
-                    // 쿠키만 남아있고 user 정보 없는 경우 → 완전 초기화
-                    tokenStorage.clearTokens();
-                    setUser(null);
-                }
-            }
-
-            setIsLoading(false);
-        };
-
-        initAuth();
-    }, []);
 
     const clearError = useCallback(() => setError(null), []);
 

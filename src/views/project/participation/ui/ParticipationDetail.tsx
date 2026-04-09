@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { LayoutHeader, LayoutAside } from "@/widgets/Layout";
 import { StudentParticipationDetail } from "@/widgets/Project/Participation";
 import { Options } from "@/features/project/layout";
@@ -12,27 +12,12 @@ interface Props {
 
 export function ParticipationDetail({ projectId, studentId }: Props) {
     const [activeTab, setActiveTab] = useState("participation");
-    const [projectTitle, setProjectTitle] = useState("");
 
-    useEffect(() => {
-        const fetchProjectData = async () => {
-            try {
-                const project = projectsData.find(p => p.project_id === parseInt(String(projectId)));
-                if (project) {
-                    setProjectTitle(project.name);
-                } else {
-                    setProjectTitle("프로젝트를 찾을 수 없습니다");
-                }
-            } catch (err) {
-                console.error('Error fetching project:', err);
-                setProjectTitle("프로젝트 로딩 오류");
-            }
-        };
-
-        if (projectId) {
-            fetchProjectData();
-        }
-    }, [projectId]);
+    const projectTitle = useMemo(() =>
+        projectsData.find(p => p.project_id === parseInt(String(projectId)))?.name
+        ?? "프로젝트를 찾을 수 없습니다",
+        [projectId]
+    );
 
     return (
         <div className="bg-secondary-5 w-full min-h-screen">

@@ -1,6 +1,6 @@
 "use client";
 import { useParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { LayoutHeader, LayoutAside } from "@/widgets/Layout";
 import { TeamWidget } from "@/widgets/Project/Whole";
@@ -15,7 +15,6 @@ interface Props {
 export function Team({ id }: Props) {
     const [activeTab, setActiveTab] = useState("team");
     const [initialStatus, setInitialStatus] = useState<string | null>(null);
-    const [projectData, setProjectData] = useState<Project | null>(null);
 
     const params = useParams();
     const projectId = params.id || id;
@@ -29,12 +28,12 @@ export function Team({ id }: Props) {
         }
     }, [searchParams]);
 
-    useEffect(() => {
-        const foundProject = projectsData.find(project =>
+    const projectData = useMemo(() =>
+        projectsData.find(project =>
             project.project_id === parseInt(String(projectId))
-        );
-        setProjectData((foundProject as Project) ?? null);
-    }, [projectId]);
+        ) as Project ?? null,
+        [projectId]
+    );
 
     return (
         <div className="bg-secondary-5 w-full min-h-screen">
