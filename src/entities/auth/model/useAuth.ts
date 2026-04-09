@@ -5,10 +5,11 @@ import type { User, LoginCredentials } from './types'
 
 export const useAuth = () => {
     const [user, setUser] = useState<User | null>(() => {
-        if (typeof window !== 'undefined') {
-            const storedUser = tokenStorage.getUser();
-            return storedUser;
-        }
+        if (typeof window === 'undefined') return null;
+        const hasToken = tokenStorage.hasValidToken();
+        const storedUser = tokenStorage.getUser();
+        if (hasToken && storedUser) return storedUser;
+        tokenStorage.clearTokens();
         return null;
     });
 
