@@ -4,8 +4,6 @@ import { useState } from "react";
 import { AsideList } from "@/shared/ui/Layout";
 import { useAsideStore } from "@/widgets/Layout";
 import { LogoutModal } from "@/widgets/Layout";
-import { useAuth } from "@/entities/auth";
-import { useToast } from "@/shared/ui/Toast";
 import home from "@/assets/icons/home.png";
 import search from "@/assets/icons/search.png";
 import logout from "@/assets/icons/profile.png";
@@ -17,8 +15,6 @@ import editRight from "@/assets/icons/edit-right.png";
 export function LayoutAside() {
     const { isCollapsed, toggleCollapsed } = useAsideStore();
     const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
-    const { logout: authLogout } = useAuth();
-    const { showToast } = useToast();
 
     const handleLogoutClick = () => {
         setIsLogoutModalOpen(true);
@@ -26,17 +22,6 @@ export function LayoutAside() {
 
     const handleCloseModal = () => {
         setIsLogoutModalOpen(false);
-    };
-
-    const handleConfirmLogout = async () => {
-        try {
-            await authLogout();
-            showToast("로그아웃 였습니다");
-            setIsLogoutModalOpen(false);
-        } catch (error) {
-            console.error("Logout error:", error);
-            showToast("로그아웃에 실패");
-        }
     };
 
     return (
@@ -139,7 +124,6 @@ export function LayoutAside() {
             {isLogoutModalOpen && (
                 <LogoutModal
                     onClose={handleCloseModal}
-                    onConfirm={handleConfirmLogout}
                 />
             )}
         </>

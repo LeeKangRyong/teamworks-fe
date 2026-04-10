@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useLogin } from '../model/useLogin';
 import { useRouter } from 'next/navigation';
 import Image from "next/image";
@@ -9,33 +9,18 @@ import thumbnail from "@/assets/icons/thumbnail.png";
 export function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [mounted, setMounted] = useState(false);
     const { login, isLoading, error } = useLogin();
     const router = useRouter();
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
             await login({ email, password });
-            setTimeout(() => {
-                router.push('/projects');
-            }, 100);
+            router.push('/projects');
         } catch (err) {
             console.error('[LoginForm] Login error:', err);
         }
     };
-
-    if (!mounted) {
-        return (
-            <div className="min-h-screen flex items-center justify-center">
-                <p className="text-body-m text-gray-50">로딩 중...</p>
-            </div>
-        );
-    }
 
     return (
         <div className="min-h-screen flex flex-col">

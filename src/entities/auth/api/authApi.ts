@@ -12,7 +12,6 @@ interface LoginResponse {
 
 export const authApi = {
     login: async (credentials: LoginCredentials): Promise<LoginResponse> => {
-        console.log('USE_MOCK:', USE_MOCK);
         if (USE_MOCK) {
             return new Promise((resolve, reject) => {
                 setTimeout(() => {

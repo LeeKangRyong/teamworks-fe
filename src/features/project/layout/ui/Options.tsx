@@ -53,7 +53,7 @@ export function Options({ activeTab, setActiveTab }: Props) {
     const params = useParams();
     const pathname = usePathname();
     const projectId = params.id;
-    const { user, isLoading } = useAuth();
+    const { user } = useAuth();
 
     // 클라이언트에서만 렌더링
     useEffect(() => {
@@ -86,7 +86,7 @@ export function Options({ activeTab, setActiveTab }: Props) {
     };
 
     // 로딩 중이거나 마운트 안됨
-    if (!isMounted || isLoading) {
+    if (!isMounted) {
         return (
             <nav className="flex flex-row gap-10 ml-5">
                 <div className="h-12" /> {/* 빈 공간 유지 */}
